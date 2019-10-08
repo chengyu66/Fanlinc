@@ -12,16 +12,16 @@ The objective of Fanlinc is to provide a platform for fans who share the same in
 
 ## Key Users
 
-1. The newbies: people who are interested in a certain type of culture but have no or little knowledge about it, they want to use Fanlinc to gain more knowledge from experienced fans through events and posts.
-2. The expertise: people who are expert about a certain topic, they can use Fanlinc to spread knowledge to new users and expand this community.
-3. The event holder: people who are professional with organizing and arranging events and activities can use Fanlinc to bring fans together and increase the adhesiveness of the fandom.
-4. The socialholic: people who are eager to interact and connect with other people who share something in common, they can use Fanlinc’s fanMap and event function to achieve these goals.
-5. The cosplayers: people that wear a costume and props to showcase their outfit, interact with other cosplayers and make friends with the fans of that fandom.
-The vendors: people who craft or make derivative products (i.e.: vendors) can use Fanlinc to attend events and set up tables to sell their goods.
+1. <span style="color:red">The newbies</span>: people who are interested in a certain type of culture but have no or little knowledge about it, they want to use Fanlinc to gain more knowledge from experienced fans through events and posts.
+2. <span style="color:yellow">The expertise</span>: people who are expert about a certain topic, they can use Fanlinc to spread knowledge to new users and expand this community.
+3. <span style="color:green">The event holder</span>: people who are professional with organizing and arranging events and activities can use Fanlinc to bring fans together and increase the adhesiveness of the fandom.
+4. <span style="color:blue">The socialholic</span>: people who are eager to interact and connect with other people who share something in common, they can use Fanlinc’s fanMap and event function to achieve these goals.
+5. <span style="color:purple">The cosplayers</span>: people that wear a costume and props to showcase their outfit, interact with other cosplayers and make friends with the fans of that fandom.
+6. <span style="color:orange">The vendors</span>: people who craft or make derivative products (i.e.: vendors) can use Fanlinc to attend events and set up tables to sell their goods.
 
 ## Scenario
 
-1. Alice, who is interested in animation, new to this community and wants to know more about the anime-Naruto.
+1. <span style="color:red">Alice, who is interested in animation, new to this community and wants to know more about the anime-Naruto.</span>
     * Step 1: Go to the web page.
     * Step 2: Click on the signup button.
     * Step 3: Enter the username and password.
@@ -30,7 +30,7 @@ The vendors: people who craft or make derivative products (i.e.: vendors) can us
     * Step 6: Search fandom for Naruto using the search bar.
     * Step 7: Click “Join”.
 
-2. Bob, as someone who has watched Naruto for more than 5 five years, actively respond to posts on Naruto fandom.
+2. <span style="color:yellow">Bob, as someone who has watched Naruto for more than 5 five years, actively respond to posts on Naruto fandom.</span>
     * Step 1: Go to the web page.
     * Step 2: Click on the login button.
     * Step 3: Enter the username and password.
@@ -39,7 +39,7 @@ The vendors: people who craft or make derivative products (i.e.: vendors) can us
     * Step 6: Select a post.
     * Step 7: Type respond.
 
-3. Jackie, who is decent at arranging events for fans.
+3. <span style="color:green">Jackie, who is decent at arranging events for fans.</span>
     * Step 1: Go to the web page.
     * Step 2: Click on the login button.
     * Step 3: Enter the username and password.
@@ -51,9 +51,9 @@ The vendors: people who craft or make derivative products (i.e.: vendors) can us
 
 The following three personas are with similiar scenarios:
 
-4. Daniel, who loves to interact with other fans
-5. Sam, a pro cosplayer
-6. The vendors.
+4. <span style="color:blue">Daniel, who loves to interact with other fans</span>
+5. <span style="color:purple">Sam, a pro cosplayer</span>
+6. <span style="color:orange">The vendors.</span>
     * Step 1: Go to the web page.
     * Step 2: Click on the login button.
     * Step 3: Click on “fanMap”.
