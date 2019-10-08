@@ -37,6 +37,6 @@ And during the following meetings, each member reported their progress over thei
 Apart from meeting in person regularly, if any members have questions and need help, they can reach other team members through the channel we set up on slack or grouping chat on discord. 
 
 
-## Next phase
+## Meetings and Communications
 
-For the next sprint, we need to get used to using Jira to report and track the issues during the development and progress of the work.
+We had team meetings every Tuesday after the tutorials and Friday afternoon at Humanity Wing of the campus. Each meeting lasted for about 1 hours. At the first meeting we decided which topic we would work on, the major features we need to implement and how to divide the work, such as writing the user stories, searching the competitions and creating the personas. 
