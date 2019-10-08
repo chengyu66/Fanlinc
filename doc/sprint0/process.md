@@ -17,6 +17,8 @@ The priority of the stories is as defined in the backlog and it is as follows:
 5. Events
 6. Maps
 
+Reasons for such priority ranking:
+
 1. User has the highest priority, because users are the most fundamental building blocks of the database. Almost all the operations are involving around users.
 2. Fandom is a group of fans on a particular theme. It is essentially a group of users, so a lot of operations are involved with it naturally.
 3. contacts forms a network between fans. A lot of basic operations such as chatting and adding relationships between users.
