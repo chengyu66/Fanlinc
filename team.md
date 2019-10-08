@@ -1,10 +1,8 @@
-
-Team Name: teamof7
-
+# Team Name: teamof7
 
 Team Members:
 
-|First		|Last			|UTorid|
+|First|Last|UTorid|
 |---------|---------|------|
 |Diego    |He       |hediego|
 |Cheng    |Gao      |gaochen8|
