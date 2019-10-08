@@ -2,9 +2,11 @@
 
 ## Team organization
 
+Cheng Gao and Jiasong Liang have taken CSCC10 before, therefore, they have a intermediate knowledge on User Interface and User Experience. As a result, we assigned Summary.md to Cheng Gao and User Experience to Jiasong Liang.Before we start working on the product backlog, we elobrate the problems and bugs that we might encouter when user interact with our application, and came to an agreement on the definition of Done.md, which means what the final project should be like when we finish it. For PB.md, we came up with 6 sections in total, each is written by one of our group member that is most familar with that field based on their previous experience and knowledge. Finally, we had a small chat to figure out which applications are considered as our competitors based on the functionality.
+
 ## Decision making
 
-Each team member share their idea, and we find the optical All the decisions are made after full discussion. This means that we have anonymous voting on choosing which topic to work on and the one with the highest vote takes the priority.
+At the beginning, we have anonymous voting on choosing which project to work on and the one with the highest vote takes the priority. While implementing the document, whenever a team member come up a new idea, they would share their idea with the rest of group to refine the details and to see if it is logic, doable and suitable for our application. All the decisions are made after full discussion.
 
 ## Prioritizing User Stories
 
