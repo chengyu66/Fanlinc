@@ -1,5 +1,9 @@
 # Product Backlog
 
+## Difficulty Measurement
+
+The difficulty of the user story is ranged from 1 to 10. 1 means the easiest to implement while 10 means the hardest to work out.
+
 ## User Stories
 
 ### Account/ Basic Profile
