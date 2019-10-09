@@ -39,4 +39,4 @@ Apart from meeting in person regularly, if any members have questions and need h
 
 ## Next phase
 
-For the next sprint, we need to get used to using Jira to report and track the issues during the development and progress of the work.
+For the next sprint, we need to get used to using Jira to report and track the issues during the development and progress of the work. We want to get the first two prioritized features done, namely user and fandom done. Having these two features done will form a fundamental framework of the project. We then would have time to research more about how to implement more advanced features such as search. 
