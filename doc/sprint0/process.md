@@ -2,7 +2,7 @@
 
 ## Team organization
 
-Cheng Gao and Jiasong Liang have taken CSCC10 before, therefore, they have a intermediate knowledge on User Interface and User Experience. As a result, we assigned Summary.md to Cheng Gao and User Experience to Jiasong Liang.Before we start working on the product backlog, we elobrate the problems and bugs that we might encouter when user interact with our application, and came to an agreement on the definition of Done.md, which means what the final project should be like when we finish it. For PB.md, we came up with 6 sections in total, each is written by one of our group member that is most familar with that field based on their previous experience and knowledge. Finally, we had a small chat to figure out which applications are considered as our competitors based on the functionality.
+Cheng Gao and Jiasong Liang have taken CSCC10 before, therefore, they have a intermediate knowledge on User Interface and User Experience. As a result, we assigned Summary.md to Cheng Gao and User Experience to Jiasong Liang, and the tool we used is StoryboadThat. Before we start working on the product backlog, we elobrate the problems and bugs that we might encouter when user interact with our application, and came to an agreement on the definition of Done.md, which means what the final project should be like when we finish it. For PB.md, we came up with 6 sections in total, each is written by one of our group member that is most familar with that field based on their previous experience and knowledge. Finally, we had a small chat to figure out which applications are considered as our competitors based on the functionality.
 
 ## Decision making
 
