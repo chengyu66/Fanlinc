@@ -1,7 +1,7 @@
-package com.fanlinc.fanlinc;
+package Fandom;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.fanlinc.fanlinc.FandomRepository;
+import FandomRepository;
 public class FandomRepository {
 }
