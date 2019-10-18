@@ -3,25 +3,31 @@ package com.fanlinc.fanlinc.fandom;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Fandom")
 public class Fandom {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name = "fandomId", updatable = false, nullable = false)
-    private Integer fandomId;
+    private Long fandomId;
 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name = "fandomName", nullable = false)
     private String fandomName;
 
-    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     @Column(name = "fandomOwnerId", updatable = false, nullable = false)
-    private Integer fandomOwnerId;
+    private Long fandomOwnerId;
 
-    public Integer getFandomIdId() {
+    public Fandom(String fandomName, Long fandomOwnerId) {
+        this.fandomName = fandomName;
+        this.fandomOwnerId = fandomOwnerId;
+    }
+
+    public Long getFandomId() {
         return fandomId;
     }
 
-    public String getFandomNameName() {
+    public void setFandomId(long fandomId) { this.fandomId = fandomId; }
+
+    public String getFandomName() {
         return fandomName;
     }
 
@@ -29,7 +35,7 @@ public class Fandom {
         this.fandomName = fandomName;
     }
 
-    public Integer getFandomOwnerId() {
-        return fandomOwnerId;
-    }
+    public Long getFandomOwnerId() { return fandomOwnerId; }
+
+    public void setFandomOwnerId(Long fandomOwnerId) {this.fandomOwnerId=fandomOwnerId; }
 }
