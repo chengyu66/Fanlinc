@@ -19,7 +19,6 @@ public class MainController {
     public  User addNewUser (@RequestBody User newUser) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
         return service.save(newUser);
     }
 

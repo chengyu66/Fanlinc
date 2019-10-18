@@ -10,6 +10,7 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
 
+
     @Id
     @GeneratedValue
     private  Long id;
@@ -23,16 +24,17 @@ public class User {
     @JsonProperty("lastName")
     private String lastName;
 
-    @JsonProperty("description")
-    private String description;
+    @JsonProperty("password")
+    private String password;
 
-    public User(String firstName, String lastName, String description, String email) {
+    String description;
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.description = description;
+        this.description = "";
         this.email = email;
+        this.password = password;
     }
-
 
     private User() {}
 
