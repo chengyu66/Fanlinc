@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    User findByFirstnameAndLastname(String firstName, String lastName);
+//    User findByFirstnameAndLastname(String firstName, String lastName);
 }
 
