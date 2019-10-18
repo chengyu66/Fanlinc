@@ -1,5 +1,7 @@
 package com.fanlinc.fanlinc.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,10 +9,21 @@ import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
-    private @Id @GeneratedValue Long id;
+
+    @Id
+    @GeneratedValue
+    private  Long id;
+
+    @JsonProperty("email")
     private String email;
+
+    @JsonProperty("firstName")
     private String firstName;
+
+    @JsonProperty("lastName")
     private String lastName;
+
+    @JsonProperty("description")
     private String description;
 
     public User(String firstName, String lastName, String description, String email) {
@@ -19,6 +32,9 @@ public class User {
         this.description = description;
         this.email = email;
     }
+
+
+    private User() {}
 
 
     public Long getId() {
