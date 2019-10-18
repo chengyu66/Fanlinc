@@ -1,4 +1,4 @@
-package Fandom;
+package com.fanlinc.fanlinc.fandom;
 
 import org.springframework.data.repository.CrudRepository;
 

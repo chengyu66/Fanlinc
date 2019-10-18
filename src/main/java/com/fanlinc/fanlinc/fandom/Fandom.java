@@ -1,4 +1,4 @@
-package Fandom;
+package com.fanlinc.fanlinc.fandom;
 
 import javax.persistence.*;
 
