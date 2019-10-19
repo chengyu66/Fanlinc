@@ -14,7 +14,7 @@ public class MainController {
         this.service = service;
     }
 
-    @PostMapping(path="/add") // Map ONLY POST Requests
+    @PostMapping(path="/addUser") // Map ONLY POST Requests
     @ResponseBody
     public  User addNewUser (@RequestBody User newUser) {
         // @ResponseBody means the returned String is the response, not a view name
@@ -22,8 +22,8 @@ public class MainController {
         return service.save(newUser);
     }
 
-//    @GetMapping(path="/all")
-//    public @ResponseBody Iterable<User> getAllUsers() {
+//    @GetMapping(path="/set")
+//    public @ResponseBody Iterable<User> () {
 //        // This returns a JSON or XML with the users
 //        return userRepository.findAll();
 //    }
