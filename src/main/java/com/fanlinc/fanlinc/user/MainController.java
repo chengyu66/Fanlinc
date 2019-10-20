@@ -1,7 +1,8 @@
 package com.fanlinc.fanlinc.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import com.fanlinc.fanlinc.fandom.Fandom;
+import com.fanlinc.fanlinc.fandom.FandomService;
+//import com.fanlinc.fanlinc.fandom.FandomId;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -13,9 +14,11 @@ import java.util.Map;
 public class MainController {
 
     private final UserService service;
+    private final FandomService fservice;
 
-    public MainController(UserService service) {
+    public MainController(UserService service, FandomService fservice) {
         this.service = service;
+        this.fservice = fservice;
     }
 
     @PostMapping(path="/addUser") // Map ONLY POST Requests
@@ -34,13 +37,26 @@ public class MainController {
 
     @GetMapping(path="/getUser") // Map ONLY GET Requests
     @ResponseBody
-    public User getUser (@RequestBody Login newLogin) {
+    public User getUser (@RequestBody Login login) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String email = newLogin.getEmail();
-        String password = newLogin.getPassword();
+        String email = login.getEmail();
+        String password = login.getPassword();
         return service.findByEmailAndPassword(email, password);
     }
+
+//    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
+//    @ResponseBody
+//    public void JoinFandom (@RequestBody  UserId userId, @RequestBody FandomId fandomId) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        Long uId = userId.getUserId();
+//        User existUser = service.findByUserId(uId);
+//        Long fId = fandomId.getFandomId();
+//        Fandom existFandom = fservice.findByFandomId(fId);
+//        existUser.setFandoms(existFandom);
+//    }
+
 
     @GetMapping(path="/findUserByEmail") // Map ONLY GET Requests
     @ResponseBody

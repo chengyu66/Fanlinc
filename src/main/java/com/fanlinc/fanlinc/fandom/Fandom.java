@@ -20,7 +20,7 @@ public class Fandom {
     @JsonProperty("fandomOwnerId")
     private Long fandomOwnerId;
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE

@@ -29,15 +29,17 @@ public class User {
     String description;
 
 
-    @ManyToMany(fetch = FetchType.LAZY,
+    @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(name = "user_fandom",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "fandom_id", referencedColumnName = "fandomId") })
     private Set<Fandom> fandoms = new HashSet<>();
+
+
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -45,17 +47,6 @@ public class User {
         this.email = email;
         this.password = password;
     }
-    // join fandom
-    public User(String firstName, String lastName, String email, String password, Fandom fandom) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.description = "";
-        this.email = email;
-        this.password = password;
-        this.setFandoms(fandom);
-        fandom.getUser().add(this);
-    }
-
 
     private User() {}
 

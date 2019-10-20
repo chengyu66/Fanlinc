@@ -19,14 +19,14 @@ public class FandomService {
         fandomRepository.save(fandom);
         return fandom;
     }
-    public Fandom findByFandomNameAndFandomOwnerId(String fandomName, Long fandomOwnerId) {
-        Fandom fandom = fandomRepository.findByFandomNameAndFandomOwnerId(fandomName, fandomOwnerId);
+    public Fandom findByFandomName(String fandomName) {
+        Fandom fandom = fandomRepository.findByFandomName(fandomName);
         return fandom;
     }
-    public Optional<Fandom> findById(Long id){
-        return fandomRepository.findById(id);
-    }
-    public Fandom getFandom(Long id){
+    public Fandom findByFandomId(Long id){
         return fandomRepository.findByFandomId(id);
     }
+//    public Fandom getFandom(Long id){
+//        return fandomRepository.findByFandomId(id);
+//    }
 }

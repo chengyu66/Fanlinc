@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface FandomRepository extends CrudRepository<Fandom, Long> {
-    Fandom findByFandomNameAndFandomOwnerId(String fandomId, Long fandomOwnerId);
+    Fandom findByFandomName(String fandomId);
     Fandom findByFandomId(Long id);
 }
