@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController    // This means that this class is a Controller
@@ -30,7 +31,7 @@ public class MainController {
 //        return userRepository.findAll();
 //    }
 
-    @GetMapping(path="/getUser") // Map ONLY POST Requests
+    @GetMapping(path="/getUser") // Map ONLY GET Requests
     @ResponseBody
     public User getUser (@RequestBody Login newLogin) {
         // @ResponseBody means the returned String is the response, not a view name
