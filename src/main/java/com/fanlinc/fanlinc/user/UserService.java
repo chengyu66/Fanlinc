@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -31,5 +33,11 @@ public class UserService {
         return user;
     }
 
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
+    public List<User> findByFirstNameAndLastName(String firstName, String lastName) {
+        return userRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
 }
