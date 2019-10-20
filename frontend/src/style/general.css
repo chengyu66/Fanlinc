@@ -1,0 +1,12 @@
+input{
+    color:#333333 !important;
+    border-radius:5px !important;
+}
+button{
+    border-radius:5px !important;
+}
+
+.save{
+    background: #7db3d6;
+    color: #ffffff;
+}
