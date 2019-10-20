@@ -12,8 +12,8 @@ class ApiService {
         return axios.post(URL + '/editUser', user)
     }
 
-    login(){
-            return axios.get(URL + '/users/getUser')
+    login(user){
+            return axios.get(URL + '/users/getUser', user)
      }
 
 }
