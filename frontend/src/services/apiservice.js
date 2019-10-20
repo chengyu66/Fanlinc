@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:8080';
+const URL = 'http://localhost:8080/api';
 
 class ApiService {
 
@@ -11,6 +11,10 @@ class ApiService {
     setUser(user){
         return axios.post(URL + '/editUser', user)
     }
+
+    login(user){
+            return axios.get(URL + '/users/getUser', user)
+     }
 
 }
 
