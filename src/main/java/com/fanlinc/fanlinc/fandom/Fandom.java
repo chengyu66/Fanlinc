@@ -1,20 +1,32 @@
 package com.fanlinc.fanlinc.fandom;
 
+import com.fanlinc.fanlinc.user.User;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Fandom")
 public class Fandom {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    @Column(name = "fandomId", updatable = false, nullable = false)
     private Long fandomId;
 
-    @Column(name = "fandomName", nullable = false)
+    @JsonProperty("fandomName")
     private String fandomName;
 
-    @Column(name = "fandomOwnerId", updatable = false, nullable = false)
+    @JsonProperty("fandomOwnerId")
     private Long fandomOwnerId;
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "fandoms")
+    private Set<User> users = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId) {
         this.fandomName = fandomName;
@@ -38,4 +50,9 @@ public class Fandom {
     public Long getFandomOwnerId() { return fandomOwnerId; }
 
     public void setFandomOwnerId(Long fandomOwnerId) {this.fandomOwnerId=fandomOwnerId; }
+
+    public Set<User> getUser() { return this.users; }
+
+    public void setUsers(User newUser) {this.users.add(newUser); }
+
 }

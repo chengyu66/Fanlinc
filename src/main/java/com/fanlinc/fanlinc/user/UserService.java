@@ -1,7 +1,11 @@
 package com.fanlinc.fanlinc.user;
 
+import com.fanlinc.fanlinc.fandom.Fandom;
+import com.fanlinc.fanlinc.fandom.FandomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -9,7 +13,11 @@ public class UserService {
     @Autowired
     private final UserRepository userRepository;
 
-    public UserService(UserRepository repo) {
+    @Autowired
+    private final FandomRepository fandomRepository;
+
+    public UserService(UserRepository repo, FandomRepository fandomRepository) {
+        this.fandomRepository = fandomRepository;
         this.userRepository = repo;
     }
 

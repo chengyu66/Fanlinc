@@ -1,15 +1,14 @@
 package com.fanlinc.fanlinc.user;
 
+import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class User {
-
 
     @Id
     @GeneratedValue
@@ -28,6 +27,17 @@ public class User {
     private String password;
 
     String description;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "user_fandom",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
+    private Set<Fandom> fandoms = new HashSet<>();
     public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,6 +45,17 @@ public class User {
         this.email = email;
         this.password = password;
     }
+    // join fandom
+    public User(String firstName, String lastName, String email, String password, Fandom fandom) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.description = "";
+        this.email = email;
+        this.password = password;
+        this.setFandoms(fandom);
+        fandom.getUser().add(this);
+    }
+
 
     private User() {}
 
@@ -77,5 +98,12 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+    public Set<Fandom> getFandoms() {
+        return this.fandoms;
+    }
+
+    public void setFandoms(Fandom fandom) {
+        this.fandoms.add(fandom);
     }
 }
