@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private  Long id;
+    private Long id;
 
     @JsonProperty("email")
     private String email;
