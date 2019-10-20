@@ -11,8 +11,8 @@ class edidUser extends Component{
          email: '',
          age: ''
         };
-        this.saveUser = this.saveUser.bind(this);
         this.loadUser = this.loadUser.bind(this);
+        this.saveUser = this.saveUser.bind(this);
     }
 
     // componentDidMount() {
@@ -36,18 +36,18 @@ class edidUser extends Component{
     }
 
     saveUser = (e) => {
-        // e.preventDefault();
-        // let user = {username: user.username, password: this.state.password, age: this.state.age, email: this.state.email};
-        // ApiService.setUser(user)
-        //     .then(res => {
-        //         this.setState({message : 'User edit successfully.'});
-        //         this.props.history.push('/users');
-        //     });
+         e.preventDefault();
+         let user = {username: user.username, password: this.state.password, age: this.state.age, email: this.state.email};
+         ApiService.setUser(user)
+             .then(res => {
+                 this.setState({message : 'User edit successfully.'});
+                 this.props.history.push('/users');
+             });
     }
     render() {
         return (
             <div>
-                <h2 className="text-center">Edit User</h2>
+                <h2 className="text-center">Edit Profile</h2>
                 <form>
 
                     <div className="form-group">

@@ -1,6 +1,6 @@
 input{
-    color:#333333 !important;
-    border-radius:5px !important;
+    background-color : transparent;
+    border-color: transparent;
 }
 button{
     border-radius:5px !important;
