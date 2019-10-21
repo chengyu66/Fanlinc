@@ -37,6 +37,8 @@ public class FandomController {
         Fandom fandom = new Fandom(fandomName,ownerId, email);
         fandom.setUsers(user);
         user.setFandoms(fandom);
+        System.out.println(fandom.getUser());
+        System.out.println(user.getFandoms());
         return fservice.save(fandom);
     }
 //    @GetMapping(path="/join") // Map ONLY GET Requests

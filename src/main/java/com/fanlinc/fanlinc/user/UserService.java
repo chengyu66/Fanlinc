@@ -1,11 +1,8 @@
 package com.fanlinc.fanlinc.user;
 
-import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 import java.util.List;
 
@@ -34,8 +31,7 @@ public class UserService {
     }
 
 //    public User findByUserId(Long id){
-//        User user = userRepository.findByUserId(id);
-//        return user;
+//        return userRepository.findByUserId(id);
 //    }
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);

@@ -1,6 +1,7 @@
 package com.fanlinc.fanlinc.fandom;
 
 import com.fanlinc.fanlinc.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -12,7 +13,6 @@ import java.util.Set;
 public class Fandom {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
-    @JsonProperty("fandomId")
     private Long fandomId;
 
     @JsonProperty("fandomName")
@@ -24,9 +24,10 @@ public class Fandom {
     @JsonProperty("ownerEmail")
     private String ownerEmail;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
-                    CascadeType.PERSIST,
+                    //CascadeType.PERSIST,
                     CascadeType.MERGE
             },
             mappedBy = "fandoms")
