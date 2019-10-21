@@ -1,6 +1,7 @@
 package com.fanlinc.fanlinc.fandom;
 
 import com.fanlinc.fanlinc.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -20,17 +21,22 @@ public class Fandom {
     @JsonProperty("fandomOwnerId")
     private Long fandomOwnerId;
 
+    @JsonProperty("ownerEmail")
+    private String ownerEmail;
+
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
-                    CascadeType.PERSIST,
+                    //CascadeType.PERSIST,
                     CascadeType.MERGE
             },
             mappedBy = "fandoms")
     private Set<User> users = new HashSet<>();
 
-    public Fandom(String fandomName, Long fandomOwnerId) {
+    public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
         this.fandomName = fandomName;
         this.fandomOwnerId = fandomOwnerId;
+        this.ownerEmail = ownerEmail;
     }
 
     public Long getFandomId() {
@@ -50,6 +56,14 @@ public class Fandom {
     public Long getFandomOwnerId() { return fandomOwnerId; }
 
     public void setFandomOwnerId(Long fandomOwnerId) {this.fandomOwnerId=fandomOwnerId; }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
 
     public Set<User> getUser() { return this.users; }
 
