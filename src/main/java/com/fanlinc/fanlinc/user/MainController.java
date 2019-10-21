@@ -37,11 +37,11 @@ public class MainController {
 
     @GetMapping(path="/getUser") // Map ONLY GET Requests
     @ResponseBody
-    public User getUser (@RequestBody Login login) {
+    public User getUser (@RequestBody Map<String,String> body) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String email = login.getEmail();
-        String password = login.getPassword();
+        String email = body.get("email");
+        String password = body.get("password");
         return service.findByEmailAndPassword(email, password);
     }
 
