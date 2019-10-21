@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
 
-class Navbar extends Component{
+class home extends Component{
     render(){
         return (
-                    <nav class="nav">
-
-                    </nav>
+                    <div>
+                        <h2 className="text-center">Fanlinc</h2>
+                    </div>
                 );
     }
 }
-export default Navbar;
+export default home;
