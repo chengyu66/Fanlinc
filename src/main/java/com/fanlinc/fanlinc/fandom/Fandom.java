@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Fandom")
+@Table(name = "Fandoms")
 public class Fandom {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)

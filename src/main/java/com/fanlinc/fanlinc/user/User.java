@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "User") // This tells Hibernate to make a table out of this class
+@Entity(name = "Users") // This tells Hibernate to make a table out of this class
 public class User {
 
     @Id
