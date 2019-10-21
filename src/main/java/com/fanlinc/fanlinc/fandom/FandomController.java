@@ -41,10 +41,5 @@ public class FandomController {
         System.out.println(user.getFandoms());
         return fservice.save(fandom);
     }
-//    @GetMapping(path="/join") // Map ONLY GET Requests
-//    public @ResponseBody String joinFandom (@RequestParam Long fandomOwnerId) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
-//
-//    }
+
 }
