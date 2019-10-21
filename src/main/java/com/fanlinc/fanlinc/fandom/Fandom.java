@@ -29,8 +29,10 @@ public class Fandom {
             cascade = {
                     //CascadeType.PERSIST,
                     CascadeType.MERGE
-            },
-            mappedBy = "fandoms")
+            })
+    @JoinTable(name = "user_fandom",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
     private Set<User> users = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
