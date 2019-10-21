@@ -12,6 +12,7 @@ import java.util.Set;
 public class Fandom {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @JsonProperty("fandomId")
     private Long fandomId;
 
     @JsonProperty("fandomName")
@@ -19,6 +20,9 @@ public class Fandom {
 
     @JsonProperty("fandomOwnerId")
     private Long fandomOwnerId;
+
+    @JsonProperty("ownerEmail")
+    private String ownerEmail;
 
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
@@ -28,9 +32,10 @@ public class Fandom {
             mappedBy = "fandoms")
     private Set<User> users = new HashSet<>();
 
-    public Fandom(String fandomName, Long fandomOwnerId) {
+    public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
         this.fandomName = fandomName;
         this.fandomOwnerId = fandomOwnerId;
+        this.ownerEmail = ownerEmail;
     }
 
     public Long getFandomId() {
@@ -50,6 +55,14 @@ public class Fandom {
     public Long getFandomOwnerId() { return fandomOwnerId; }
 
     public void setFandomOwnerId(Long fandomOwnerId) {this.fandomOwnerId=fandomOwnerId; }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
 
     public Set<User> getUser() { return this.users; }
 
