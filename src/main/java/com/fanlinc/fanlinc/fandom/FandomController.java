@@ -26,19 +26,19 @@ public class FandomController {
         // @ResponseBody means the returned String is the response, not a view name
         String fandomName = body.get("fandomName");
         String email = body.get("email");
-        System.out.println(body);
-        System.out.println("testing "+fandomName);
-        System.out.println("testing "+email);
+//        System.out.println(body);
+//        System.out.println("testing "+fandomName);
+//        System.out.println("testing "+email);
         User user = service.findByEmail(email);
         Long ownerId = user.getId();
         String name = user.getFirstName()+user.getLastName();
-        System.out.println("Owner Id: "+ownerId);
-        System.out.println("Owner Name: "+name);
+//        System.out.println("Owner Id: "+ownerId);
+//        System.out.println("Owner Name: "+name);
         Fandom fandom = new Fandom(fandomName,ownerId, email);
         fandom.setUsers(user);
         user.setFandoms(fandom);
         Long fandomId = fandom.getFandomId();
-        System.out.println("fandomId: "+fandomId);
+//        System.out.println("fandomId: "+fandomId);
         return fservice.save(fandom);
     }
 
