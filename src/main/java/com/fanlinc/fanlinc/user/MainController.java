@@ -55,7 +55,6 @@ public class MainController {
 //        existUser.setFandoms(existFandom);
 //    }
 
-
     @GetMapping(path="/findUserByEmail") // Map ONLY GET Requests
     @ResponseBody
     public User findUserByEmail (@RequestParam String email) {
