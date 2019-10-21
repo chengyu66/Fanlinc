@@ -39,7 +39,7 @@ public class Post {
         return postId;
     }
 
-    public void setPostId(long postId) { this.postId = postId; }
+    public void setPostId(long postId) {this.postId = postId;}
 
     public String getPostTitle() {
         return title;
@@ -51,7 +51,7 @@ public class Post {
 
     public Long getAuthorId() { return authorId; }
 
-    public void setAuthorId(Long authorId) {this.authorId = authorId; }
+    public void setAuthorId(Long authorId) {this.authorId = authorId;}
 
     public String getAuthorEmail() {
         return authorEmail;
