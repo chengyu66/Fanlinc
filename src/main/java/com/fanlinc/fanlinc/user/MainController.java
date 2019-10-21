@@ -37,11 +37,9 @@ public class MainController {
 
     @GetMapping(path="/getUser") // Map ONLY GET Requests
     @ResponseBody
-    public User getUser (@RequestBody Map<String,String> body) {
+    public User getUser (@RequestParam String email, @RequestParam String password) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String email = body.get("email");
-        String password = body.get("password");
         return service.findByEmailAndPassword(email, password);
     }
 
@@ -60,20 +58,17 @@ public class MainController {
 
     @GetMapping(path="/findUserByEmail") // Map ONLY GET Requests
     @ResponseBody
-    public User findUserByEmail (@RequestBody Map<String, String> body) {
+    public User findUserByEmail (@RequestParam String email) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String email = body.get("email");
         return service.findByEmail(email);
     }
 
     @GetMapping(path="/findUserByName") // Map ONLY GET Requests
     @ResponseBody
-    public List<User> findByFirstNameAndLastName (@RequestBody Map<String, String> body) {
+    public List<User> findByFirstNameAndLastName (@RequestParam String firstName, @RequestParam String lastName) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        String firstName = body.get("firstName");
-        String lastName = body.get("lastName");
         return service.findByFirstNameAndLastName(firstName, lastName);
     }
 }
