@@ -34,10 +34,8 @@ public class User {
             cascade = {
                     //CascadeType.PERSIST,
                     CascadeType.MERGE
-            })
-    @JoinTable(name = "user_fandom",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
+            },
+            mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
 
 
