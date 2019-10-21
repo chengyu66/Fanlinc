@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "Posts")
 public class Post {
-	
+
 	@Id
     @GeneratedValue
 	private Long postId;
