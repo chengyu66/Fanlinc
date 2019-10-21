@@ -2,13 +2,16 @@ import React from 'react';
 import './App.css';
 import AppRouter from './AppRouter';
 import './style/general.css';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-          <h1>Welcome </h1>
+          <Header />
           <AppRouter />
+          <Footer />
       </header>
     </div>
   );

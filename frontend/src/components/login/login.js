@@ -8,26 +8,37 @@ class login extends Component{
         this.state = {
          password: '',
          email: '',
-         loading: true
+         status:false
         };
-        this.saveUser = this.saveUser.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
-    saveUser = (e) => {
+    getUser = (e) => {
          e.preventDefault();
          let user = {password: this.state.password, email: this.state.email};
          console.log(user);
          console.log("Hello in log in");
-         let response = ApiService.login(user);
-         console.log(response);
+         ApiService.login(user)
+         .then(res => {
+                console.log("Success");
+                let data = res.data
+                this.state.email = data.email;
+                this.state.password = data.password;
+                this.state.status = true;
+                let history = Redirect();
+                history.push("/signup");
+            })
+            .catch(error => {
+                console.log("Fail");
+            });
     }
     render() {
         return (
             <div>
-                <h2 className="text-center">Edit Profile</h2>
+                <h2 className="text-center">Log in</h2>
                 <form>
 
                     <div className="form-group">
@@ -38,7 +49,10 @@ class login extends Component{
                         <label>password:</label>
                         <input type="password" placeholder="password" name="password" className="form-control" value={this.state.password} onChange={this.onChange}/>
                     </div>
-                    <button className="Long in" onClick={this.saveUser}>Login</button>
+                    <button className="Login" onClick={this.getUser}>Login</button>
+                    <div>
+                    <button className="Signup"><a href = "/home">Signup</a></button>
+                    </div>
                 </form>
             </div>
         );
