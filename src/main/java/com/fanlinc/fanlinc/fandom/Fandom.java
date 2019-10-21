@@ -40,6 +40,9 @@ public class Fandom {
         this.fandomOwnerId = fandomOwnerId;
         this.ownerEmail = ownerEmail;
     }
+    public Fandom(){
+
+    }
 
     public Long getFandomId() {
         return fandomId;

@@ -37,8 +37,8 @@ public class FandomController {
         Fandom fandom = new Fandom(fandomName,ownerId, email);
         fandom.setUsers(user);
         user.setFandoms(fandom);
-        System.out.println(fandom.getUser());
-        System.out.println(user.getFandoms());
+        Long fandomId = fandom.getFandomId();
+        System.out.println("fandomId: "+fandomId);
         return fservice.save(fandom);
     }
 
