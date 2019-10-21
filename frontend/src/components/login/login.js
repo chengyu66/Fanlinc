@@ -8,6 +8,7 @@ class login extends Component{
         this.state = {
          password: '',
          email: '',
+         loading: true
         };
         this.saveUser = this.saveUser.bind(this);
     }
@@ -18,13 +19,10 @@ class login extends Component{
     saveUser = (e) => {
          e.preventDefault();
          let user = {password: this.state.password, email: this.state.email};
-         console.log("Hello");
-         ApiService.login(user)
-             .then(res => {
-                 return <Redirect to='/editUser' />
-//                 this.setState({message : 'User add successfully.'});
-                 //this.props.history.push('/users');
-             });
+         console.log(user);
+         console.log("Hello in log in");
+         let response = ApiService.login(user);
+         console.log(response);
     }
     render() {
         return (

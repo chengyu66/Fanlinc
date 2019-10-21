@@ -1,6 +1,7 @@
 package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -28,15 +29,15 @@ public class User {
 
     String description;
 
-
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
-                    CascadeType.PERSIST,
+                    //CascadeType.PERSIST,
                     CascadeType.MERGE
             })
     @JoinTable(name = "user_fandom",
-            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "fandom_id", referencedColumnName = "fandomId") })
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
     private Set<Fandom> fandoms = new HashSet<>();
 
 
