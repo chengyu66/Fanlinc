@@ -5,11 +5,9 @@ import ApiService from '../../services/apiservice';
 class Navbar extends Component{
     render(){
         return (
-                    <div classNmae="primary" id="navbar">
-                      <a href="/">Home</a>
-                      <a href="/friend">Friend</a>
-                      <a href="/fandom">Fandom</a>
-                    </div>
+                    <nav class="nav">
+
+                    </nav>
                 );
     }
 }
