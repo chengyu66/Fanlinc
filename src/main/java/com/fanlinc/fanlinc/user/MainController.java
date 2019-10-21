@@ -34,7 +34,7 @@ public class MainController {
 //        // This returns a JSON or XML with the users
 //        return userRepository.findAll();
 //    }
-
+    @CrossOrigin(origins ="*")
     @GetMapping(path="/getUser") // Map ONLY GET Requests
     @ResponseBody
     public User getUser (@RequestParam String email, @RequestParam String password) {
