@@ -62,23 +62,23 @@ public class MainController {
 //        service.save(user);
 //    }
 
-    @PostMapping(path="/quitFandom") // Map ONLY POST Requests
-    @ResponseBody
-    public void QuitFandom (@RequestParam  String email, @RequestParam String fandomName) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        User user = service.findByEmail(email);
-        Fandom fandom = fservice.findByFandomName(fandomName);
-        System.out.println(fandom.getFandomId());
-        System.out.println(user.getId());
-        System.out.println(fandom.getUser().size());
-        System.out.println(user.getFandoms().size());
-        fandom.getUser().remove(user);
-        user.getFandoms().remove(fandom);
-        System.out.println(fandom.getUser().size());
-        System.out.println(user.getFandoms().size());
-        service.save(user);
-    }
+//    @PostMapping(path="/quitFandom") // Map ONLY POST Requests
+//    @ResponseBody
+//    public void QuitFandom (@RequestParam  String email, @RequestParam String fandomName) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        User user = service.findByEmail(email);
+//        Fandom fandom = fservice.findByFandomName(fandomName);
+//        System.out.println(fandom.getFandomId());
+//        System.out.println(user.getId());
+//        System.out.println(fandom.getUser().size());
+//        System.out.println(user.getFandoms().size());
+//        fandom.getUser().remove(user);
+//        user.getFandoms().remove(fandom);
+//        System.out.println(fandom.getUser().size());
+//        System.out.println(user.getFandoms().size());
+//        service.save(user);
+//    }
 
     @GetMapping(path="/findUserByEmail") // Map ONLY GET Requests
     @ResponseBody
