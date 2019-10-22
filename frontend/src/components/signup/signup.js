@@ -37,8 +37,7 @@ class signup extends Component{
                 let data = res.data;
                 console.log(data.id);
                 this.state.status = true;
-                let history = Redirect();
-                history.push("/");
+
             })
             .catch(error => {
                 console.log("Fail");
