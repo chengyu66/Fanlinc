@@ -49,5 +49,6 @@
   * (Move to sprint 2)
 * (TEAMO-42) As a user, I can create an new account via webpage (Est. Pt. : 20 , Assigned to: Jiasong Liang) 
 
-* (TEAMO-44) As a developer I can check if the username/email already exists when signing up. (Est. Pt. : 20 , Assigned to: ChengYu Xin) 
-  * find username/email (Est. Pt. : 5, Assigned to: Diego He)
+* (TEAMO-44) As a developer I can check if the username/email already exists when signing up. (Est. Pt. : 13 , Assigned to: ChengYu Xin) 
+  * find if there exists username/email (Est. Pt. : 5, Assigned to: ChengYu Xin)
+  * throws exception with http status 400 BAD_REQUEST (Est. Pt. : 8, Assigned to: ChengYu Xin) 
