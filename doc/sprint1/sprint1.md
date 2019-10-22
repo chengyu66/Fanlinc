@@ -35,3 +35,6 @@
   * ~~check if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)~~
   * ~~check if the user has the right to edit the post (Est. Pt. : 2 , Assigned to: XinZheng Xu)~~
   * (Move to sprint 2)
+* (TEAMO-42) As a user, I can create an new account via webpage (Est. Pt. : 20 , Assigned to: Jiasong Liang) 
+
+* (TEAMO-44) As a developer I can check if the username/email already exists when signing up. (Est. Pt. : 20 , Assigned to: ChengYu Xin) 
