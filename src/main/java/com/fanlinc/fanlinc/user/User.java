@@ -33,7 +33,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    //CascadeType.MERGE was casuing the multiple entities error
             },
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
