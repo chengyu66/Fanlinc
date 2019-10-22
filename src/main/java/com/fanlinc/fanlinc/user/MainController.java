@@ -48,19 +48,19 @@ public class MainController {
         return service.findByEmailAndPassword(email, password);
     }
 
-//    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
-//    @ResponseBody
-//    public void JoinFandom (@RequestParam  String email, @RequestParam String fandomName) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
-//        User user = service.findByEmail(email);
-//        Fandom fandom = fservice.findByFandomName(fandomName);
-//        System.out.println(fandom.getFandomId());
-//        System.out.println(user.getId());
-//        fandom.setUsers(user);
-//        user.setFandoms(fandom);
-//        service.save(user);
-//    }
+    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
+    @ResponseBody
+    public void JoinFandom (@RequestParam  String email, @RequestParam String fandomName) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        User user = service.findByEmail(email);
+        Fandom fandom = fservice.findByFandomName(fandomName);
+        System.out.println(fandom.getFandomId());
+        System.out.println(user.getId());
+        fandom.setUsers(user);
+        user.setFandoms(fandom);
+        service.save(user);
+    }
 
 //    @PostMapping(path="/deleteFandom") // Map ONLY POST Requests
 //    @ResponseBody
