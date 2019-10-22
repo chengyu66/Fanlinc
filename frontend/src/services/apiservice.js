@@ -18,7 +18,7 @@ class ApiService {
     }
 
     setUser(user){
-        return axios.post(URL + '/users/editUser',
+        return axios.post(URL + '/users/updateUser',
                     user,
                     {
                         headers: POSTHEADERS

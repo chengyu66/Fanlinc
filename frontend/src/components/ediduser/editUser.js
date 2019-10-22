@@ -59,8 +59,14 @@ class edidUser extends Component{
          let user = {firstname: this.state.firstname, lastname:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
          ApiService.setUser(user)
              .then(res => {
-                 this.setState({message : 'User edit successfully.'});
-                 this.props.history.push('/users');
+                 if(res.data){
+                    alert("Successfully updated")
+                    this.setState({message : 'User edit successfully.'});
+                 }
+                 this.props.history.push('/');
+             })
+             .catch(err => {
+                console.log("Error");
              });
     }
     render() {
