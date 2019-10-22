@@ -39,10 +39,10 @@ public class User {
     private Set<Fandom> fandoms = new HashSet<>();
 
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password, String description) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.description = "";
+        this.description = description;
         this.email = email;
         this.password = password;
     }
