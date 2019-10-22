@@ -34,4 +34,3 @@
   * ~~using SprtingBoot to handle request (Est. Pt. : 2 , Assigned to: XinZheng Xu)
   * ~~check if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)
   * ~~check if the user has the right to edit the post (Est. Pt. : 2 , Assigned to: XinZheng Xu)
-  (move to sprint 2)
