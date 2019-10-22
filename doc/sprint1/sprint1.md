@@ -32,6 +32,6 @@
 * ~~(TEAMO-39) As a user I can create and edit my post (Est. Pt. : 8 , Assigned to: XinZheng Xu)~~
   * ~~front end implementation (Est. Pt. : 2 , Assigned to: Jiasong Liang)~~
   * ~~using SprtingBoot to handle request (Est. Pt. : 2 , Assigned to: XinZheng Xu)~~
-  * ~~heck if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)~~
+  * ~~check if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)~~
   * ~~check if the user has the right to edit the post (Est. Pt. : 2 , Assigned to: XinZheng Xu)~~
   * (Move to sprint 2)
