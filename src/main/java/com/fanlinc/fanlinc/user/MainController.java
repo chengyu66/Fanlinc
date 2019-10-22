@@ -23,9 +23,14 @@ public class MainController {
 
     @PostMapping(path="/addUser") // Map ONLY POST Requests
     @ResponseBody
-    public  User addNewUser (@RequestBody User newUser) {
+    public  User addNewUser (@RequestParam String firstName,
+                             @RequestParam String lastName,
+                             @RequestParam String email,
+                             @RequestParam String password,
+                             @RequestParam String description) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        User newUser = new User(firstName,lastName,email,password,description);
         return service.save(newUser);
     }
 
@@ -45,14 +50,30 @@ public class MainController {
 
 //    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
 //    @ResponseBody
-//    public void JoinFandom (@RequestBody  UserId userId, @RequestBody FandomId fandomId) {
+//    public void JoinFandom (@RequestParam  String email, @RequestParam String fandomName) {
 //        // @ResponseBody means the returned String is the response, not a view name
 //        // @RequestParam means it is a parameter from the GET or POST request
-//        Long uId = userId.getUserId();
-//        User existUser = service.findByUserId(uId);
-//        Long fId = fandomId.getFandomId();
-//        Fandom existFandom = fservice.findByFandomId(fId);
-//        existUser.setFandoms(existFandom);
+//        User user = service.findByEmail(email);
+//        Fandom fandom = fservice.findByFandomName(fandomName);
+//        System.out.println(fandom.getFandomId());
+//        System.out.println(user.getId());
+//        fandom.setUsers(user);
+//        user.setFandoms(fandom);
+//        service.save(user);
+//    }
+
+//    @PostMapping(path="/deleteFandom") // Map ONLY POST Requests
+//    @ResponseBody
+//    public void JoinFandom (@RequestParam  String email, @RequestParam String fandomName) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        User user = service.findByEmail(email);
+//        Fandom fandom = fservice.findByFandomName(fandomName);
+//        System.out.println(fandom.getFandomId());
+//        System.out.println(user.getId());
+//        fandom.setUsers(user);
+//        user.setFandoms(fandom);
+//        service.save(user);
 //    }
 
     @GetMapping(path="/findUserByEmail") // Map ONLY GET Requests
