@@ -30,9 +30,9 @@ public class Fandom {
                     //CascadeType.PERSIST,
                     CascadeType.MERGE
             })
-    @JoinTable(name = "user_fandom",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "fandom_id") })
+    @JoinTable(name = "fandom_user",
+            joinColumns = { @JoinColumn(name = "fandom_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
