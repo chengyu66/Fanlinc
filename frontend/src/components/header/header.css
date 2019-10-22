@@ -2,7 +2,6 @@
 header{
   background:#35424a;
   color:#ffffff;
-  padding-top:30px;
   min-height:70px;
   border-bottom:#e8491d 3px solid;
 }
@@ -21,11 +20,13 @@ header li{
 }
 
 header #branding{
+  padding-left: 10px;
   float:left;
+  align-self: center;
 }
 
 header #branding h1{
-  margin:0;
+  min-height: 0;
 }
 
 header nav{

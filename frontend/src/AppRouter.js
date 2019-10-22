@@ -13,6 +13,7 @@ const AppRouter = () => {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/login" component={Login} />
+                        <Route path="/signup" component={NotFound} />
                         <Route path="/editUser" component={EditUser} />
                         <Route path="*" component={NotFound}/>
                     </Switch>
