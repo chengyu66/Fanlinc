@@ -47,7 +47,7 @@ public class User {
         this.password = password;
     }
 
-    private User() {}
+    public User() {}
 
 
     public Long getId() {
