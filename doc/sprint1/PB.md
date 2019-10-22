@@ -29,7 +29,7 @@ The difficulty of the user story is ranged from 1 to 10. 1 means the easiest to 
 * [TEAMO-25] As a user I can see the mutual links that another user and I share (i.e.: mutual fandom); [Difficulty: 5] [Priority: Low]
 * [TEAMO-26] As a user I can chat with my friends to communicate; [Difficulty: 6] [Priority: Medium]
 * [TEAMO-39] As a user I can create and edit my post (like Instagram); [Difficulty: 5] [Priority: High]
-~~* As a user I can share an existing post; [Difficulty: 5]~~
+* ~~As a user I can share an existing post; [Difficulty: 5]~~
 * [TEAMO-29] As a user I can comment on my or other people’s post; [Difficulty: 4] [Priority: Medium]
 * [TEAMO-30] As a user, I can like my or other people’s post. [Difficulty: 4] [Priority: Medium]
 
