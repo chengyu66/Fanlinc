@@ -43,13 +43,18 @@ class login extends Component{
          .then(res => {
                 console.log("Success");
                 let data = res.data;
-                this.state.email = data.email;
-                this.state.password = data.password;
-                this.state.status = true;
-                Cookies.set('id', data.id);
-                Cookies.set('username', data.firstName);
-                Cookies.set('email', data.email);
-                this.props.history.push('/');
+                if (data){
+                    this.state.email = data.email;
+                    this.state.password = data.password;
+                    this.state.status = true;
+                    Cookies.set('id', data.id);
+                    Cookies.set('username', data.firstName);
+                    Cookies.set('email', data.email);
+                    this.props.history.push('/');
+                }
+                else{
+                    alert("The Email and password are incorrect");
+                }
             })
             .catch(error => {
                 console.log("Fail");
