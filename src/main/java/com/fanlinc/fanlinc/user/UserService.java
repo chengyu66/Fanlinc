@@ -41,4 +41,8 @@ public class UserService {
     public List<User> findByFirstNameAndLastName(String firstName, String lastName) {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
+
+    public boolean existsByEmail(String email){
+        return userRepository.existsByEmail(email);
+    }
 }

@@ -1,11 +1,13 @@
 package com.fanlinc.fanlinc.user;
 
+import com.fanlinc.fanlinc.EmailExistsException;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
 //import com.fanlinc.fanlinc.fandom.FandomId;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 //import com.fanlinc.fanlinc.fandom.FandomId;
@@ -25,10 +27,14 @@ public class UserController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addUser") // Map ONLY POST Requests
     @ResponseBody
-    public  User addNewUser (@RequestBody User newUser) {
+    public  User addNewUser (@RequestBody User newUser) throws EmailExistsException {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         //User newUser = new User(firstName,lastName,email,password,description);
+        String email = newUser.getEmail();
+        if (service.existsByEmail(email)) {
+            throw new EmailExistsException(email);
+        } 
         return service.save(newUser);
     }
 
