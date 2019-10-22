@@ -1,17 +1,26 @@
 package com.fanlinc.fanlinc.post;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
+import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "Posts")
 public class Post {
-	
+
 	@Id
     @GeneratedValue
 	private Long postId;
@@ -27,6 +36,17 @@ public class Post {
 	
 	@JsonProperty("authorEmail")
 	private String authorEmail;
+	
+	@JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "fandom_post",
+            joinColumns = { @JoinColumn(name = "fandom_id") },
+            inverseJoinColumns = { @JoinColumn(name = "post_id") })
+	private Set<Fandom> fandoms = new HashSet<>();
 	
 	public Post(String title, String content, Long authorId, String authorEmail) {
         this.title = title;
