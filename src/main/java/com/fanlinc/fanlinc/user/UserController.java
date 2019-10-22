@@ -7,30 +7,28 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
+
+//import com.fanlinc.fanlinc.fandom.FandomId;
 
 @RestController    // This means that this class is a Controller
-@RequestMapping(path="/api/users") // This means URL's start with /demo (after Application path)
-public class MainController {
+@RequestMapping(path = "/api/users") // This means URL's start with /demo (after Application path)
+public class UserController {
 
     private final UserService service;
     private final FandomService fservice;
 
-    public MainController(UserService service, FandomService fservice) {
+    public UserController(UserService service, FandomService fservice) {
         this.service = service;
         this.fservice = fservice;
     }
 
-    @PostMapping(path="/addUser") // Map ONLY POST Requests
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/addUser") // Map ONLY POST Requests
     @ResponseBody
-    public  User addNewUser (@RequestParam String firstName,
-                             @RequestParam String lastName,
-                             @RequestParam String email,
-                             @RequestParam String password,
-                             @RequestParam String description) {
+    public  User addNewUser (@RequestBody User newUser) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        User newUser = new User(firstName,lastName,email,password,description);
+        //User newUser = new User(firstName,lastName,email,password,description);
         return service.save(newUser);
     }
 

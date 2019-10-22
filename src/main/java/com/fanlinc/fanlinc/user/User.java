@@ -33,7 +33,7 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    //CascadeType.MERGE was casuing the multiple entities error
+                    // CascadeType.MERGE //was casuing the multiple entities error
             },
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
@@ -47,7 +47,7 @@ public class User {
         this.password = password;
     }
 
-    private User() {}
+    public User() {}
 
 
     public Long getId() {
@@ -95,5 +95,8 @@ public class User {
 
     public void setFandoms(Fandom fandom) {
         this.fandoms.add(fandom);
+    }
+    public void removeFandom(Fandom fandom) {
+        this.fandoms.remove(fandom);
     }
 }
