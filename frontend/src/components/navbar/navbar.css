@@ -2,8 +2,6 @@
 header{
   background:#35424a;
   color:#ffffff;
-  padding-top:30px;
-  min-height:70px;
   border-bottom:#e8491d 3px solid;
 }
 
@@ -20,8 +18,9 @@ header li{
   padding: 0 20px 0 20px;
 }
 
-header #branding{
+header .branding{
   float:left;
+  padding-left: 20px;
 }
 
 header #branding h1{
@@ -34,9 +33,11 @@ header nav{
 }
 
 header .highlight, header .current a{
+  padding-left: 5px;
   color:#e8491d;
   font-weight:bold;
 }
+
 
 header a:hover{
   color:#cccccc;
