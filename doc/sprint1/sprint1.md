@@ -29,8 +29,8 @@
   * front end implementation (Est. Pt. : 7 , Assigned to: Diego He)
   * using SprtingBoot to handle request (Est. Pt. : 8 , Assigned to: Hongming Li)
   * find fandom using MySQL (Est. Pt. : 5 , Assigned to: Cheng Gao)
-~~* (TEAMO-39) As a user I can create and edit my post (Est. Pt. : 8 , Assigned to: XinZheng Xu)
-  * front end implementation (Est. Pt. : 2 , Assigned to: Jiasong Liang)
-  ~~* using SprtingBoot to handle request (Est. Pt. : 2 , Assigned to: XinZheng Xu)
-  * heck if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)
-  ~~* check if the user has the right to edit the post (Est. Pt. : 2 , Assigned to: XinZheng Xu)
+* ~~(TEAMO-39) As a user I can create and edit my post (Est. Pt. : 8 , Assigned to: XinZheng Xu)~~
+  * ~~front end implementation (Est. Pt. : 2 , Assigned to: Jiasong Liang)~~
+  * ~~using SprtingBoot to handle request (Est. Pt. : 2 , Assigned to: XinZheng Xu)~~
+  * ~~heck if updated information is valid (Est. Pt. : 2 , Assigned to:XinZheng Xu)~~
+  * ~~check if the user has the right to edit the post (Est. Pt. : 2 , Assigned to: XinZheng Xu)~~
