@@ -32,6 +32,23 @@ public class UserController {
         return service.save(newUser);
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/updateUser") // Map ONLY POST Requests
+    @ResponseBody
+    public  User updateNewUser (@RequestBody User newUpdate) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        //User newUser = new User(firstName,lastName,email,password,description);
+        String email = newUpdate.getEmail();
+        User updatedUser = service.findByEmail(email);
+        updatedUser.setFirstName(newUpdate.getFirstName());
+        updatedUser.setLastName(newUpdate.getLastName());
+
+        return service.save(updatedUser);
+    }
+
+
+
 //    @PutMapping(path="/setDescription")
 //    public @ResponseBody Iterable<User> () {
 //        // This returns a JSON or XML with the users
