@@ -11,4 +11,4 @@
 
 ### Backend:
 
-* None
+* (TEAMO-39) As a developer, I can process creating and editing post by user via backend
