@@ -9,8 +9,11 @@ The difficulty of the user story is ranged from 1 to 10. 1 means the easiest to 
 [TEAMO-xx] xxxxxxxxxxx [Difficulty: x] [Priority: x] where:
 
 [TEAMO-xx] is the ticket number on Jira
+
 [Difficulty: x] is the estimated point on Jira
+
 [Priority: x] is the priority for each user story on Jira
+
 
 ### Account/ Basic Profile
 
