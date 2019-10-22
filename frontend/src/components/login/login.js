@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
 import {Button, Input } from "@material-ui/core";
 import "./login.css"
+import Cookies from 'js-cookie';
 
 class login extends Component{
     constructor(){
@@ -14,6 +15,21 @@ class login extends Component{
         };
         this.getUser = this.getUser.bind(this);
     }
+
+    componentDidMount() {
+            if (Cookies.get('username')) {
+                const location = {
+                    pathname: '/Home'
+                };
+                this.props.history.push(location);
+            } else {
+                const location = {
+                    pathname: '/Login'
+                };
+                this.props.history.push(location);
+            }
+
+     }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
@@ -27,11 +43,18 @@ class login extends Component{
          .then(res => {
                 console.log("Success");
                 let data = res.data;
-                this.state.email = data.email;
-                this.state.password = data.password;
-                this.state.status = true;
-                let history = Redirect();
-                history.push("/signup");
+                if (data){
+                    this.state.email = data.email;
+                    this.state.password = data.password;
+                    this.state.status = true;
+                    Cookies.set('id', data.id);
+                    Cookies.set('username', data.firstName);
+                    Cookies.set('email', data.email);
+                    this.props.history.push('/');
+                }
+                else{
+                    alert("The Email and password are incorrect");
+                }
             })
             .catch(error => {
                 console.log("Fail");

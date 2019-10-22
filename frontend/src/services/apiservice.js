@@ -10,12 +10,20 @@ const POSTHEADERS = {
 
 class ApiService {
 
-    getUser(){
-        return axios.get(URL + '/editUser')
+    getUser(user){
+        return axios.get(URL + '/users/findUserByEmail',
+                    { params: user,
+                             headers: GETHEADERS
+                    }  );
     }
 
     setUser(user){
-        return axios.post(URL + '/editUser', user)
+        return axios.post(URL + '/users/updateUser',
+                    user,
+                    {
+                        headers: POSTHEADERS
+                    }
+        )
     }
 
     signup(user) {
