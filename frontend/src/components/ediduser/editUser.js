@@ -56,7 +56,7 @@ class edidUser extends Component{
 
     saveUser = (e) => {
          e.preventDefault();
-         let user = {username: user.username, password: this.state.password, age: this.state.age, email: this.state.email};
+         let user = {firstname: this.state.firstname, lastname:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
          ApiService.setUser(user)
              .then(res => {
                  this.setState({message : 'User edit successfully.'});
@@ -70,22 +70,22 @@ class edidUser extends Component{
                 <form>
                     <div className="form-group">
                         <label>First Name:</label>
-                        <input type="text" placeholder="firstname" name="fname" value={this.state.firstname} onChange={this.onChange}/>
+                        <input type="text" placeholder="firstname" name="fname" defaultValue={this.state.firstname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Last Name:</label>
-                        <input type="text" placeholder="lastname"  name="lname" value={this.state.lastname} onChange={this.onChange}/>
+                        <input type="text" placeholder="lastname"  name="lname" defaultValue={this.state.lastname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Age:</label>
-                        <input type="number" placeholder="age" name="age" value={this.state.age} onChange={this.onChange}/>
+                        <input type="number" placeholder="age" name="age" defaultValue={this.state.age} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Email:</label>
-                        <input type="email" placeholder="email" name="mail" value={this.state.email} onChange={this.onChange}/>
+                        <input type="email" placeholder="email" name="mail" defaultValue={this.state.email} onChange={this.onChange}/>
                     </div>
 
                     <button className="save" onClick={this.saveUser}>Save</button>
