@@ -1,4 +1,4 @@
-package backend.src.main.java.com.fanlinc.fanlinc;
+package com.fanlinc.fanlinc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

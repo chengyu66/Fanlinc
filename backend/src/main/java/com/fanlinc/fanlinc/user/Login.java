@@ -1,4 +1,4 @@
-package backend.src.main.java.com.fanlinc.fanlinc.user;
+package com.fanlinc.fanlinc.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

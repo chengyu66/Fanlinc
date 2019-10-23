@@ -1,9 +1,9 @@
-package backend.src.main.java.com.fanlinc.fanlinc.user;
+package com.fanlinc.fanlinc.user;
 
-import backend.src.main.java.com.fanlinc.fanlinc.Exception.EmailExistsException;
-import backend.src.main.java.com.fanlinc.fanlinc.fandom.Fandom;
-import backend.src.main.java.com.fanlinc.fanlinc.fandom.FandomService;
-//import backend.src.main.java.com.fanlinc.fanlinc.FandomId;
+import com.fanlinc.fanlinc.EmailExistsException;
+import com.fanlinc.fanlinc.fandom.Fandom;
+import com.fanlinc.fanlinc.fandom.FandomService;
+//import com.fanlinc.fanlinc.fandom.FandomId;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

@@ -1,8 +1,8 @@
-package backend.src.main.java.com.fanlinc.fanlinc.fandom;
+package com.fanlinc.fanlinc.fandom;
 
-import backend.src.main.java.com.fanlinc.fanlinc.fandom.FandomService;
-import backend.src.main.java.com.fanlinc.fanlinc.user.User;
-import backend.src.main.java.com.fanlinc.fanlinc.user.UserService;
+import com.fanlinc.fanlinc.fandom.FandomService;
+import com.fanlinc.fanlinc.user.User;
+import com.fanlinc.fanlinc.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
