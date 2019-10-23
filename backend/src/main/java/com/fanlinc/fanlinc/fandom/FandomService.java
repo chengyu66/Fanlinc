@@ -26,4 +26,7 @@ public class FandomService {
     public Fandom findByFandomId(Long id){
         return fandomRepository.findByFandomId(id);
     }
+//    public Fandom getFandom(Long id){
+//        return fandomRepository.findByFandomId(id);
+//    }
 }
