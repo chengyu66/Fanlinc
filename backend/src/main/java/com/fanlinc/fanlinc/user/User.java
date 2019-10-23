@@ -1,6 +1,6 @@
-package com.fanlinc.fanlinc.user;
+package backend.src.main.java.com.fanlinc.fanlinc.user;
 
-import com.fanlinc.fanlinc.fandom.Fandom;
+import backend.src.main.java.com.fanlinc.fanlinc.fandom.Fandom;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

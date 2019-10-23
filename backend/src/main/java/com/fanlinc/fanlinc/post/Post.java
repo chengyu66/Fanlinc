@@ -1,4 +1,4 @@
-package com.fanlinc.fanlinc.post;
+package backend.src.main.java.com.fanlinc.fanlinc.post;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import com.fanlinc.fanlinc.fandom.Fandom;
-import com.fanlinc.fanlinc.user.User;
+import backend.src.main.java.com.fanlinc.fanlinc.fandom.Fandom;
+import backend.src.main.java.com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

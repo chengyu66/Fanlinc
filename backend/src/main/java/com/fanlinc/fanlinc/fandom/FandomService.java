@@ -1,4 +1,4 @@
-package com.fanlinc.fanlinc.fandom;
+package backend.src.main.java.com.fanlinc.fanlinc.fandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

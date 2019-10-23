@@ -1,4 +1,4 @@
-package com.fanlinc.fanlinc.user;
+package backend.src.main.java.com.fanlinc.fanlinc.user;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

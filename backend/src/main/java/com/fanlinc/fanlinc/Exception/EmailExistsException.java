@@ -1,4 +1,4 @@
-package com.fanlinc.fanlinc;
+package backend.src.main.java.com.fanlinc.fanlinc.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

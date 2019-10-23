@@ -1,6 +1,6 @@
-package com.fanlinc.fanlinc.user;
+package backend.src.main.java.com.fanlinc.fanlinc.user;
 
-import com.fanlinc.fanlinc.fandom.FandomRepository;
+import backend.src.main.java.com.fanlinc.fanlinc.fandom.FandomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
