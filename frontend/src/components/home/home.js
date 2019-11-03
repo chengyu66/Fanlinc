@@ -7,8 +7,8 @@ class home extends Component{
     render(){
         return (
 
-                    <div>
-//                        <img src="home.jpg" alt="Fans Network" />
+                    <div>   
+                        {/* <img src="home.jpg" alt="Fans Network" /> */}
                     </div>
                 );
     }

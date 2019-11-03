@@ -8,8 +8,12 @@ class Header extends Component {
   render() {
     return (
         <div>
+            <div>
                   <Navbar />
-                  <Search />
+             </div>
+             <div>
+                   <Search />
+             </div>
         </div>
     );
   }

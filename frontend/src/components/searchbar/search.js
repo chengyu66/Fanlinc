@@ -11,13 +11,6 @@ class Search extends Component{
          items: []
         };
     }
-//    filterList = (event) => {
-//          let items = this.state.initialItems;
-//          items = items.filter((item) => {
-//            return item.toLowerCase().search(event.target.value.toLowerCase()) !== -1;
-//          });
-//          this.setState({items: items});
-//     }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
@@ -26,15 +19,8 @@ class Search extends Component{
           return (
             <div>
               <form>
-                    <input type="text" placeholder="Search" onChange={this.filterList}/>
+                    <input type="text" placeholder="Search" onChange={this.onChange}/>
               </form>
-              <div>
-                {
-                    this.state.items.map(function(item) {
-                        return <div key={item}>{item}</div>
-                    })
-                }
-                </div>
             </div>
           );
      }
