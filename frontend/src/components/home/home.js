@@ -8,7 +8,7 @@ class home extends Component{
         return (
 
                     <div>
-                        <img src="home.jpg" alt="Fans Network" />
+//                        <img src="home.jpg" alt="Fans Network" />
                     </div>
                 );
     }
