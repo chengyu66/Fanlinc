@@ -42,6 +42,14 @@ class ApiService {
             }  );
      }
 
+     seachfandom(query){
+         return axios.get(URL + '/fandoms/findSimilarFandomByName', {
+                params: query,
+                headers: GETHEADERS
+            }
+         );
+     }
+
  }
 
 export default new ApiService();
