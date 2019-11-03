@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -19,6 +20,16 @@ public class FandomController {
     public FandomController(FandomService fservice, UserService service)  {
         this.fservice = fservice;
         this.service = service;
+    }
+
+
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findSimilarFandomByName") // Map ONLY GET Requests
+    @ResponseBody
+    public List<Fandom> findSimilarFandomByName (@RequestParam String name) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return fservice.findSimilarFandomByName(name);
     }
 
     @PostMapping(path="/createFandom") // Map ONLY POST Requests

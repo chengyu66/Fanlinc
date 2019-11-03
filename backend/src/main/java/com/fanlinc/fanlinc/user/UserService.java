@@ -42,6 +42,11 @@ public class UserService {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
+    public List<User> findSimilarByFirstNameAndLastName(String firstName, String lastName) {
+        return userRepository.findSimilarByFirstNameAndLastName(firstName, lastName);
+    }
+
+
     public boolean existsByEmail(String email){
         return userRepository.existsByEmail(email);
     }

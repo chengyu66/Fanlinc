@@ -1,8 +1,10 @@
 package com.fanlinc.fanlinc.fandom;
 
+import com.fanlinc.fanlinc.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +25,12 @@ public class FandomService {
         Fandom fandom = fandomRepository.findByFandomName(fandomName);
         return fandom;
     }
+
+    public List<Fandom> findSimilarFandomByName(String fandomName) {
+        List<Fandom> f = fandomRepository.findByFandomNameContaining(fandomName);
+        return f;
+    }
+
     public Fandom findByFandomId(Long id){
         return fandomRepository.findByFandomId(id);
     }
