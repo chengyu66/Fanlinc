@@ -1,5 +1,6 @@
 package com.fanlinc.fanlinc.fandom;
 
+import com.fanlinc.fanlinc.post.Post;
 import com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -34,6 +35,16 @@ public class Fandom {
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
+    
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "fandom_post",
+            joinColumns = { @JoinColumn(name = "fandom_id") },
+            inverseJoinColumns = { @JoinColumn(name = "post_id") })
+    private Set<Post> posts = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
         this.fandomName = fandomName;
@@ -74,5 +85,10 @@ public class Fandom {
 
     public void setUsers(User newUser) {this.users.add(newUser); }
     public void removeUser(User user) {this.users.remove(user); }
+    
+    public Set<Post> getPost() { return this.posts; }
+
+    public void setPosts(Post newPost) {this.posts.add(newPost); }
+    public void removePost(Post post) {this.posts.remove(post); }
 
 }

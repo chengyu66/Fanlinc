@@ -37,17 +37,6 @@ public class Post {
 	@JsonProperty("authorEmail")
 	private String authorEmail;
 
-//	@JsonIgnore
-//    @ManyToOne(fetch = FetchType.EAGER,
-//            cascade = {
-//                    //CascadeType.PERSIST,
-//                    CascadeType.MERGE
-//            })
-//    @JoinTable(name = "fandom_post",
-//            joinColumns = { @JoinColumn(name = "fandom_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "post_id") })
-//	private Set<Fandom> fandoms = new HashSet<>();
-
 	public Post(String title, String content, Long authorId, String authorEmail) {
         this.title = title;
         this.content = content;
