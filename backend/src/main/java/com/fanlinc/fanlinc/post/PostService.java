@@ -24,12 +24,8 @@ public class PostService {
     	return postRepository.findByPostId(id);
     }
     
-    public List<Post> findByUserId(Long id){
-    	return postRepository.findByUserId(id);
-    }
-    
-    public List<Post> findByUserEmail(String email){
-    	return postRepository.findByUserEmail(email);
+    public List<Post> findByEmail(String email){
+    	return postRepository.findByEmail(email);
     }
 	
 	public List<Post> findByFandomId(Long id){

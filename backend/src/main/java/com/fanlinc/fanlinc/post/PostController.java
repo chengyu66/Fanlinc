@@ -81,17 +81,10 @@ public class PostController {
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/findPostByUserId") // Map ONLY POST Requests
-    @ResponseBody
-    public List<Post> findPostByUserId(@RequestParam Long id) {
-    	return pservice.findByUserId(id);
-    }
-    
-    @CrossOrigin(origins = "*")
     @PostMapping(path = "/findPostByUserEmail") // Map ONLY POST Requests
     @ResponseBody
     public List<Post> findPostByUserEmail(@RequestParam String email) {
-    	return pservice.findByUserEmail(email);
+    	return pservice.findByEmail(email);
     }
     
     @CrossOrigin(origins = "*")
