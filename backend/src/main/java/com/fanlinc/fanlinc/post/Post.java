@@ -31,17 +31,17 @@ public class Post {
 	@JsonProperty("content")
 	private String content;
 
-	@JsonProperty("authorId")
-	private Long authorId;
+	@JsonProperty("email")
+	private String email;
+	
+	@JsonProperty("fandomId")
+	private Long fandomId;
 
-	@JsonProperty("authorEmail")
-	private String authorEmail;
-
-	public Post(String title, String content, Long authorId, String authorEmail) {
+	public Post(String title, String content, String email, Long fandomId) {
         this.title = title;
         this.content = content;
-        this.authorId = authorId;
-        this.authorEmail = authorEmail;
+        this.email = email;
+        this.fandomId = fandomId;
     }
 
 	public Long getPostId() {
@@ -57,16 +57,20 @@ public class Post {
     public void setPostTitle(String title) {
         this.title = title;
     }
-
-    public Long getAuthorId() { return authorId; }
-
-    public void setAuthorId(Long authorId) {this.authorId = authorId;}
-
-    public String getAuthorEmail() {
-        return authorEmail;
+    
+    public String getContent() {
+        return content;
     }
 
-    public void setAuthorEmail(String authorEmail) {
-        this.authorEmail = authorEmail;
+    public void setContent(String content) {
+        this.content = content;
     }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) {this.email = email;}
+
+    public Long getFandomId() { return fandomId; }
+
+    public void setFandomId(Long fandomId) {this.fandomId = fandomId;}
 }
