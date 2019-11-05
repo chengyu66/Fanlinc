@@ -83,7 +83,6 @@ public class Post {
     public void addComment(Comment comment) {this.comments.add(comment);}
 
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
-}
 
     public void setLike(Long userID) {this.usersWhoLiked.add(userID);}
 
