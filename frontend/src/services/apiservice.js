@@ -58,6 +58,18 @@ class ApiService {
          );
      }
 
+     checkIfJoin() {
+         return 
+     }
+
+     joinFandom(query) {
+        return axios.get(URL + '/fandoms/joinFandom', {
+            params: query,
+            headers: GETHEADERS
+        }
+     );
+     }
+
  }
 
 export default new ApiService();
