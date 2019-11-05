@@ -31,6 +31,7 @@ public class Post {
 	private Long fandomId;
 
     @ElementCollection
+    // for liked
     private Set<Long> usersWhoLiked = new HashSet<>();
 
     @OneToMany(fetch = FetchType.EAGER,
