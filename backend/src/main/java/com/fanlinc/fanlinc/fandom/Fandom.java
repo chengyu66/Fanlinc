@@ -35,15 +35,6 @@ public class Fandom {
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
-    
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    //CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "fandom_post",
-            joinColumns = { @JoinColumn(name = "fandom_id") },
-            inverseJoinColumns = { @JoinColumn(name = "post_id") })
     private Set<Post> posts = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {

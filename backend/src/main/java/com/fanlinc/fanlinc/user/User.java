@@ -38,15 +38,6 @@ public class User {
             },
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
-    
-    @OneToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    //CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
-    @JoinTable(name = "user_post",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "post_id") })
     private Set<Post> posts = new HashSet<>();
 
 
