@@ -18,10 +18,9 @@ const AppRouter = () => {
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/editUser" component={EditUser} />
-                        <Route path="/notFind" component={NotFound}/>
                         <Route path='/fandom/:fandomId' component={FandomHome}/>
-                        <Route path='/search/:find' component={Search}/>
-                        
+                        <Route path='/search/:query' component={Search}/>
+                        <Route path="/notFind" component={NotFound}/>
                     </Switch>
                 </div>
             </Router>
