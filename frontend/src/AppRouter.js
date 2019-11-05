@@ -6,6 +6,7 @@ import Home from "./components/home/home";
 import Signup from "./components/signup/signup";
 import React from "react";
 import FandomHome from "./components/fandomhome/fandomhome"
+import Search from './components/searchbar/search';
 
 const AppRouter = () => {
     return(
@@ -19,6 +20,8 @@ const AppRouter = () => {
                         <Route path="/editUser" component={EditUser} />
                         <Route path="/notFind" component={NotFound}/>
                         <Route path='/fandom/:fandomId' component={FandomHome}/>
+                        <Route path='/search/:find' component={Search}/>
+                        
                     </Switch>
                 </div>
             </Router>

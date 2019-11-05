@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import "./navbar.css";
 import Cookies from 'js-cookie';
 import Search from "../searchbar/search";
-import {Nav, Navbar} from 'react-bootstrap';
+import {Button, FormControl, Nav, Navbar} from 'react-bootstrap';
+import ApiService from '../../services/apiservice';
 import 'bootstrap/dist/css/bootstrap.css';
 
 
@@ -11,10 +12,16 @@ class Mynavbar extends Component {
             super();
             this.state = {
                 username: 'Sign in',
-                link:'/Login'
+                link:'/Login',
+                query: "",
+                form: "",
+                items:[]
             };
         }
-
+    
+    onChange = (e) =>
+        this.setState({ [e.target.name]: e.target.value });
+    
     look() {
         if (Cookies.get('username')) {
                 this.state.username = Cookies.get('username');
@@ -33,8 +40,9 @@ class Mynavbar extends Component {
                     <Nav.Link href="#">Fandoms</Nav.Link>
                     <Nav.Link href={this.state.link} onClick={this.look()}>{this.state.username}</Nav.Link>
                   </Nav>
-                  <Search id = 'nav-search' />
                 </Navbar.Collapse>
+                {/* <FormControl className="mr-sm-2" type="text"  placeholder="Search" onChange={this.onChange} name="query"/>
+                <Button variant="outline-success" onClick={()=>{}} >Search</Button> */}
               </Navbar>
                 );
     }

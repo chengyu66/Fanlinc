@@ -43,18 +43,19 @@ class Search extends Component{
 
      render() {
           return (
-            <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.onChange} name="query"/>
-                <Button variant="outline-success" onClick={this.search} >Search</Button>
-            </Form>
-            
-        // <div>
-        //     <ul>
-        //         {this.state.items.map(item => (
-        //             <li id={item.fandomid}>{item.fandomName}</li>
-        //         ))}
-        //     </ul>
-        // </div>
+            <div className="search">
+                <div className="bar">
+                    <FormControl type="text" placeholder="Search" onChange={this.onChange} name="query"/>
+                    <Button variant="outline-success" onClick={this.search} >Search</Button>
+                </div>
+                <form>
+                    <ul>
+                        {this.state.items.map(item => (
+                            <li id={item.fandomid}>{item.fandomName}</li>
+                        ))}
+                    </ul>
+                </form>
+            </div>
           );
      }
 }
