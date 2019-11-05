@@ -35,6 +35,7 @@ public class Fandom {
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
+    
     private Set<Post> posts = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {

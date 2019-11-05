@@ -38,6 +38,7 @@ public class User {
             },
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
+    
     private Set<Post> posts = new HashSet<>();
 
 
