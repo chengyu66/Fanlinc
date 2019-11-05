@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController    // This means that this class is a Controller
 @RequestMapping(path="/api/fandoms")
@@ -37,6 +38,24 @@ public class FandomController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         return fservice.findSimilarFandomByName(name);
+    }
+
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findUser") // Map ONLY GET Requests
+    @ResponseBody
+    public User findUser (@RequestParam Long userId, @RequestParam Long fandomId) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        Fandom fandom = findFandomById(fandomId);
+        Set<User> users = fandom.getUser();
+        User temp = null;
+        for (User user: fandom.getUser()){
+            System.out.println("users:" + user.getId());
+            if (user.getId().equals(userId)) {
+                temp = user;
+            }
+        }
+        return temp;
     }
 
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
