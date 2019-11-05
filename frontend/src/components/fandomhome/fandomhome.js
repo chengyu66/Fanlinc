@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-
+import {Jumbotron} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class FandomHome extends Component {
     constructor(){
         super();
 
         this.state = {
-            fandomId: "",
-            fandomName: "",
-            fandomOwnerId: ""
+            data: [],
+            loading: true
         };
+        
     }
 
     componentWillMount() {
@@ -23,13 +24,12 @@ class FandomHome extends Component {
         let fandom = {id: this.state.fandomId};
         ApiService.getFandom(fandom)
         .then(res => {
-               console.log("Success");
                let data = res.data;
                if (data){
-                   this.state.fandomName = data.fandomName;
-                   this.state.fandomOwnerId = data.fandomOwnerId + "";
+                   this.setState({data, loading: false});
                    console.log("Find the fandom");
-                   console.log(data);
+                //    console.log(data);
+                //    console.log(this.state);
                }
                else{
                 this.props.history.push('/notFind');
@@ -41,22 +41,21 @@ class FandomHome extends Component {
    };
 
     render() {
+        if(this.state.loading) {
+            return 'Loading...'
+        }
         return (
-            <div>
-                <p1>{this.state.fandomId}</p1>
-                <p1>{this.state.fandomName}</p1>
-            </div>
-        )
+        <Jumbotron fluid>
+            <h1>Welcome to {this.state.data.fandomName}</h1>
+            <h2> </h2>
+            <p>Fandom ID: {this.state.data.fandomId}</p>
+            <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p>
+        </Jumbotron>
+    )
+            
     }
-
-
-
     
 }
-
-
-
-
 
 
 export default FandomHome;
