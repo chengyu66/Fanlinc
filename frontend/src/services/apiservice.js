@@ -58,14 +58,28 @@ class ApiService {
          );
      }
 
-     checkIfJoin() {
-         return 
+     checkIfJoin(query) {
+        return axios.get(URL + '/fandoms/findUser', {
+            params: query,
+            headers: GETHEADERS
+            }
+        );
      }
 
      joinFandom(query) {
-        return axios.get(URL + '/fandoms/joinFandom', {
-            params: query,
-            headers: GETHEADERS
+        return axios.post(URL + '/fandoms/joinFandom',
+        query,
+        {
+            headers: POSTHEADERS
+        }
+     );
+     }
+
+     quitFandom(query) {
+        return axios.post(URL + '/fandoms/quitFandom',
+        query,
+        {
+            headers: POSTHEADERS
         }
      );
      }
