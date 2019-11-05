@@ -17,6 +17,7 @@ class Mynavbar extends Component {
                 form: "",
                 items:[]
             };
+            this.change = this.change.bind(this)
         }
     
     onChange = (e) =>
@@ -27,6 +28,11 @@ class Mynavbar extends Component {
                 this.state.username = Cookies.get('username');
                 this.state.link = '/editUser';
           }
+    }
+
+    change(){
+      let path = "/fandom/" + this.state.query;
+      this.props.history.push(path);
     }
 
     render() {

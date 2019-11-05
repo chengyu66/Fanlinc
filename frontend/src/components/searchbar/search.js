@@ -17,6 +17,13 @@ class Search extends Component{
         this.search = this.search.bind(this);
     }
 
+    // componentWillMount() {
+    //     const { match: { params } } = this.props;
+    //     this.state.query = params.query;
+    //     this.search();
+    //     console.log(this.state);
+    // }
+
     search = (e) => {
         e.preventDefault();
         let query = {name: this.state.query};
