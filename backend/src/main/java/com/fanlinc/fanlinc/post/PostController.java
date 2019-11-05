@@ -35,10 +35,6 @@ public class PostController {
         // @RequestParam means it is a parameter from the GET or POST request
         Post post = new Post(title, content, email, fandomId);
         pservice.save(post);
-        User user = service.findByEmail(email);
-        user.setPosts(post);
-        Fandom fandom = fservice.findByFandomId(fandomId);
-        fandom.setPosts(post);
     }
     
     @CrossOrigin(origins = "*")
@@ -48,29 +44,10 @@ public class PostController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
         Post post = pservice.findByPostId(id);
-        User user = service.findByEmail(post.getEmail());
-        user.removePost(post);
-        Fandom fandom = fservice.findByFandomId(post.getFandomId());
-        fandom.removePost(post);
         post.setPostTitle(title);
         post.setContent(content);
-        user.setPosts(post);
-        fandom.setPosts(post);
         
         pservice.save(post);
-    }
-    
-    @CrossOrigin(origins = "*")
-    @PostMapping(path = "/delete") // Map ONLY POST Requests
-    @ResponseBody
-    public void delete (@RequestParam Long id) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        Post post = pservice.findByPostId(id);
-        User user = service.findByEmail(post.getEmail());
-        user.removePost(post);
-        Fandom fandom = fservice.findByFandomId(post.getFandomId());
-        fandom.removePost(post);
     }
     
     @CrossOrigin(origins = "*")

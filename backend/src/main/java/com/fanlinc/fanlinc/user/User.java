@@ -38,8 +38,6 @@ public class User {
             },
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
-    
-    private Set<Post> posts = new HashSet<>();
 
 
     public User(String firstName, String lastName, String email, String password, String description) {
@@ -101,16 +99,5 @@ public class User {
     }
     public void removeFandom(Fandom fandom) {
         this.fandoms.remove(fandom);
-    }
-    
-    public Set<Post> getPosts() {
-        return this.posts;
-    }
-
-    public void setPosts(Post post) {
-        this.posts.add(post);
-    }
-    public void removePost(Post post) {
-        this.posts.remove(post);
     }
 }

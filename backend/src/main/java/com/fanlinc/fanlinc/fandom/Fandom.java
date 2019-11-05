@@ -35,8 +35,6 @@ public class Fandom {
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
-    
-    private Set<Post> posts = new HashSet<>();
 
     public Fandom(String fandomName, Long fandomOwnerId, String onwerEmail) {
         this.fandomName = fandomName;
@@ -77,10 +75,4 @@ public class Fandom {
 
     public void setUsers(User newUser) {this.users.add(newUser); }
     public void removeUser(User user) {this.users.remove(user); }
-    
-    public Set<Post> getPost() { return this.posts; }
-
-    public void setPosts(Post newPost) {this.posts.add(newPost); }
-    public void removePost(Post post) {this.posts.remove(post); }
-
 }
