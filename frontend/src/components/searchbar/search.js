@@ -51,7 +51,7 @@ class Search extends Component{
                 <form>
                     <ul>
                         {this.state.items.map(item => (
-                            <li id={item.fandomid}>{item.fandomName}</li>
+                            <li id={item.fandomId}><a href={"/fandom/" + item.fandomId} >{item.fandomName}</a></li>
                         ))}
                     </ul>
                 </form>
