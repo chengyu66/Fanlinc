@@ -3,15 +3,7 @@ package com.fanlinc.fanlinc.post;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
@@ -36,6 +28,9 @@ public class Post {
 	
 	@JsonProperty("fandomId")
 	private Long fandomId;
+
+    @ElementCollection
+    private Set<Long> usersWhoLiked = new HashSet<>();
 
 	public Post(String title, String content, String email, Long fandomId) {
         this.title = title;
@@ -73,4 +68,10 @@ public class Post {
     public Long getFandomId() { return fandomId; }
 
     public void setFandomId(Long fandomId) {this.fandomId = fandomId;}
+
+    public void setLike(Long userID) {this.usersWhoLiked.add(userID);}
+
+    public int getLikeNum() { return usersWhoLiked.size(); }
+
+    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }
