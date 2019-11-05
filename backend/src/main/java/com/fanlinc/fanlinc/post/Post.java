@@ -30,6 +30,7 @@ public class Post {
 	private Long fandomId;
 
     @ElementCollection
+    // for liked
     private Set<Long> usersWhoLiked = new HashSet<>();
 
 	public Post(String title, String content, String email, Long fandomId) {
