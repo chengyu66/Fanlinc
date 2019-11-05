@@ -1,4 +1,7 @@
 package com.fanlinc.fanlinc.comment;
 
-public interface CommentRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface CommentRepository extends CrudRepository<Comment, Long> {
+
 }

@@ -1,7 +1,7 @@
 package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
-import com.fanlinc.fanlinc.post.Post;
+//import com.fanlinc.fanlinc.post.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
