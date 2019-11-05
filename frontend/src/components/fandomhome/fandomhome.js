@@ -3,7 +3,7 @@ import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
-import  {history} from 'react-router-dom';
+import  {Redirect} from 'react-router-dom';
 
 class FandomHome extends Component {
     constructor(){
@@ -15,7 +15,9 @@ class FandomHome extends Component {
             isJoin: false
         };
 
-        //this.cookies = Cookies.get();
+        this.joinFandom = this.joinFandom.bind(this);
+        this.ifJoin = this.ifJoin.bind(this);
+        this.quitFandom = this.quitFandom.bind(this);
         
     }
 
@@ -23,6 +25,7 @@ class FandomHome extends Component {
         const { match: { params } } = this.props;
         this.state.fandomId = params.fandomId;
         this.getFandom();
+        console.log(this.state);
     }
 
     getFandom() {
@@ -33,6 +36,7 @@ class FandomHome extends Component {
                if (data){
                    this.setState({data, loading: false});
                    console.log("Find the fandom");
+                   this.ifJoin();
                }
                else{
                 this.props.history.push('/notFind');
@@ -45,34 +49,63 @@ class FandomHome extends Component {
 
     ifJoin() {
         if(Cookies.get('username')) {
-            if(ApiService.checkIfJoin()) {
-                this.setState({isJoin: true});
-            }
+            let query = {userId: Cookies.get('id'), 
+                            fandomId: this.state.data.fandomId};
+
+            ApiService.checkIfJoin(query)
+            .then(res => {
+                if (res.data){
+                    this.setState({isJoin: true});
+                    console.log("Has Joined the fandom");
+                }
+            })
+            .catch(error => {
+                console.log("Fail");
+            });
         }
     }
 
     joinFandom() {
         if (!Cookies.get('username')) {
             alert("Please Log in First");
-            this.props.phistory.push('/login');
+            this.props.history.push(`/login`);
         } else {
             if(!this.state.isJoin) {
-                let query = {email: Cookies.get('email'), fandomName: this.fandomName};
+                let query = {email: Cookies.get('email'), 
+                             fandomName: this.state.data.fandomName};
+                //console.log(query);
                 ApiService.joinFandom(query)
                 .then(res => {
                     if (res.status == 200){
                         this.setState({isJoin: true});
-                        console.log("Find the fandom");
                     }
                 })
                 .catch(error => {
-                    console.log("Fail");
+                    console.log("Fail to join");
                 });
             }
         }
     }
 
+
+    quitFandom() {
+        if (this.state.isJoin) {
+            let query = {email: Cookies.get('email'), 
+                             fandomName: this.state.data.fandomName};
+            ApiService.quitFandom(query)
+            .then(res => {
+                if (res.status == 200){
+                    this.setState({isJoin: false});
+                }
+            })
+            .catch(error => {
+                console.log("Fail to quit");
+            });
+        }
+    }
+
     render() {
+
         if(this.state.loading) {
             return 'Loading...'
         } 
@@ -83,6 +116,7 @@ class FandomHome extends Component {
                         <h1>Welcome to {this.state.data.fandomName}</h1>
                         <p>Fandom ID: {this.state.data.fandomId}</p>
                         <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p>
+                        <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
                     </Jumbotron>
             )
         } else {

@@ -76,13 +76,15 @@ public class FandomController {
 //        System.out.println("fandomId: "+fandomId);
         return fservice.save(fandom);
     }
+
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/joinFandom") // Map ONLY POST Requests
     @ResponseBody
-    public void JoinFandom (@RequestParam  String email, @RequestParam String fandomName) {
+    public void JoinFandom (@RequestBody Map<String, String> values) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        User user = service.findByEmail(email);
-        Fandom fandom = fservice.findByFandomName(fandomName);
+        User user = service.findByEmail(values.get("email"));
+        Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
         System.out.println(fandom.getFandomId());
         System.out.println(user.getId());
         fandom.setUsers(user);
@@ -90,13 +92,14 @@ public class FandomController {
         fservice.save(fandom);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/quitFandom") // Map ONLY POST Requests
     @ResponseBody
-    public void QuitFandom (@RequestParam  String email, @RequestParam String fandomName) {
+    public void QuitFandom (@RequestBody Map<String, String> values) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-        User user = service.findByEmail(email);
-        Fandom fandom = fservice.findByFandomName(fandomName);
+        User user = service.findByEmail(values.get("email"));
+        Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
         Long fidtoremove = fandom.getFandomId();
         Long uidtoremove = user.getId();
         System.out.println("fandomId to remove: "+fidtoremove);
