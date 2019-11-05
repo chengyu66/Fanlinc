@@ -18,3 +18,5 @@
 
 The previous week was intensive for every member in the tema as everyone has midterm and other assignments to finish and
 therefore we could not complete all the user stories
+
+f7fit76cit
