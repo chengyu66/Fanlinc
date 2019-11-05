@@ -23,7 +23,7 @@ class Mynavbar extends Component {
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
     
-    look() {
+    componentWillMount() {
         if (Cookies.get('username')) {
                 this.state.username = Cookies.get('username');
                 this.state.link = '/editUser';
@@ -44,7 +44,7 @@ class Mynavbar extends Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="#" className="current">About</Nav.Link>
                     <Nav.Link href="#">Fandoms</Nav.Link>
-                    <Nav.Link href={this.state.link} onClick={this.look()}>{this.state.username}</Nav.Link>
+                    <Nav.Link href={this.state.link}>{this.state.username}</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
                 {/* <FormControl className="mr-sm-2" type="text"  placeholder="Search" onChange={this.onChange} name="query"/>
