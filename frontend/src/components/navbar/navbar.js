@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import "./navbar.css";
 import Cookies from 'js-cookie';
+import Search from "../searchbar/search";
+import {Nav, Navbar} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
-class Navbar extends Component {
+
+class Mynavbar extends Component {
     constructor() {
             super();
             this.state = {
                 username: 'Sign in',
                 link:'/Login'
             };
-
         }
+
     look() {
         if (Cookies.get('username')) {
                 this.state.username = Cookies.get('username');
@@ -18,25 +22,21 @@ class Navbar extends Component {
           }
     }
 
-    render(){
+    render() {
         return (
-                    <header>
-                      <div className="container">
-                        <div id="branding">
-                          <h1><a href="/"><span className="highlight">Fan</span>linx</a></h1>
-                        </div>
-                        <nav>
-                          <ul>
-                            {this.look()}
-                            <li><a href="/">Home</a></li>
-                            <li className="current"><a href="#">About</a></li>
-                            <li><a href="#">Fandoms</a></li>
-                            <li><a href={this.state.link}>{this.state.username}</a></li>
-                          </ul>
-                        </nav>
-                      </div>
-                    </header>
+              <Navbar expand="lg">
+                <Navbar.Brand href="/"><span className="highlight">Fan</span>linx</Navbar.Brand>
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="mr-auto">
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="#" className="current">About</Nav.Link>
+                    <Nav.Link href="#">Fandoms</Nav.Link>
+                    <Nav.Link href={this.state.link} onClick={this.look()}>{this.state.username}</Nav.Link>
+                  </Nav>
+                  <Search id = 'nav-search' />
+                </Navbar.Collapse>
+              </Navbar>
                 );
     }
 }
-export default Navbar;
+export default Mynavbar;

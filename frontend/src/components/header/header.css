@@ -14,7 +14,7 @@ header a{
 }
 
 header li{
-  float:left;
+  float: left;
   display:inline;
   padding: 0 20px 0 20px;
 }
@@ -30,7 +30,7 @@ header #branding h1{
 }
 
 header nav{
-  float:right;
+  float: left;
   margin-top:10px;
 }
 

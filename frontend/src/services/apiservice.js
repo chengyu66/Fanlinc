@@ -10,6 +10,14 @@ const POSTHEADERS = {
 
 class ApiService {
 
+    getFandom(fandom) {
+        return axios.get(URL + '/fandoms/findFandomById',
+                    {
+                        params: fandom,
+                        headers: GETHEADERS
+                    });
+    }
+
     getUser(user){
         return axios.get(URL + '/users/findUserByEmail',
                     { params: user,

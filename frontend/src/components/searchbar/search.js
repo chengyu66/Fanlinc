@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
-import {Button, Input } from "@material-ui/core";
+import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
 import "./search.css";
+
+import {Form , FormControl, Button} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class Search extends Component{
     constructor(){
@@ -41,19 +43,18 @@ class Search extends Component{
 
      render() {
           return (
-            <div>
-              <form className="search">
-                    <input type="text" name="query" placeholder="Search" onChange={this.onChange}/>
-                    <Button className="button-div" onClick={this.search}>Search</Button>
-              </form>
-              <div>
-                <ul>
-                    {this.state.items.map(item => (
-                        <li id={item.fandomid}>{item.fandomName}</li>
-                    ))}
-                </ul>
-              </div>
-            </div>
+            <Form inline>
+                <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.onChange} name="query"/>
+                <Button variant="outline-success" onClick={this.search} >Search</Button>
+            </Form>
+            
+        // <div>
+        //     <ul>
+        //         {this.state.items.map(item => (
+        //             <li id={item.fandomid}>{item.fandomName}</li>
+        //         ))}
+        //     </ul>
+        // </div>
           );
      }
 }

@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import Navbar from "../navbar/navbar";
-import Search from "../searchbar/search";
+import Mynavbar from "../navbar/navbar";
 import './header.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Header extends Component {
 
   render() {
     return (
-        <div>
-            <div>
-                  <Navbar />
-             </div>
-             <div>
-                   <Search />
-             </div>
-        </div>
+        <header>
+            <Mynavbar />
+        </header>
     );
   }
 }

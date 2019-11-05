@@ -5,6 +5,7 @@ import Login from "./components/login/login";
 import Home from "./components/home/home";
 import Signup from "./components/signup/signup";
 import React from "react";
+import FandomHome from "./components/fandomhome/fandomhome"
 
 const AppRouter = () => {
     return(
@@ -16,7 +17,8 @@ const AppRouter = () => {
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/editUser" component={EditUser} />
-                        <Route path="*" component={NotFound}/>
+                        <Route path="/notFind" component={NotFound}/>
+                        <Route path='/fandom/:fandomId' component={FandomHome}/>
                     </Switch>
                 </div>
             </Router>

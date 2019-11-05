@@ -8,9 +8,7 @@ import Footer from './components/footer/footer';
 function App() {
   return (
     <div className="App">
-      <div>
           <Header />
-      </div>
       <div>
           <AppRouter />
       </div>

@@ -22,6 +22,13 @@ public class FandomController {
         this.service = service;
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/findFandomById") // Map ONLY GET Requests
+    @ResponseBody
+    public Fandom findFandomById(@RequestParam long id) {
+        return fservice.findByFandomId(id);
+    }
+
 
     @CrossOrigin(origins ="*")
     @GetMapping(path="/findSimilarFandomByName") // Map ONLY GET Requests
