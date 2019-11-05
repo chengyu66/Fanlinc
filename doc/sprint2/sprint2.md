@@ -12,6 +12,7 @@
 ### Sprint Goal:
 
 The backend developers are able to manipulate with data of Fandom(join/create/exit/search), User(join Fandom/create User) and Post(create/edit/comment/like) in database.
+
 The frontend developers are able to create the user login page, profile edit page, search Fandom page, create/join/exit Fandom pages, send Post page.
 
 ### Decisions about User Stories to be Completed:
