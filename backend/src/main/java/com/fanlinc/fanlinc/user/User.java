@@ -39,6 +39,15 @@ public class User {
             mappedBy = "users")
     private Set<Fandom> fandoms = new HashSet<>();
 
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    // CascadeType.MERGE //was casuing the multiple entities error
+            },
+            mappedBy = "usersWhoLiked")
+    private Set<Post> likedPost = new HashSet<>();
+
 
     public User(String firstName, String lastName, String email, String password, String description) {
         this.firstName = firstName;
@@ -99,5 +108,16 @@ public class User {
     }
     public void removeFandom(Fandom fandom) {
         this.fandoms.remove(fandom);
+    }
+
+    public Set<Post> getLike() {
+        return likedPost;
+    }
+
+    public void setLiked(Post post) {
+        likedPost.add(post);
+    }
+    public void removeLiked(Post post) {
+        likedPost.remove(post);
     }
 }

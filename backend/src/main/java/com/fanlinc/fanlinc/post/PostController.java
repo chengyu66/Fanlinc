@@ -2,6 +2,7 @@ package com.fanlinc.fanlinc.post;
 
 import java.util.List;
 
+import com.fanlinc.fanlinc.user.User;
 import org.springframework.web.bind.annotation.*;
 
 import com.fanlinc.fanlinc.fandom.FandomService;
@@ -67,23 +68,26 @@ public class PostController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/userLike") // Map ONLY POST Requests
     @ResponseBody
-    public int userLike (@RequestParam Long postID, @RequestParam Long userID) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
+    public int userLike (@RequestParam Long postID, @RequestParam String email) {
+        System.out.println(postID);
         Post post = pservice.findByPostId(postID);
-        post.setLike(userID);
+        System.out.println(post);
+        User user = service.findByEmail(email);
+        System.out.println(user);
+        post.setLike(user);
+        user.setLiked(post);
         pservice.save(post);
         return post.getLikeNum();
     }
 
-    @CrossOrigin(origins ="*")
-    @GetMapping(path="/isUserLiked") // Map ONLY GET Requests
-    @ResponseBody
-    public boolean isUserLike (@RequestParam Long postID, @RequestParam Long userID) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
-        Post post = pservice.findByPostId(postID);
-        return post.isUserLike(userID);
-    }
+//    @CrossOrigin(origins ="*")
+//    @GetMapping(path="/isUserLiked") // Map ONLY GET Requests
+//    @ResponseBody
+//    public boolean isUserLike (@RequestParam Long postID, @RequestParam Long userID) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        Post post = pservice.findByPostId(postID);
+//        return post.isUserLike(userID);
+//    }
 
 }

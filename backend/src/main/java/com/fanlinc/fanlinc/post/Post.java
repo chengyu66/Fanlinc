@@ -5,10 +5,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity(name = "Posts")
 public class Post {
@@ -29,9 +30,16 @@ public class Post {
 	@JsonProperty("fandomId")
 	private Long fandomId;
 
-    @ElementCollection
-    // for liked
-    private Set<Long> usersWhoLiked = new HashSet<>();
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "userLike_post",
+            joinColumns = { @JoinColumn(name = "post_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    private Set<User> usersWhoLiked = new HashSet<>();
 
 	public Post(String title, String content, String email, Long fandomId) {
         this.title = title;
@@ -70,9 +78,15 @@ public class Post {
 
     public void setFandomId(Long fandomId) {this.fandomId = fandomId;}
 
-    public void setLike(Long userID) {this.usersWhoLiked.add(userID);}
+    public void setLike(User user) {usersWhoLiked.add(user);}
+
+    public Set<User> getLike() {return usersWhoLiked;}
+
+    public void removeLike(User user) {
+        usersWhoLiked.remove(user);
+    }
 
     public int getLikeNum() { return usersWhoLiked.size(); }
 
-    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
+//    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }
