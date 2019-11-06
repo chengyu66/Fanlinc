@@ -100,8 +100,6 @@ public class Post {
 
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
 
-    public void setLike(Long userID) {this.usersWhoLiked.add(userID);}
-
     public int getLikeNum() { return usersWhoLiked.size(); }
 
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
