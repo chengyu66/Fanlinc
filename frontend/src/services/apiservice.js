@@ -108,7 +108,7 @@ class ApiService {
      }
 
      getPost(query){
-        return axios.get(URL + '/posts/findPostByPostId',
+        return axios.get(URL + '/posts/findByPostId',
         {
             params: query,
             headers: POSTHEADERS
