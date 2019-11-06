@@ -24,18 +24,18 @@ public class Comment {
     private Long ownerId;
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinTable(name = "post_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "post_comment")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Post post;
+    private Post post = new Post();
 
-    public Comment(String content, Long ownerId) {
+    public Comment(String content, Long ownerId, Post post) {
         this.content = content;
         this.ownerId = ownerId;
+        this.post = post;
     }
     public Comment(){
-
     }
 
     public Long getCommentId() {
@@ -62,6 +62,10 @@ public class Comment {
 
     public Post getPost(){
         return this.post;
+    }
+
+    public void setPost(Post post){
+        this.post = post;
     }
 
 }

@@ -20,7 +20,7 @@ public class PostController {
         this.fservice = fservice;
         this.pservice = pservice;
     }
-    
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/post") // Map ONLY POST Requests
     @ResponseBody
@@ -30,7 +30,7 @@ public class PostController {
         Post post = new Post(title, content, email, fandomId);
         pservice.save(post);
     }
-    
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/edit") // Map ONLY POST Requests
     @ResponseBody
@@ -40,30 +40,31 @@ public class PostController {
         Post post = pservice.findByPostId(id);
         post.setPostTitle(title);
         post.setContent(content);
-        
+
         pservice.save(post);
     }
-    
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/findPostByPostId") // Map ONLY POST Requests
     @ResponseBody
     public Post findPostByPostId(@RequestParam Long id) {
     	return pservice.findByPostId(id);
     }
-    
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/findPostByUserEmail") // Map ONLY POST Requests
     @ResponseBody
     public List<Post> findPostByUserEmail(@RequestParam String email) {
     	return pservice.findByEmail(email);
     }
-    
+
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/findPostByFandomId") // Map ONLY POST Requests
     @ResponseBody
     public List<Post> findPostByFandomId(@RequestParam Long id) {
     	return pservice.findByFandomId(id);
     }
+
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/userLike") // Map ONLY POST Requests

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PostService {
-	
+
 	@Autowired
     private final PostRepository postRepository;
 
@@ -19,15 +19,15 @@ public class PostService {
         postRepository.save(post);
         return post;
     }
-    
+
     public Post findByPostId(Long id) {
     	return postRepository.findByPostId(id);
     }
-    
+
     public List<Post> findByEmail(String email){
     	return postRepository.findByEmail(email);
     }
-	
+
 	public List<Post> findByFandomId(Long id){
 		return postRepository.findByFandomId(id);
 	}

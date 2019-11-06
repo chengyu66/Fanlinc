@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fanlinc.fanlinc.comment.Comment;
+import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +17,7 @@ import org.hibernate.annotations.FetchMode;
 public class Post {
 
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long postId;
 
 	@JsonProperty("title")
@@ -26,7 +28,7 @@ public class Post {
 
 	@JsonProperty("email")
 	private String email;
-	
+
 	@JsonProperty("fandomId")
 	private Long fandomId;
 
@@ -41,11 +43,18 @@ public class Post {
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> usersWhoLiked = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy="post",
+            cascade = CascadeType.ALL)
+    private Set<Comment> comments = new HashSet<>();
+
 	public Post(String title, String content, String email, Long fandomId) {
         this.title = title;
         this.content = content;
         this.email = email;
         this.fandomId = fandomId;
+    }
+    public Post(){
     }
 
 	public Long getPostId() {
@@ -61,7 +70,7 @@ public class Post {
     public void setPostTitle(String title) {
         this.title = title;
     }
-    
+
     public String getContent() {
         return content;
     }
@@ -85,6 +94,13 @@ public class Post {
     public void removeLike(User user) {
         usersWhoLiked.remove(user);
     }
+    public Set<Comment> getComment() { return this.comments;}
+
+    public void addComment(Comment comment) {this.comments.add(comment);}
+
+    public void deleteComment(Comment comment) {this.comments.remove(comment);}
+
+    public void setLike(Long userID) {this.usersWhoLiked.add(userID);}
 
     public int getLikeNum() { return usersWhoLiked.size(); }
 
