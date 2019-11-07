@@ -59,9 +59,6 @@ public class Post {
         this.content = content;
         this.email = email;
         this.fandomId = fandomId;
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        this.time = dateFormat.format(new Date());
     }
     public Post(){
     }
@@ -110,6 +107,10 @@ public class Post {
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
 
     public int getLikeNum() { return usersWhoLiked.size(); }
+    
+    public void setTime(String time) {
+        this.time = time;
+    }
 
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }

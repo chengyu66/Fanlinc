@@ -1,5 +1,7 @@
 package com.fanlinc.fanlinc.post;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +29,14 @@ public class PostController {
     public Post post (@RequestBody Post post) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        post.setTime(dateFormat.format(new Date()));
 
         return pservice.save(post);
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/edit") // Map ONLY POST Requests
+    @PutMapping(path = "/edit") // Map ONLY PUT Requests
     @ResponseBody
     public void edit (@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
         // @ResponseBody means the returned String is the response, not a view name
@@ -63,6 +67,13 @@ public class PostController {
     @ResponseBody
     public List<Post> findByFandomId(@RequestParam Long id) {
     	return pservice.findByFandomId(id);
+    }
+    
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/delete") // Map ONLY DELETE Requests
+    @ResponseBody
+    public void delete(@RequestBody Post post) {
+    	pservice.deleteByPostId(post.getPostId());
     }
 	
 }
