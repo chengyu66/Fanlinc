@@ -25,15 +25,14 @@ public class Comment {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "post_comment")
+    @JoinColumn(name = "post_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Post post = new Post();
+    private Post post;
 
-    public Comment(String content, Long ownerId, Post post) {
+    public Comment(String content, Long ownerId) {
         this.content = content;
         this.ownerId = ownerId;
-        this.post = post;
     }
     public Comment(){
     }

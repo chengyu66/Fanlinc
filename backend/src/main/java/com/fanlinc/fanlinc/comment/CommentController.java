@@ -30,9 +30,9 @@ public class CommentController {
         User user = uservice.findByEmail(email);
         Long ownerId = user.getId();
         Post post = pservice.findByPostId(pid);
-        Comment comment = new Comment(content, ownerId, post);
+        Comment comment = new Comment(content, ownerId);
         comment.setPost(post);
-        post.addComment(comment);
+        //post.addComment(comment);
         return cservice.save(comment);
     }
 

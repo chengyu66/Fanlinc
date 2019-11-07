@@ -43,6 +43,7 @@ public class Post {
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> usersWhoLiked = new HashSet<>();
 
+
     @OneToMany(fetch = FetchType.EAGER,
             mappedBy="post",
             cascade = CascadeType.ALL)
