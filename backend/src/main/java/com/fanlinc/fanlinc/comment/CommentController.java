@@ -32,7 +32,7 @@ public class CommentController {
         Post post = pservice.findByPostId(pid);
         Comment comment = new Comment(content, ownerId);
         comment.setPost(post);
-        //post.addComment(comment);
+        post.addComment(comment);
         return cservice.save(comment);
     }
 
