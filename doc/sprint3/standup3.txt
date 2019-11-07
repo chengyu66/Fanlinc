@@ -1,0 +1,5 @@
+Nov 7th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * Fixed a a minor error (Cheng Gao)
+    * Fixed able to save entity into database (Cheng Gao)

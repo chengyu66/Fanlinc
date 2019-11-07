@@ -111,22 +111,22 @@ class ApiService {
         return axios.get(URL + '/posts/findByPostId',
         {
             params: query,
-            headers: POSTHEADERS
+            headers: GETHEADERS
         }
      );
      }
 
      getComments(query){
-        return axios.get(URL + '/comment/findcomment',
+        return axios.get(URL + '/comments/findByPostId',
         {
             params: query,
-            headers: POSTHEADERS
+            headers: GETHEADERS
         }
      ); 
     }
 
     createComment(query){
-        return axios.post(URL + '/comment/createComment',
+        return axios.post(URL + '/comments/createComment',
         query,
         {
             headers: POSTHEADERS

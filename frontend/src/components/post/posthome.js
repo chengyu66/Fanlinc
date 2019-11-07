@@ -27,7 +27,7 @@ class PostHome extends Component {
     componentWillMount() {
         const { match: { params } } = this.props;
         this.state.postId = params.postId;
-        this.email = Cookies.get('email');
+        this.state.email = Cookies.get('email');
         this.getPost();
         this.getComments();
         console.log("States");
@@ -61,15 +61,13 @@ class PostHome extends Component {
     };
 
     getComments(){
-        let postId = {id: this.state.postId};
+        let postId = {post_id: this.state.postId};
         ApiService.getComments(postId)
         .then(res => {
                let data = res.data;
                if (data){
                    this.state.loading = false;
-                   this.state.title = data.title;
-                   this.state.content = data.content;
-                    this.state.date = data.date;
+                   this.state.comments = data;
                    console.log("Find Post");
                }
                else{
@@ -86,10 +84,11 @@ class PostHome extends Component {
         let user = {
             content: this.state.comment,
             email: this.state.email,
-            post_Id: this.state.postId
+            postid: this.state.postId
         };
-        console.log(user);
-        ApiService.createComment(user)
+        if (this.state.email){
+            console.log(user);
+            ApiService.createComment(user)
             .then(res => {
                 console.log("Success");
                 let data = res.data;
@@ -100,7 +99,16 @@ class PostHome extends Component {
             .catch(error => {
                 console.log("Fail");
             });
+        }
+        else{
+            alert("Please Log in First");
+            this.props.history.push('/login');
+        }
+        
     };
+
+    onChange = (e) =>
+        this.setState({ [e.target.name]: e.target.value });
 
     render() {
 
@@ -126,15 +134,19 @@ class PostHome extends Component {
                             <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
                         </div>      
                 </div>
-                <div className="form-group">
-                    <form>
-                        <ul>
+                {/* <div className="form-group"> */}
+                    {/* <form> */}
+                        <table>
                             {this.state.comments.map(item => (
-                                <li id={item.commentId}>{item.name + "\n" + item.comment}</li>
+                                <tr>
+                                    <td>{item.email}</td>
+                                    <td>{item.content}</td>
+                                </tr>
                             ))}
-                        </ul>
-                    </form>
-                </div>
+                        </table>
+                        
+                    {/* </form> */}
+                {/* </div> */}
             </div>
         )          
     }
