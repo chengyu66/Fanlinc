@@ -27,7 +27,7 @@ public class CommentController {
         this.uservice = uservice;
         this.pservice = pservice;
     }
-
+    @CrossOrigin(origins ="*")
     @PostMapping(path="/createComment") // Map ONLY POST Requests
     public Comment createNewComment (@RequestBody Comment comment) {
         Long pid = comment.getPost_id();
