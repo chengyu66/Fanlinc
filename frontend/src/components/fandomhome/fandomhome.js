@@ -13,7 +13,8 @@ class FandomHome extends Component {
             data: [],
             loading: true,
             isJoin: false,
-            fandomId: 0
+            fandomId: 0,
+            posts: []
         };
 
         this.joinFandom = this.joinFandom.bind(this);
@@ -114,7 +115,7 @@ class FandomHome extends Component {
             .then(res => {
                 let data = res.data;
                 if(data){
-                    // this.state.setState({r})
+                    this.state.setState({posts: data});
                 }
             })
             .catch(error => {
@@ -138,6 +139,16 @@ class FandomHome extends Component {
                         <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
                     </Jumbotron>
+
+                    <table>
+                        {this.state.posts.map(item => (
+                            <tr>
+                                <td>{item.postId}</td>
+                                <td>: </td>
+                                <td>{item.postTitle}</td>
+                            </tr>
+                        ))}
+                    </table>
                 </div>
             )
         } else {

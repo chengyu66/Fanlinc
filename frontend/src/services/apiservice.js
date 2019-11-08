@@ -134,6 +134,14 @@ class ApiService {
      );
     }
 
+    getAllPostsOfFandom(query){
+        return axios.post(URL + '/comments/findByFandomId',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+    }
+
 }
 
 export default new ApiService();
