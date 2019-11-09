@@ -1,13 +1,11 @@
 package com.fanlinc.fanlinc.fandom;
 
 import com.fanlinc.fanlinc.exceptions.FandomExistsException;
-import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -99,8 +97,7 @@ public class FandomController {
         for (User users: fandom.getUser()){
             System.out.println("users:" + users.getId());
             if (users.getId().equals(uidtoremove)){
-                User temp = users;
-                fandom.removeUser(temp);
+                fandom.removeUser(users);
                 System.out.println("removing user...:" + users.getId());
             }
 

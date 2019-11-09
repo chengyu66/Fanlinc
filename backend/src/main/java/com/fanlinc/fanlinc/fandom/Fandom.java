@@ -67,5 +67,6 @@ public class Fandom {
     public Set<User> getUser() { return this.users; }
 
     public void setUsers(User newUser) {this.users.add(newUser); }
+
     public void removeUser(User user) {this.users.remove(user); }
 }

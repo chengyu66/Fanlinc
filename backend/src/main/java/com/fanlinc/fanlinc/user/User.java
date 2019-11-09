@@ -129,6 +129,7 @@ public class User {
     public void setFandoms(Fandom fandom) {
         this.fandoms.add(fandom);
     }
+
     public void removeFandom(Fandom fandom) {
         this.fandoms.remove(fandom);
     }
