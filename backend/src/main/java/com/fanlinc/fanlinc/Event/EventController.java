@@ -12,6 +12,7 @@ public class EventController {
     private final EventService eservice;
     private final UserService uservice;
 
+
     public EventController(FandomService fservice,
                              UserService uservice,
                              EventService eservice)  {

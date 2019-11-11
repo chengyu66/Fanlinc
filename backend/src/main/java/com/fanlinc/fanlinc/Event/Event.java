@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -35,6 +36,18 @@ public class Event {
 
     @JsonProperty("fandom_id")
     private Long fandom_id;
+
+    // participants(users and events)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "event_user",
+            joinColumns = { @JoinColumn(name = "event_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    private Set<User> participants = new HashSet<>();
 
     // events belong to only one fandom
     @ManyToOne(fetch = FetchType.EAGER)
