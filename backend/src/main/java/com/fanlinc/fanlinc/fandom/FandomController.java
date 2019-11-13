@@ -36,19 +36,14 @@ public class FandomController {
     @GetMapping(path="/findSimilarFandomByName") // Map ONLY GET Requests
     @ResponseBody
     public List<Fandom> findSimilarFandomByName (@RequestParam String name) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
         return fservice.findSimilarFandomByName(name);
     }
 
     @CrossOrigin(origins ="*")
-    @GetMapping(path="/findUser") // Map ONLY GET Requests
+    @GetMapping(path="/findUserInFandom") // Find if this user is in fandom
     @ResponseBody
     public User findUser (@RequestParam Long userId, @RequestParam Long fandomId) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
         Fandom fandom = findFandomById(fandomId);
-        Set<User> users = fandom.getUser();
         User temp = null;
         for (User user: fandom.getUser()){
             System.out.println("users:" + user.getId());
@@ -89,8 +84,6 @@ public class FandomController {
     @PostMapping(path="/quitFandom") // Map ONLY POST Requests
     @ResponseBody
     public void QuitFandom (@RequestBody Map<String, String> values) {
-        // @ResponseBody means the returned String is the response, not a view name
-        // @RequestParam means it is a parameter from the GET or POST request
         User user = service.findByEmail(values.get("email"));
         Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
         Long fidtoremove = fandom.getFandomId();
