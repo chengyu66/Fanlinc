@@ -22,7 +22,7 @@ const AppRouter = () => {
                         <Route path='/about' component={About}/>
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
-                        <Route path="/editUser" component={EditUser} />
+                        <Route path="/user/:userId" component={EditUser} />
                         <Route path='/fandom/create' component={CreateFandom}/>
                         <Route path='/fandom/:fandomId' exact component={FandomHome}/>
                         <Route path='/fandom/:fandomId/post' exact component={Post}/>

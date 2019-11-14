@@ -39,6 +39,7 @@ class Post extends Component{
                 let data = res.data;
                 console.log(data.id);
                 this.state.status = true;
+                this.props.history.push(`/fandom/`+this.state.fandomId);
 
             })
             .catch(error => {
