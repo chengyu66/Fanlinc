@@ -16,4 +16,11 @@ public class EventService {
         eventRepository.save(event);
         return event;
     }
+
+    public Event findByEventName(String eventName){
+        return eventRepository.findByEventName(eventName);
+    }
+    public Event findByEventId(Long id){
+        return eventRepository.findByEventId(id);
+    }
 }
