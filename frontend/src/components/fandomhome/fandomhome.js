@@ -14,7 +14,8 @@ class FandomHome extends Component {
             loading: true,
             isJoin: false,
             fandomId: 0,
-            posts: []
+            posts: [],
+            events: []
         };
 
         this.joinFandom = this.joinFandom.bind(this);
@@ -117,12 +118,27 @@ class FandomHome extends Component {
             .then(res => {
                 let data = res.data;
                 if(data){
-                    this.state.posts = data
+                    this.setState({posts: data});
                     console.log(this.state);
                 }
             })
             .catch(error => {
                 console.log("Fail to get Posts");
+            });
+    }
+
+    displayEvents(){
+        let query = {id: this.state.fandomId};
+        ApiService.getAllEventsByFandom(query)
+            .then(res => {
+                let data = res.data;
+                if(data){
+                    this.setState({ events: data});
+                    console.log(this.state);
+                }
+            })
+            .catch(error => {
+                console.log("Fail to get Events");
             });
     }
 
@@ -143,10 +159,20 @@ class FandomHome extends Component {
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
                     </Jumbotron>
 
+                    <h2>Posts</h2>
                     <table>
                         {this.state.posts.map(item => (
                             <tr>
-                                <td><a href={"/fandom/" + item.fandomId + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                            </tr>
+                        ))}
+                    </table>
+
+                    <h2>Events</h2>
+                    <table>
+                        {this.state.events.map(item => (
+                            <tr>
+                                <td><a href={this.props.location.pathname + "/event/" + item.postId} >{item.eventName} {item.date}</a></td>
                             </tr>
                         ))}
                     </table>
@@ -163,10 +189,20 @@ class FandomHome extends Component {
                         <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                     </Jumbotron>
 
+                    <h2>Posts</h2>
                     <table>
                         {this.state.posts.map(item => (
                             <tr>
                                 <td><a href={"/fandom/" + item.fandomId + "/post/" + item.postId} >{item.postTitle}</a></td>
+                            </tr>
+                        ))}
+                    </table>
+
+                    <h2>Events</h2>
+                    <table>
+                        {this.state.events.map(item => (
+                            <tr>
+                                <td><a href={this.props.location.pathname + "/event/" + item.postId} >{item.eventName} {item.date}</a></td>
                             </tr>
                         ))}
                     </table>
