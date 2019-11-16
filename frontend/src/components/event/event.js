@@ -16,33 +16,40 @@ class Post extends Component{
             email: '',
             fandomId: '',
             title: '',
+            date:"",
+            deadline:"",
             status:false
         };
-        this.addPost = this.addPost.bind(this);
+        this.addEvent = this.addEvent.bind(this);
+        this.goToFandom = this.goToFandom.bind();
     }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
-    addPost = (e) => {
+    addEvent = (e) => {
         e.preventDefault();
         let user = {
-            content: this.state.content,
+            description: this.state.content,
             fandomId: this.state.fandomId,
-            email: this.state.email,
-            title: this.state.title
+            owneremail: this.state.email,
+            eventName: this.state.title,
+            date: this.state.date,
+            deadline: this.state.date
         };
         console.log(user);
-        ApiService.createPost(user)
+        ApiService.createEvent(user)
             .then(res => {
                 console.log("Success");
                 let data = res.data;
                 console.log(data.id);
                 this.state.status = true;
+                alert("You have succesfully created the event");
                 this.props.history.push(`/fandom/`+this.state.fandomId);
 
             })
             .catch(error => {
+                alert("You Cannot the event")
                 console.log("Fail");
             });
     };
@@ -54,24 +61,32 @@ class Post extends Component{
     }
 
     goToFandom = () => {
-        this.props.history.push(`/fandom`);
+        this.props.history.push(`/fandom/`+this.state.fandomId);
     };
 
     render() {
         return (
             <div>
-                <h2>Create Post</h2>
+                <h2>Create Event</h2>
                 <form>
                     <div className="form-group">
-                        <label className="form-label">Title:</label>
+                        <label className="form-label">Event Name:</label>
                         <Input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
                     </div>
                     <div className="form-group">
-                        <label className="form-label">content:</label>
-                        <textarea placeholder = "Enter you post here" name="content" className="form-control" value={this.state.content} onChange={this.onChange}></textarea>         
+                        <label className="form-label">Date:</label>
+                        <Input type="date" placeholder="date" name="date" className="form-control" value={this.state.date} onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Deadline:</label>
+                        <Input type="date" placeholder="deadline" name="deadline" className="form-control" value={this.state.deadline} onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Description:</label>
+                        <textarea placeholder = "Enter you description here" name="description" className="form-control" value={this.state.description} onChange={this.onChange}></textarea>         
                     </div>
                     <div className="button-div">
-                        <Button className="Post" onClick={this.addPost}>Post</Button>
+                        <Button className="Post" onClick={this.addEvent}>Create Event</Button>
                         <Button className="Cancel" onClick={this.goToFandom}>Cancel</Button>
                     </div>
                 </form>

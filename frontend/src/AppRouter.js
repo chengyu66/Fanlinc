@@ -11,6 +11,8 @@ import CreateFandom from './components/createFandom/createFandom';
 import Post from './components/post/post';
 import PostHome from './components/post/posthome';
 import About from './components/about/about';
+import Event from './components/event/event';
+import EventHome from './components/event/eventhome';
 
 const AppRouter = () => {
     return(
@@ -27,6 +29,8 @@ const AppRouter = () => {
                         <Route path='/fandom/:fandomId' exact component={FandomHome}/>
                         <Route path='/fandom/:fandomId/post' exact component={Post}/>
                         <Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>
+                        <Route path='/fandom/:fandomId/event' exact component={Event}/>
+                        <Route path='/fandom/:fandomId/event/:eventId' component={EventHome}/>
                         <Route path='/search/:query' component={Search}/>
                         <Route path="/notFind" component={NotFound}/>
                     </Switch>

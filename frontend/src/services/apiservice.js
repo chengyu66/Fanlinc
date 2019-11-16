@@ -158,6 +158,14 @@ class ApiService {
             });
     }
 
+    getEvent(query){
+        return axios.get(URL + '/posts/getEvent',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+    }
+
 }
 
 export default new ApiService();

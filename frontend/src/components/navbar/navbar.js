@@ -26,12 +26,12 @@ class Mynavbar extends Component {
     componentWillMount() {
         if (Cookies.get('username')) {
                 this.state.username = Cookies.get('username');
-                this.state.link = '/user/'+Cookies.get("name");
+                this.state.link = '/user/'+ Cookies.get("username");
           }
     }
 
     change(){
-      let path = "/search/" + this.state.query;
+      let path = "/fandom/" + this.state.query;
       this.props.history.push(path);
     }
 
@@ -42,8 +42,8 @@ class Mynavbar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/about" className="current">About</Nav.Link>
-                    <Nav.Link href="/fandom/create">Fandoms</Nav.Link>
+                    <Nav.Link href="#" className="current">About</Nav.Link>
+                    <Nav.Link href="#">Fandoms</Nav.Link>
                     <Nav.Link href={this.state.link}>{this.state.username}</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
