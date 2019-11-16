@@ -66,7 +66,7 @@ class ApiService {
     }
 
     checkIfJoin(query) {
-        return axios.get(URL + '/fandoms/findUser', {
+        return axios.get(URL + '/fandoms/findUserInFandom', {
                 params: query,
                 headers: GETHEADERS
             }
