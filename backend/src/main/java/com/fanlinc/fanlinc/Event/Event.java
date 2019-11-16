@@ -69,6 +69,8 @@ public class Event {
     public Event(){
     }
 
+
+
     public Long getEventId() {
         return eventId;
     }
