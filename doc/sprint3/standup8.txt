@@ -1,0 +1,4 @@
+Nov 16th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * [TEAMO-34] Create event via front end (Diego)
