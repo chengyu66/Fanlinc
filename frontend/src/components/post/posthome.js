@@ -15,12 +15,13 @@ class PostHome extends Component {
             comments: [],
             comment:"",
             loading: true,
-            email: ""
+            email: "",
+            date: ""
         };
         this.getPost = this.getPost.bind(this);
         this.getComments= this.getComments.bind(this);
         this.addComment = this.addComment.bind(this);
-        this.componentWillMount = this.componentWillMount.bind(this);
+        // this.componentWillMount = this.componentWillMount.bind(this);
     }
 
     componentWillMount() {
@@ -28,7 +29,8 @@ class PostHome extends Component {
         this.state.postId = params.postId;
         this.email = Cookies.get('email');
         this.getPost();
-        // this.getComments();
+        this.getComments();
+        console.log("States");
         console.log(this.state);
     }
 
@@ -38,12 +40,16 @@ class PostHome extends Component {
         .then(res => {
                let data = res.data;
                if (data){
-                   this.state.loading = false;
+                //    this.state.loading = false;
+                    this.setState({loading:false, 
+                        title:data.title,
+                        content:data.content,
+                         date:data.date
+                    })
+                   console.log("Find Post");
                    console.log(this.state.loading);
-                   this.state.title = data.title;
-                   this.state.content = data.content;
-                    this.state.date = data.date;
-                   console.log("Find the fandom");
+                   console.log("States");
+                   console.log(this.state);    
                }
                else{
                 this.props.history.push('/notFind');
@@ -64,7 +70,7 @@ class PostHome extends Component {
                    this.state.title = data.title;
                    this.state.content = data.content;
                     this.state.date = data.date;
-                   console.log("Find the fandom");
+                   console.log("Find Post");
                }
                else{
                 this.props.history.push('/notFind');
@@ -78,9 +84,9 @@ class PostHome extends Component {
     addComment = (e) => {
         e.preventDefault();
         let user = {
-            comment: this.state.comment,
+            content: this.state.comment,
             email: this.state.email,
-            pid: this.state.postId
+            post_Id: this.state.postId
         };
         console.log(user);
         ApiService.createComment(user)
@@ -103,34 +109,32 @@ class PostHome extends Component {
         } 
 
         return(
-            <div>
-                <div>
+            <div className="form-group">
+                <div className="form-group">
                     {this.state.title}
                 </div>
-                <div>
+                <div className="form-group">
                     {this.state.date}
                 </div>
-                <div>
+                <div className="form-group">
                     {this.state.content}
                 </div>
                 <div className="form-group">
                         <label className="form-label">Commnet:</label>
-                        <textarea placeholder = "Enter your Comment here" name="comment" className="form-control" value={this.state.comment} onChange={this.onChange}></textarea>   
+                        <textarea placeholder = "Enter your Comment here" name="comment" className="form-control" defaultValue={this.state.comment} onChange={this.onChange}></textarea>   
                         <div className="button-div">
-                        <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
+                            <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
                         </div>      
                 </div>
                 <div className="form-group">
                     <form>
                         <ul>
-                            {this.state.items.map(item => (
-                                <li id={item.commentId}>{item.name + "\n" + item.commnet}</li>
+                            {this.state.comments.map(item => (
+                                <li id={item.commentId}>{item.name + "\n" + item.comment}</li>
                             ))}
                         </ul>
                     </form>
                 </div>
-                
-
             </div>
         )          
     }
