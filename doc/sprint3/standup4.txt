@@ -1,3 +1,3 @@
 Nov 8th 2019 Standup Notes:
 
-- Created Design System for sprint3
+- Created Design System for
