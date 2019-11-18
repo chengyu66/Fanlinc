@@ -134,19 +134,15 @@ class PostHome extends Component {
                             <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
                         </div>      
                 </div>
-                {/* <div className="form-group"> */}
-                    {/* <form> */}
                         <table>
                             {this.state.comments.map(item => (
                                 <tr>
                                     <td>{item.email}</td>
+                                    <td>: </td>
                                     <td>{item.content}</td>
                                 </tr>
                             ))}
                         </table>
-                        
-                    {/* </form> */}
-                {/* </div> */}
             </div>
         )          
     }
