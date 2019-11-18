@@ -1,5 +1,8 @@
 package com.fanlinc.fanlinc.post;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +22,8 @@ public class Post {
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long postId;
+	
+	private String time;
 
 	@JsonProperty("title")
 	private String title;
@@ -54,6 +59,9 @@ public class Post {
         this.content = content;
         this.email = email;
         this.fandomId = fandomId;
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        this.time = dateFormat.format(new Date());
     }
     public Post(){
     }

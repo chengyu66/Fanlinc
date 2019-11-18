@@ -17,6 +17,10 @@ class PostHome extends Component {
             loading: true,
             email: ""
         };
+        this.getPost = this.getPost.bind(this);
+        this.getComments= this.getComments.bind(this);
+        this.addComment = this.addComment.bind(this);
+        this.componentWillMount = this.componentWillMount.bind(this);
     }
 
     componentWillMount() {
@@ -24,7 +28,7 @@ class PostHome extends Component {
         this.state.postId = params.postId;
         this.email = Cookies.get('email');
         this.getPost();
-        this.getComments();
+        // this.getComments();
         console.log(this.state);
     }
 
@@ -35,6 +39,7 @@ class PostHome extends Component {
                let data = res.data;
                if (data){
                    this.state.loading = false;
+                   console.log(this.state.loading);
                    this.state.title = data.title;
                    this.state.content = data.content;
                     this.state.date = data.date;
@@ -51,7 +56,7 @@ class PostHome extends Component {
 
     getComments(){
         let postId = {id: this.state.postId};
-        ApiService.getCommentes(postId)
+        ApiService.getComments(postId)
         .then(res => {
                let data = res.data;
                if (data){

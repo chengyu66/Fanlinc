@@ -8,6 +8,8 @@ import React from "react";
 import FandomHome from "./components/fandomhome/fandomhome"
 import Search from './components/searchbar/search';
 import CreateFandom from './components/createFandom/createFandom';
+import Post from './components/post/post';
+import PostHome from './components/post/posthome';
 import About from './components/about/about';
 
 const AppRouter = () => {
@@ -23,8 +25,8 @@ const AppRouter = () => {
                         <Route path="/editUser" component={EditUser} />
                         <Route path='/fandom/create' component={CreateFandom}/>
                         <Route path='/fandom/:fandomId' exact component={FandomHome}/>
-                        {/*<Route path='/fandom/:fandomId/post' component={Post}/>*/}
-                        {/*<Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>*/}
+                        <Route path='/fandom/:fandomId/post' exact component={Post}/>
+                        <Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>
                         <Route path='/search/:query' component={Search}/>
                         <Route path="/notFind" component={NotFound}/>
                     </Switch>
