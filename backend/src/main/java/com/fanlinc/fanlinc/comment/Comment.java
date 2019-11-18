@@ -23,8 +23,8 @@ public class Comment {
     @JsonProperty("email")
     private String email;
 
-    @JsonProperty("post_id")
-    private Long post_id;
+    @JsonProperty("postid")
+    private Long postid;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,7 +36,7 @@ public class Comment {
     public Comment(String content, Long post_id, String email ) {
         this.content = content;
         this.email = email;
-        this.post_id = post_id;
+        this.postid = post_id;
     }
     public Comment(){
     }
@@ -63,10 +63,10 @@ public class Comment {
         this.email = email;
     }
 
-    public Long getPost_id(){return post_id;}
+    public Long getPost_id(){return postid;}
 
     public void setPost(Long post_id){
-        this.post_id = post_id;
+        this.postid = post_id;
     }
 
     public Post getPost(){
