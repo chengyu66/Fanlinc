@@ -19,11 +19,11 @@ public class CommentService {
         commentRepository.save(comment);
         return comment;
     }
-//
-//
-//    public List<Comment> findCommentByPostId(Long pid) {
-//        List<Comment> c = commentRepository.findCommentByPostId(pid);
-//        return c;
-//    }
+
+
+    public List<Comment> findByPostid(Long post_id) {
+        List<Comment> c = commentRepository.findByPostid(post_id);
+        return c;
+    }
 
 }

@@ -32,7 +32,8 @@ class CreateFandom extends Component {
             ApiService.createFandom(query)
                 .then(res => {
                     if (res.data.fandomId != null){
-                        this.props.push('/fandom/' + res.data.fandomId);
+                        console.log(res.data.fandomId);
+                        this.props.history.push('/fandom/' + res.data.fandomId);
                     } else {
                         alert("This name has been used, Please pick another");
                     }
@@ -51,7 +52,7 @@ class CreateFandom extends Component {
             <form>
                 <div className="form-group">
                     <label className="form-label">Fandom:</label>
-                    <Input type="fandomName" placeholder="FandomName" name="Fandom Name" className="form-control"  defaultValue={this.state.fandomName} onChange={this.onChange}/>
+                    <Input type="fandomName" placeholder="FandomName" name="fandomName" className="form-control"  value={this.state.fandomName} onChange={this.onChange}/>
                 </div>
                 <div className="button-div">
                     <Button className="CreateFandom" onClick={this.createFandom}>Create</Button>

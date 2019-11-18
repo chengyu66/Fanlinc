@@ -1,0 +1,17 @@
+Nov 5th 2019 Standup Notes:
+
+- Held Group meeting and determined the ultimate goal for this sprint
+- Discussed new user stories to be completed
+- Edited some details on Jira tikets
+- Finished some tasks such as: 
+    * Able to create comment via Postman (Cheng)
+    * Enable the fandom home page to display the fandom info (Roy)
+    * sub-task(check if user is in fandom) finished (Cheng)
+    * essential structure and table frameowork for comment entity (Cheng)
+    * Add the button the help user join the fandom (Roy)
+    * Add the ability to join/exit fandom for user via frontend (Roy)
+    * Change the display of searched items (Diego)
+    * Fix the problem of opening fandom when no member exists (Roy)
+    * Change navabr loading (Diego)
+    * Change search format (Diego)
+    * Add Post Likes by user (Chengyu Xin)

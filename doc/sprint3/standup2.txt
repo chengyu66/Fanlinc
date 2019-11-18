@@ -1,0 +1,6 @@
+Nov 6th 2019 Standup Notes:
+
+- Created new user stories to be completed
+- Finished some tasks such as: 
+    * Fixed bugs after merging (Chengyu Xin)
+    * Fixed some minor errors (Chengyu Xin)

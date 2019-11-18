@@ -39,7 +39,7 @@ class FandomHome extends Component {
                    this.ifJoin();
                }
                else{
-                this.props.history.push('/notFind');
+                   this.props.history.push('/notFind');
                }
            })
            .catch(error => {

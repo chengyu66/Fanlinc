@@ -37,12 +37,12 @@ public class CommentController {
         return cservice.save(comment);
     }
 
-//    @CrossOrigin(origins ="*")
-//    @GetMapping(path="/findByPostId") // Map ONLY GET Requests
-//    public List<Comment> findCommentByPostId (@RequestParam Long pid) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
-//        return cservice.findCommentByPostId(pid);
-//    }
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findByPostId") // Map ONLY GET Requests
+    public List<Comment> findCommentByPostId (@RequestParam Long post_id) {
+        // @ResponseBody means the returned String is the response, not a view name
+        // @RequestParam means it is a parameter from the GET or POST request
+        return cservice.findByPostid(post_id);
+    }
 }
 
