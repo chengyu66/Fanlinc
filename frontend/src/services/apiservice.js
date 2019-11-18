@@ -116,7 +116,7 @@ class ApiService {
      );
      }
 
-     getCommnets(query){
+     getComments(query){
         return axios.get(URL + '/comment/findcomment',
         {
             params: query,
