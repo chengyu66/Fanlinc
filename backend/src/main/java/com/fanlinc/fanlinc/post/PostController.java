@@ -45,23 +45,23 @@ public class PostController {
     }
     
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "/findPostByPostId") // Map ONLY GET Requests
+    @GetMapping(path = "/findByPostId") // Map ONLY GET Requests
     @ResponseBody
-    public Post findPostByPostId(@RequestParam Long id) {
+    public Post findByPostId(@RequestParam Long id) {
     	return pservice.findByPostId(id);
     }
     
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "/findPostByUserEmail") // Map ONLY GET Requests
+    @GetMapping(path = "/findByEmail") // Map ONLY GET Requests
     @ResponseBody
-    public List<Post> findPostByUserEmail(@RequestParam String email) {
+    public List<Post> findByEmail(@RequestParam String email) {
     	return pservice.findByEmail(email);
     }
     
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "/findPostByFandomId") // Map ONLY GET Requests
+    @GetMapping(path = "/findByFandomId") // Map ONLY GET Requests
     @ResponseBody
-    public List<Post> findPostByFandomId(@RequestParam Long id) {
+    public List<Post> findByFandomId(@RequestParam Long id) {
     	return pservice.findByFandomId(id);
     }
 	
