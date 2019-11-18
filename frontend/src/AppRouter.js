@@ -7,6 +7,8 @@ import Signup from "./components/signup/signup";
 import React from "react";
 import FandomHome from "./components/fandomhome/fandomhome"
 import Search from './components/searchbar/search';
+import Post from './components/post/post';
+import PostHome from './components/post/posthome';
 
 const AppRouter = () => {
     return(
@@ -18,7 +20,9 @@ const AppRouter = () => {
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/editUser" component={EditUser} />
-                        <Route path='/fandom/:fandomId' component={FandomHome}/>
+                        <Route path='/fandom/:fandomId' exact component={FandomHome}/>
+                        <Route path='/fandom/:fandomId/post' component={Post}/>
+                        <Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>
                         <Route path='/search/:query' component={Search}/>
                         <Route path="/notFind" component={NotFound}/>
                     </Switch>

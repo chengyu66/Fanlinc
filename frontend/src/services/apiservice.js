@@ -84,6 +84,23 @@ class ApiService {
      );
      }
 
+     createPost(query){
+        return axios.post(URL + '/posts/post',
+        query,
+        {
+            headers: POSTHEADERS
+        }
+     );
+     }
+
+     getPost(query){
+        return axios.post(URL + '/posts/findPostByPostId',
+        {
+            params: query,
+            headers: POSTHEADERS
+        }
+     );
+     }
  }
 
 export default new ApiService();
