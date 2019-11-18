@@ -108,13 +108,32 @@ class ApiService {
      }
 
      getPost(query){
-        return axios.post(URL + '/posts/findPostByPostId',
+        return axios.get(URL + '/posts/findPostByPostId',
         {
             params: query,
             headers: POSTHEADERS
         }
      );
      }
- }
+
+     getCommnets(query){
+        return axios.get(URL + '/comment/findcomment',
+        {
+            params: query,
+            headers: POSTHEADERS
+        }
+     ); 
+    }
+
+    createComment(query){
+        return axios.post(URL + '/comment/createComment',
+        query,
+        {
+            headers: POSTHEADERS
+        }
+     );
+    }
+
+}
 
 export default new ApiService();

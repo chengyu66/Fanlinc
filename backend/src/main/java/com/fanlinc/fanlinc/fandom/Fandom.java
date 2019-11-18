@@ -19,8 +19,6 @@ public class Fandom {
     @JsonProperty("fandomName")
     private String fandomName;
 
-    @JsonProperty("fandomOwnerId")
-    private Long fandomOwnerId;
 
     @JsonProperty("ownerEmail")
     private String ownerEmail;
@@ -29,16 +27,15 @@ public class Fandom {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    // CascadeType.MERGE
             })
     @JoinTable(name = "fandom_user",
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     private Set<User> users = new HashSet<>();
 
-    public Fandom(String fandomName, Long fandomOwnerId, String ownerEmail) {
+    public Fandom(String fandomName, String ownerEmail) {
         this.fandomName = fandomName;
-        this.fandomOwnerId = fandomOwnerId;
         this.ownerEmail = ownerEmail;
     }
     public Fandom(){
@@ -58,10 +55,6 @@ public class Fandom {
     public void setFandomName(String fandomName) {
         this.fandomName = fandomName;
     }
-
-    public Long getFandomOwnerId() { return fandomOwnerId; }
-
-    public void setFandomOwnerId(Long fandomOwnerId) {this.fandomOwnerId=fandomOwnerId; }
 
     public String getOwnerEmail() {
         return ownerEmail;
