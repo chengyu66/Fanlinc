@@ -10,6 +10,7 @@ import Search from './components/searchbar/search';
 import CreateFandom from './components/createFandom/createFandom';
 import Post from './components/post/post';
 import PostHome from './components/post/posthome';
+import About from './components/about/about';
 
 const AppRouter = () => {
     return(
@@ -18,6 +19,7 @@ const AppRouter = () => {
                 <div className="col-md-6">
                     <Switch>
                         <Route path="/" exact component={Home} />
+                        <Route path='/about' component={About}/>
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/editUser" component={EditUser} />

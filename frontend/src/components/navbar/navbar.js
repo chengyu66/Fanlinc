@@ -42,8 +42,8 @@ class Mynavbar extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="#" className="current">About</Nav.Link>
-                    <Nav.Link href="#">Fandoms</Nav.Link>
+                    <Nav.Link href="/about" className="current">About</Nav.Link>
+                    <Nav.Link href="/fandom/create">Fandoms</Nav.Link>
                     <Nav.Link href={this.state.link}>{this.state.username}</Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
