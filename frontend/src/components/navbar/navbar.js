@@ -31,7 +31,7 @@ class Mynavbar extends Component {
     }
 
     change(){
-      let path = "/fandom/" + this.state.query;
+      let path = "/search/" + this.state.query;
       this.props.history.push(path);
     }
 

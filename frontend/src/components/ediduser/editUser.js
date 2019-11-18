@@ -56,12 +56,14 @@ class edidUser extends Component{
 
     saveUser = (e) => {
          e.preventDefault();
-         let user = {firstname: this.state.firstname, lastname:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
+         let user = {firstName: this.state.firstname, lastName:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
+         console.log(user);
          ApiService.setUser(user)
              .then(res => {
                  if(res.data){
                     alert("Successfully updated")
                     this.setState({message : 'User edit successfully.'});
+                    Cookies.set('username', this.state.firstname)
                  }
                  this.props.history.push('/');
              })
@@ -76,12 +78,12 @@ class edidUser extends Component{
                 <form>
                     <div className="form-group">
                         <label>First Name:</label>
-                        <input type="text" placeholder="firstname" name="fname" defaultValue={this.state.firstname} onChange={this.onChange}/>
+                        <input type="text" placeholder="firstname" name="firstname" defaultValue={this.state.firstname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Last Name:</label>
-                        <input type="text" placeholder="lastname"  name="lname" defaultValue={this.state.lastname} onChange={this.onChange}/>
+                        <input type="text" placeholder="lastname"  name="lastname" defaultValue={this.state.lastname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">

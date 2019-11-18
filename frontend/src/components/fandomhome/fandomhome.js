@@ -104,6 +104,7 @@ class FandomHome extends Component {
         }
     }
 
+
     render() {
 
         if(this.state.loading) {
@@ -112,12 +113,12 @@ class FandomHome extends Component {
 
         if(this.state.isJoin) {
             return (
-                    <Jumbotron fluid>
-                        <h1>Welcome to {this.state.data.fandomName}</h1>
-                        <p>Fandom ID: {this.state.data.fandomId}</p>
-                        {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
-                        <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
-                    </Jumbotron>
+                <Jumbotron fluid>
+                    <h1>Welcome to {this.state.data.fandomName}</h1>
+                    <p>Fandom ID: {this.state.data.fandomId}</p>
+                    {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
+                    <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                </Jumbotron>
             )
         } else {
             return (
