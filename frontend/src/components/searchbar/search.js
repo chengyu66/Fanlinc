@@ -12,17 +12,21 @@ class Search extends Component{
         super();
         this.state = {
          query: "",
-         items: []
+         items: [],
+         hasQuery: false
         };
         this.search = this.search.bind(this);
     }
 
-    // componentWillMount() {
-    //     const { match: { params } } = this.props;
-    //     this.state.query = params.query;
-    //     this.search();
-    //     console.log(this.state);
-    // }
+    componentDidMount() {
+        if(this.state.hasQuery) {
+            const { match: { params } } = this.props;
+            this.state.query = params.query;
+            this.search();
+            console.log(this.state);
+        }
+        
+    }
 
     search = (e) => {
         e.preventDefault();
@@ -34,6 +38,7 @@ class Search extends Component{
                let data = res.data;
                if (data){
                    this.state.items = data
+                   this.setState({hasQuery: true});
                    console.log(data);
                }
                else{
