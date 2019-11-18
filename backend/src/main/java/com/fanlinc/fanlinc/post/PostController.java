@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
@@ -72,8 +73,9 @@ public class PostController {
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "/delete") // Map ONLY DELETE Requests
     @ResponseBody
-    public void delete(@RequestBody Post post) {
-    	pservice.deleteByPostId(post.getPostId());
+    @Transactional
+    public void deleteByPostId(@RequestParam Long id) {
+    	pservice.deleteByPostId(id);
     }
 	
 }
