@@ -1,5 +1,6 @@
 package com.fanlinc.fanlinc.fandom;
 
+import com.fanlinc.fanlinc.exceptions.FandomExistsException;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
@@ -58,22 +59,24 @@ public class FandomController {
         return temp;
     }
 
-    @CrossOrigin(origins ="*")
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
-    public Fandom createNewFandom (@RequestBody Fandom fandom) {
+    public Fandom createNewFandom (@RequestParam String fandomName, @RequestParam String email) throws FandomExistsException {
         // @ResponseBody means the returned String is the response, not a view name
 //        System.out.println(body);
 //        System.out.println("testing "+fandomName);
 //        System.out.println("testing "+email);
-        User user = service.findByEmail(fandom.getOwnerEmail());
+        if (fservice.findByFandomName(fandomName) != null) {
+            throw new FandomExistsException(fandomName);
+        }
+        User user = service.findByEmail(email);
         Long ownerId = user.getId();
         String name = user.getFirstName()+user.getLastName();
 //        System.out.println("Owner Id: "+ownerId);
 //        System.out.println("Owner Name: "+name);
-//        Fandom fandom = new Fandom(fandomName,ownerId, email);
+        Fandom fandom = new Fandom(fandomName,ownerId, email);
         fandom.setUsers(user);
         user.setFandoms(fandom);
-//        Long fandomId = fandom.getFandomId();
+        Long fandomId = fandom.getFandomId();
 //        System.out.println("fandomId: "+fandomId);
         return fservice.save(fandom);
     }
