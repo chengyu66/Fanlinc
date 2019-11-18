@@ -5,7 +5,10 @@ import com.fanlinc.fanlinc.post.Post;
 import com.fanlinc.fanlinc.post.PostService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
+
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController    // This means that this class is a Controller
 @RequestMapping(path="/api/comments")
@@ -26,15 +29,20 @@ public class CommentController {
     }
 
     @PostMapping(path="/createComment") // Map ONLY POST Requests
-    public Comment createNewComment (@RequestParam String content, @RequestParam String email, @RequestParam Long pid) {
-        User user = uservice.findByEmail(email);
-        Long ownerId = user.getId();
+    public Comment createNewComment (@RequestBody Comment comment) {
+        Long pid = comment.getPost_id();
         Post post = pservice.findByPostId(pid);
-        Comment comment = new Comment(content, ownerId);
         comment.setPost(post);
         post.addComment(comment);
         return cservice.save(comment);
     }
 
+//    @CrossOrigin(origins ="*")
+//    @GetMapping(path="/findByPostId") // Map ONLY GET Requests
+//    public List<Comment> findCommentByPostId (@RequestParam Long pid) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        return cservice.findCommentByPostId(pid);
+//    }
 }
 

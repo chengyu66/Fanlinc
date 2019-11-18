@@ -20,19 +20,23 @@ public class Comment {
     @JsonProperty("content")
     private String content;
 
-    @JsonProperty("ownerId")
-    private Long ownerId;
+    @JsonProperty("email")
+    private String email;
+
+    @JsonProperty("post_id")
+    private Long post_id;
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "pid")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Post post;
 
-    public Comment(String content, Long ownerId) {
+    public Comment(String content, Long post_id, String email ) {
         this.content = content;
-        this.ownerId = ownerId;
+        this.email = email;
+        this.post_id = post_id;
     }
     public Comment(){
     }
@@ -51,12 +55,18 @@ public class Comment {
         this.content = content;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPost_id(){return post_id;}
+
+    public void setPost(Long post_id){
+        this.post_id = post_id;
     }
 
     public Post getPost(){
