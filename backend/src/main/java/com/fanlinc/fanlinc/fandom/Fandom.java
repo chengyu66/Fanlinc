@@ -4,6 +4,8 @@ package com.fanlinc.fanlinc.fandom;
 import com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -32,6 +34,7 @@ public class Fandom {
     @JoinTable(name = "fandom_user",
             joinColumns = { @JoinColumn(name = "fandom_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<User> users = new HashSet<>();
 
     public Fandom(String fandomName, String ownerEmail) {
