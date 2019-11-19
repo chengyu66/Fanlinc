@@ -22,7 +22,8 @@ public class Post {
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long postId;
-	
+
+    @JsonProperty("time")
 	private String time;
 
 	@JsonProperty("title")
