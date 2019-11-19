@@ -23,6 +23,7 @@ class FandomHome extends Component {
         this.goToPostWriting = this.goToPostWriting.bind(this);
         this.displayPosts = this.displayPosts.bind(this);
         this.displayEvents = this.displayEvents.bind(this);
+        this.goToCreateEvent = this.goToCreateEvent.bind(this);
     }
 
     componentWillMount() {
@@ -144,6 +145,10 @@ class FandomHome extends Component {
             });
     }
 
+    goToCreateEvent(){
+        this.props.history.push(this.props.location.pathname + '/event');
+    }
+
     render() {
 
         if(this.state.loading) {
@@ -158,7 +163,9 @@ class FandomHome extends Component {
                         <p>Fandom ID: {this.state.data.fandomId}</p>
                         {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
                         <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
+                        <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                        
                     </Jumbotron>
 
                     <div>

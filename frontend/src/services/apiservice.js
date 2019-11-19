@@ -159,10 +159,18 @@ class ApiService {
     }
 
     getEvent(query){
-        return axios.get(URL + '/posts/getEvent',
+        return axios.get(URL + '/events/findByEventId',
             {
                 params: query,
                 headers: GETHEADERS
+            });
+    }
+
+    joinEvent(query){
+        return axios.post(URL + '/events/joinEvent',
+            query,
+            {
+                headers: POSTHEADERS
             });
     }
 

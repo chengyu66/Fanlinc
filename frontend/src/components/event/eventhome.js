@@ -15,6 +15,7 @@ class PostHome extends Component {
             date:"",
             deadline:"",
             email:"",
+            eventId:"",
             loading: true
             
         };
@@ -63,18 +64,22 @@ class PostHome extends Component {
     join = (e) => {
         e.preventDefault();
         let user = {
-            content: this.state.comment,
             email: this.state.email,
-            postid: this.state.postId
+            eventId:this.state.eventId
         };
         if (this.state.email){
             console.log(user);
-            ApiService.createComment(user)
+            ApiService.joinEvent(user)
             .then(res => {
-                console.log("Success");
-                alert("You have Succesfully Join the event");
-                window.location.reload();
-
+                let data = res.data;
+                if (data){
+                    console.log("Success");
+                    alert("You have Succesfully Join the event");
+                    window.location.reload();
+                }
+                else{
+                    alert("You cannot join the event")
+                }
             })
             .catch(error => {
                 console.log("Fail");

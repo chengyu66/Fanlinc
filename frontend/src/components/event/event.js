@@ -31,7 +31,7 @@ class Post extends Component{
         e.preventDefault();
         let user = {
             description: this.state.content,
-            fandom_id: this.state.fandomId,
+            fandomId: this.state.fandomId,
             ownerEmail: this.state.email,
             eventName: this.state.title,
             date: this.state.date,
@@ -42,14 +42,21 @@ class Post extends Component{
             .then(res => {
                 console.log("Success");
                 let data = res.data;
-                console.log(data.id);
-                this.state.status = true;
-                alert("You have succesfully created the event");
-                this.props.history.push(`/fandom/`+this.state.fandomId);
-
+                if (data){
+                    console.log("Success");
+                    let data = res.data;
+                    console.log(data);
+                    console.log("yes");
+                    this.state.status = true;
+                    alert("You have succesfully created the event");
+                    this.props.history.push(`/fandom/`+this.state.fandomId);
+                }
+                else{
+                    alert("No event");
+                }
             })
             .catch(error => {
-                alert("You Cannot the event")
+                alert("Somethong wrong event")
                 console.log("Fail");
             });
     };
