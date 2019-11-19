@@ -1,7 +1,10 @@
 package com.fanlinc.fanlinc.post;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
@@ -27,12 +30,14 @@ public class PostController {
     public Post post (@RequestBody Post post) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+    	SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        post.setTime(dateFormat.format(new Date()));
 
         return pservice.save(post);
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/edit") // Map ONLY POST Requests
+    @PutMapping(path = "/edit") // Map ONLY PUT Requests
     @ResponseBody
     public void edit (@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
         // @ResponseBody means the returned String is the response, not a view name
@@ -45,24 +50,32 @@ public class PostController {
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/findPostByPostId") // Map ONLY POST Requests
+    @GetMapping(path = "/findByPostId") // Map ONLY GET Requests
     @ResponseBody
-    public Post findPostByPostId(@RequestParam Long id) {
+    public Post findByPostId(@RequestParam Long id) {
     	return pservice.findByPostId(id);
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/findPostByUserEmail") // Map ONLY POST Requests
+    @GetMapping(path = "/findByEmail") // Map ONLY GET Requests
     @ResponseBody
-    public List<Post> findPostByUserEmail(@RequestParam String email) {
+    public List<Post> findByEmail(@RequestParam String email) {
     	return pservice.findByEmail(email);
     }
     
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "/findPostByFandomId") // Map ONLY POST Requests
+    @GetMapping(path = "/findByFandomId") // Map ONLY GET Requests
     @ResponseBody
-    public List<Post> findPostByFandomId(@RequestParam Long id) {
+    public List<Post> findByFandomId(@RequestParam Long id) {
     	return pservice.findByFandomId(id);
+    }
+    
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "/delete") // Map ONLY DELETE Requests
+    @ResponseBody
+    @Transactional
+    public void deleteByPostId(@RequestParam Long id) {
+    	pservice.deleteByPostId(id);
     }
 	
 }

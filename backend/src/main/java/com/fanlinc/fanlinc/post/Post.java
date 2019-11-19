@@ -1,5 +1,8 @@
 package com.fanlinc.fanlinc.post;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +22,8 @@ public class Post {
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long postId;
+	
+	private String time;
 
 	@JsonProperty("title")
 	private String title;
@@ -102,6 +107,10 @@ public class Post {
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
 
     public int getLikeNum() { return usersWhoLiked.size(); }
+    
+    public void setTime(String time) {
+        this.time = time;
+    }
 
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }

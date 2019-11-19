@@ -19,6 +19,10 @@ public class PostService {
         postRepository.save(post);
         return post;
     }
+    
+    public void deleteByPostId(Long id) {
+        postRepository.deleteByPostId(id);
+    }
 
     public Post findByPostId(Long id) {
     	return postRepository.findByPostId(id);

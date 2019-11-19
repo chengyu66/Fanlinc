@@ -42,7 +42,7 @@ public class Event {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    // CascadeType.MERGE
             })
     @JoinTable(name = "event_user",
             joinColumns = { @JoinColumn(name = "event_id") },
@@ -98,6 +98,9 @@ public class Event {
         this.fandom_id = fandom_id;
     }
 
+    public Set<User> getParticipants() { return this.participants; }
 
+    public void setParticipants(User newUser) {this.participants.add(newUser); }
+    public void removeUser(User user) {this.participants.remove(user); }
 
 }
