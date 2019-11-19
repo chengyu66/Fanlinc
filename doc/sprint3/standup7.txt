@@ -1,0 +1,5 @@
+Nov 15th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * TEAMO-34 Backend logic for event (Hongming)
+    * TEAMO-34 added user (Hongming)
