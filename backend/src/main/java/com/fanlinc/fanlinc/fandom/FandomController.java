@@ -90,15 +90,13 @@ public class FandomController {
         Long uidtoremove = user.getId();
         for (User users: fandom.getUser()){
             if (users.getId().equals(uidtoremove)){
-                User temp = users;
-                fandom.removeUser(temp);
+                fandom.removeUser(users);
                 break;
             }
         }
         for (Fandom fandoms: user.getFandoms()) {
             if (fandoms.getFandomId().equals(fidtoremove)) {
-                Fandom temp = fandoms;
-                user.removeFandom(temp);
+                user.removeFandom(fandoms);
                 break;
             }
         }
