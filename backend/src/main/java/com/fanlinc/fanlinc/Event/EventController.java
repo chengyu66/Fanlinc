@@ -39,7 +39,7 @@ public class EventController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/joinEvent") // Map ONLY POST Requests
-    public void JoinEvent (@RequestBody Map<String, String> values) {
+    public Event JoinEvent (@RequestBody Map<String, String> values) {
         // get owner
         //Event event = eservice.findByEventId(newEvent.getEventId());
         // System.out.println(event.getOwnerEmail());
@@ -53,7 +53,14 @@ public class EventController {
         System.out.println(event.getParticipants().contains(user));
         user.setEvent(event);
         System.out.println(user.getEvent().contains(event));
-        eservice.save(event);
+        return eservice.save(event);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/findByEventId") // Map ONLY GET Requests
+    @ResponseBody
+    public Event findByEventId(@RequestParam Long id) {
+        return eservice.findByEventId(id);
     }
 
 
