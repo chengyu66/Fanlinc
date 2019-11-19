@@ -112,5 +112,7 @@ public class Post {
         this.time = time;
     }
 
+    public String getTime(String time) { return time; }
+
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }
