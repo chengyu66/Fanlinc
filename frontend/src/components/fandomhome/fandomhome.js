@@ -163,18 +163,25 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <table>
+                        <Table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author Email</th>
+                                <th>Time</th>
+                            </tr>
                             {this.state.posts.map(item => (
                                 <tr>
                                     <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                    <td>{item.email}</td>
+                                    <td>{item.time}</td>
                                 </tr>
                             ))}
-                        </table>
+                        </Table>
                     </div>
 
                     <div>
                         <h2>Events</h2>
-                        <table>
+                        <Table>
                             <tr>
                                 <th>Title</th>
                                 <th>description</th>
@@ -189,7 +196,7 @@ class FandomHome extends Component {
                                     <td>{item.deadline}</td>
                                 </tr>
                             ))}
-                        </table>
+                        </Table>
                     </div>
 
 
@@ -208,18 +215,25 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <table>
+                        <Table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author Email</th>
+                                <th>Time</th>
+                            </tr>
                             {this.state.posts.map(item => (
                                 <tr>
                                     <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                    <td>{item.email}</td>
+                                    <td>{item.time}</td>
                                 </tr>
                             ))}
-                        </table>
+                        </Table>
                     </div>
 
                     <div >
                         <h2>Events</h2>
-                        <table>
+                        <Table>
                             <tr>
                                 <th>Title</th>
                                 <th>description</th>
@@ -234,7 +248,7 @@ class FandomHome extends Component {
                                     <td>{item.deadline}</td>
                                 </tr>
                             ))}
-                        </table>
+                        </Table>
                     </div>
                 </div>
             )
