@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
 import Cookies from 'js-cookie';
 
