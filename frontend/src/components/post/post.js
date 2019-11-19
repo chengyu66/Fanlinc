@@ -60,7 +60,7 @@ class Post extends Component{
     render() {
         return (
             <div>
-                <h2>Sign Up</h2>
+                <h2>Create Post</h2>
                 <form>
                     <div className="form-group">
                         <label className="form-label">Title:</label>

@@ -1,0 +1,4 @@
+Nov 12th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * improved findUserInFandom Request(Cheng)

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Alert} from 'react-bootstrap';
+import {Jumbotron, Button, Table} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
-import  {Redirect} from 'react-router-dom';
 
 class FandomHome extends Component {
     constructor(){
@@ -23,6 +22,8 @@ class FandomHome extends Component {
         this.quitFandom = this.quitFandom.bind(this);
         this.goToPostWriting = this.goToPostWriting.bind(this);
         this.displayPosts = this.displayPosts.bind(this);
+        this.displayEvents = this.displayEvents.bind(this);
+        this.goToCreateEvent = this.goToCreateEvent.bind(this);
     }
 
     componentWillMount() {
@@ -30,6 +31,7 @@ class FandomHome extends Component {
         this.state.fandomId = params.fandomId;
         this.getFandom();
         this.displayPosts();
+        this.displayEvents();
         console.log(this.state);
     }
 
@@ -134,12 +136,17 @@ class FandomHome extends Component {
                 let data = res.data;
                 if(data){
                     this.setState({ events: data});
+                    console.log("Searching for Events");
                     console.log(this.state);
                 }
             })
             .catch(error => {
                 console.log("Fail to get Events");
             });
+    }
+
+    goToCreateEvent(){
+        this.props.history.push(this.props.location.pathname + '/event');
     }
 
     render() {
@@ -156,26 +163,50 @@ class FandomHome extends Component {
                         <p>Fandom ID: {this.state.data.fandomId}</p>
                         {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
                         <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
+                        <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                        
                     </Jumbotron>
 
-                    <h2>Posts</h2>
-                    <table>
-                        {this.state.posts.map(item => (
+                    <div>
+                        <h2>Posts</h2>
+                        <Table>
                             <tr>
-                                <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                <th>Title</th>
+                                <th>Author Email</th>
+                                <th>Time</th>
                             </tr>
-                        ))}
-                    </table>
+                            {this.state.posts.map(item => (
+                                <tr>
+                                    <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                    <td>{item.email}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    </div>
 
-                    <h2>Events</h2>
-                    <table>
-                        {this.state.events.map(item => (
+                    <div>
+                        <h2>Events</h2>
+                        <Table>
                             <tr>
-                                <td><a href={this.props.location.pathname + "/event/" + item.postId} >{item.eventName} {item.date}</a></td>
+                                <th>Title</th>
+                                <th>description</th>
+                                <th>Time</th>
+                                <th>Register Deadline</th>
                             </tr>
-                        ))}
-                    </table>
+                            {this.state.events.map(item => (
+                                <tr>
+                                    <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>
+                                    <td>{item.description}</td>
+                                    <td>{item.date}</td>
+                                    <td>{item.deadline}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    </div>
+
+
                 </div>
             )
         } else {
@@ -189,23 +220,43 @@ class FandomHome extends Component {
                         <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                     </Jumbotron>
 
-                    <h2>Posts</h2>
-                    <table>
-                        {this.state.posts.map(item => (
+                    <div>
+                        <h2>Posts</h2>
+                        <Table>
                             <tr>
-                                <td><a href={"/fandom/" + item.fandomId + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                <th>Title</th>
+                                <th>Author Email</th>
+                                <th>Time</th>
                             </tr>
-                        ))}
-                    </table>
+                            {this.state.posts.map(item => (
+                                <tr>
+                                    <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
+                                    <td>{item.email}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    </div>
 
-                    <h2>Events</h2>
-                    <table>
-                        {this.state.events.map(item => (
+                    <div >
+                        <h2>Events</h2>
+                        <Table>
                             <tr>
-                                <td><a href={this.props.location.pathname + "/event/" + item.postId} >{item.eventName} {item.date}</a></td>
+                                <th>Title</th>
+                                <th>description</th>
+                                <th>Time</th>
+                                <th>Register Deadline</th>
                             </tr>
-                        ))}
-                    </table>
+                            {this.state.events.map(item => (
+                                <tr>
+                                    <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>
+                                    <td>{item.description}</td>
+                                    <td>{item.date}</td>
+                                    <td>{item.deadline}</td>
+                                </tr>
+                            ))}
+                        </Table>
+                    </div>
                 </div>
             )
         }            

@@ -66,7 +66,7 @@ class ApiService {
     }
 
     checkIfJoin(query) {
-        return axios.get(URL + '/fandoms/findUser', {
+        return axios.get(URL + '/fandoms/findUserInFandom', {
                 params: query,
                 headers: GETHEADERS
             }
@@ -143,7 +143,7 @@ class ApiService {
     }
 
     getAllEventsByFandom(query){
-        return axios.get(URL + '/posts/findByFandomId',
+        return axios.get(URL + '/events/findByFandomId',
             {
                 params: query,
                 headers: GETHEADERS
@@ -153,6 +153,22 @@ class ApiService {
     createEvent(query){
         return axios.post(URL + '/events/createEvent',
         query,
+            {
+                headers: POSTHEADERS
+            });
+    }
+
+    getEvent(query){
+        return axios.get(URL + '/events/findByEventId',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+    }
+
+    joinEvent(query){
+        return axios.post(URL + '/events/joinEvent',
+            query,
             {
                 headers: POSTHEADERS
             });

@@ -1,3 +1,8 @@
 Nov 8th 2019 Standup Notes:
 
 - Created Design System for sprint 3
+- Finished some tasks such as: 
+    * Create Post page (Diego)
+    * [TEAMO-60] Change Create the post page model (Diego)
+    * [TEAMO-17] add ability to display posts (Roy)
+    * Refactored code (Cheng)

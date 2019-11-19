@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -33,8 +34,20 @@ public class Event {
     @JsonProperty("eventName")
     private String eventName;
 
-    @JsonProperty("fandom_id")
-    private Long fandom_id;
+    @JsonProperty("fandomId")
+    private Long fandomId;
+
+    // participants(users and events)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {
+                    //CascadeType.PERSIST,
+                    // CascadeType.MERGE
+            })
+    @JoinTable(name = "event_user",
+            joinColumns = { @JoinColumn(name = "event_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    private Set<User> participants = new HashSet<>();
 
     // events belong to only one fandom
     @ManyToOne(fetch = FetchType.EAGER)
@@ -44,16 +57,28 @@ public class Event {
     private Fandom fandom;
 
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandom_id) {
+    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
         this.ownerEmail = ownerEmail;
         this.eventName = eventName;
-        this.fandom_id = fandom_id;
+        this.fandomId = fandomId;
     }
     public Event(){
     }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) { this.eventId = eventId; }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) { this.eventName = eventName; }
 
     public String getDescription() {
         return description;
@@ -78,13 +103,16 @@ public class Event {
     }
 
     public Long getFandom_id() {
-        return fandom_id;
+        return fandomId;
     }
 
     public void setFid(Long pid) {
-        this.fandom_id = fandom_id;
+        this.fandomId = fandomId;
     }
 
+    public Set<User> getParticipants() { return this.participants; }
 
+    public void setParticipants(User newUser) {this.participants.add(newUser); }
+    public void removeUser(User user) {this.participants.remove(user); }
 
 }

@@ -1,0 +1,5 @@
+Nov 14th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * Change bugs and request forms (Diego)
+    * [TEAMO-34] Implement the logic to display events (Roy)

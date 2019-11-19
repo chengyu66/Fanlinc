@@ -1,0 +1,9 @@
+Nov 18th 2019 Standup Notes:
+
+- Finished some tasks such as: 
+    * [TEAMO_29] find comment by postid (Chengyu)
+    * [TEAMO_29] Delete comment (Chengyu)
+    * [TEAMO-27] Fix display bug on post (Diego)
+    * added delete by id feature to post (Kevin)
+    * [TEAMO-60] Can display existing comments (Diego)
+    * Update Post with adding create time (Chengyu)
