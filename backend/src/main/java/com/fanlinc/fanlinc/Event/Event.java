@@ -34,8 +34,8 @@ public class Event {
     @JsonProperty("eventName")
     private String eventName;
 
-    @JsonProperty("fandom_id")
-    private Long fandom_id;
+    @JsonProperty("fandomId")
+    private Long fandomId;
 
     // participants(users and events)
     @JsonIgnore
@@ -57,19 +57,16 @@ public class Event {
     private Fandom fandom;
 
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandom_id, Long eid) {
+    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
         this.ownerEmail = ownerEmail;
         this.eventName = eventName;
-        this.fandom_id = fandom_id;
-        this.eventId = eventId;
+        this.fandomId = fandomId;
     }
     public Event(){
     }
-
-
 
     public Long getEventId() {
         return eventId;
@@ -106,11 +103,11 @@ public class Event {
     }
 
     public Long getFandom_id() {
-        return fandom_id;
+        return fandomId;
     }
 
     public void setFid(Long pid) {
-        this.fandom_id = fandom_id;
+        this.fandomId = fandomId;
     }
 
     public Set<User> getParticipants() { return this.participants; }

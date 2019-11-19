@@ -3,6 +3,8 @@ package com.fanlinc.fanlinc.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EventService {
     @Autowired
@@ -17,10 +19,12 @@ public class EventService {
         return event;
     }
 
+
     public Event findByEventName(String eventName){
         return eventRepository.findByEventName(eventName);
     }
     public Event findByEventId(Long id){
         return eventRepository.findByEventId(id);
     }
+    public List<Event> findByFandomId(Long id){return eventRepository.findByFandomId(id);}
 }

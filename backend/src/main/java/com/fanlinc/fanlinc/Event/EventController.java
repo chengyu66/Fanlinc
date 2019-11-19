@@ -5,6 +5,7 @@ import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,6 +54,14 @@ public class EventController {
         user.setEvent(event);
         System.out.println(user.getEvent().contains(event));
         eservice.save(event);
+    }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/findByFandomId") // Map ONLY GET Requests
+    @ResponseBody
+    public List<Event> findByFandomId(@RequestParam Long id) {
+        return eservice.findByFandomId(id);
     }
 
 
