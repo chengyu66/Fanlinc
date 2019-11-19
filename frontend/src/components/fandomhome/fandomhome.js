@@ -12,13 +12,15 @@ class FandomHome extends Component {
         this.state = {
             data: [],
             loading: true,
-            isJoin: false
+            isJoin: false,
+            fandomId: 0,
+            posts: []
         };
 
         this.joinFandom = this.joinFandom.bind(this);
         this.ifJoin = this.ifJoin.bind(this);
         this.quitFandom = this.quitFandom.bind(this);
-        
+        this.goToPostWriting = this.goToPostWriting.bind(this);
     }
 
     componentWillMount() {
@@ -26,6 +28,10 @@ class FandomHome extends Component {
         this.state.fandomId = params.fandomId;
         this.getFandom();
         console.log(this.state);
+    }
+
+    goToPostWriting() {
+        this.props.history.push(this.props.location.pathname + '/post');
     }
 
     getFandom() {
@@ -39,7 +45,7 @@ class FandomHome extends Component {
                    this.ifJoin();
                }
                else{
-                this.props.history.push('/notFind');
+                   this.props.history.push('/notFind');
                }
            })
            .catch(error => {
@@ -87,7 +93,6 @@ class FandomHome extends Component {
         }
     }
 
-
     quitFandom() {
         if (this.state.isJoin) {
             let query = {email: Cookies.get('email'), 
@@ -104,6 +109,20 @@ class FandomHome extends Component {
         }
     }
 
+    displayPosts(){
+        let query = {id: this.state.fandomId};
+        ApiService.getAllPostByFandom(query)
+            .then(res => {
+                let data = res.data;
+                if(data){
+                    this.state.setState({posts: data});
+                }
+            })
+            .catch(error => {
+                console.log("Fail to get Posts");
+            });
+    }
+
     render() {
 
         if(this.state.loading) {
@@ -112,22 +131,37 @@ class FandomHome extends Component {
 
         if(this.state.isJoin) {
             return (
+                <div>
                     <Jumbotron fluid>
                         <h1>Welcome to {this.state.data.fandomName}</h1>
                         <p>Fandom ID: {this.state.data.fandomId}</p>
                         {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
+                        <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
                     </Jumbotron>
+
+                    <table>
+                        {this.state.posts.map(item => (
+                            <tr>
+                                <td>{item.postId}</td>
+                                <td>: </td>
+                                <td>{item.postTitle}</td>
+                            </tr>
+                        ))}
+                    </table>
+                </div>
             )
         } else {
             return (
-                <Jumbotron fluid>
-                    <h1>Welcome to {this.state.data.fandomName}</h1>
-                    <p>Fandom ID: {this.state.data.fandomId}</p>
-                    {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
+                <div>
+                    <Jumbotron fluid>
+                        <h1>Welcome to {this.state.data.fandomName}</h1>
+                        <p>Fandom ID: {this.state.data.fandomId}</p>
+                        {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
 
-                    <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
-                </Jumbotron>
+                        <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
+                    </Jumbotron>
+                </div>
             )
         }            
     }

@@ -3,39 +3,36 @@ import axios from 'axios';
 const URL = 'http://localhost:8080/api';
 const GETHEADERS = {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json'};
+    'Accept': 'application/json'
+};
 const POSTHEADERS = {
     'Content-Type': 'application/json',
-    'Accept': 'application/json'};
-
+    'Accept': 'application/json'
+};
+const PUTHEADERS = {
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Accept': 'application/json'
+};
 class ApiService {
 
     getFandom(fandom) {
         return axios.get(URL + '/fandoms/findFandomById',
-                    {
-                        params: fandom,
-                        headers: GETHEADERS
-                    });
+            {
+                params: fandom,
+                headers: GETHEADERS
+            });
     }
 
-    getUser(user){
+    getUser(user) {
         return axios.get(URL + '/users/findUserByEmail',
-                    { params: user,
-                             headers: GETHEADERS
-                    }  );
+            {
+                params: user,
+                headers: GETHEADERS
+            });
     }
 
-    setUser(user){
+    setUser(user) {
         return axios.post(URL + '/users/updateUser',
-                    user,
-                    {
-                        headers: POSTHEADERS
-                    }
-        )
-    }
-
-    signup(user) {
-        return axios.post(URL+'/users/addUser',
             user,
             {
                 headers: POSTHEADERS
@@ -43,46 +40,63 @@ class ApiService {
         )
     }
 
-    login(user){
-        return axios.get(URL + '/users/getUser',
-            { params: user,
-                     headers: GETHEADERS
-            }  );
-     }
+    signup(user) {
+        return axios.post(URL + '/users/addUser',
+            user,
+            {
+                headers: POSTHEADERS
+            }
+        )
+    }
 
-     seachfandom(query){
-         return axios.get(URL + '/fandoms/findSimilarFandomByName', {
+    login(user) {
+        return axios.get(URL + '/users/getUser',
+            {
+                params: user,
+                headers: GETHEADERS
+            });
+    }
+
+    seachfandom(query) {
+        return axios.get(URL + '/fandoms/findSimilarFandomByName', {
                 params: query,
                 headers: GETHEADERS
             }
-         );
-     }
+        );
+    }
 
-     checkIfJoin(query) {
+    checkIfJoin(query) {
         return axios.get(URL + '/fandoms/findUser', {
-            params: query,
-            headers: GETHEADERS
+                params: query,
+                headers: GETHEADERS
             }
         );
-     }
+    }
 
-     joinFandom(query) {
+    joinFandom(query) {
         return axios.post(URL + '/fandoms/joinFandom',
-        query,
-        {
-            headers: POSTHEADERS
-        }
-     );
-     }
+            query,
+            {
+                headers: POSTHEADERS
+            }
+        );
+    }
 
-     quitFandom(query) {
+    quitFandom(query) {
         return axios.post(URL + '/fandoms/quitFandom',
-        query,
-        {
-            headers: POSTHEADERS
-        }
-     );
-     }
+            query,
+            {
+                headers: POSTHEADERS
+            }
+        );
+    }
+
+    createFandom(query) {
+        return axios.post(URL + '/fandoms/createFandom',
+            query,
+            {headers: POSTHEADERS}
+        );
+    }
 
      createPost(query){
         return axios.post(URL + '/posts/post',
@@ -94,13 +108,40 @@ class ApiService {
      }
 
      getPost(query){
-        return axios.post(URL + '/posts/findPostByPostId',
+        return axios.get(URL + '/posts/findByPostId',
         {
             params: query,
-            headers: POSTHEADERS
+            headers: GETHEADERS
         }
      );
      }
- }
+
+     getComments(query){
+        return axios.get(URL + '/comments/findByPostId',
+        {
+            params: query,
+            headers: GETHEADERS
+        }
+     ); 
+    }
+
+    createComment(query){
+        return axios.post(URL + '/comments/createComment',
+        query,
+        {
+            headers: POSTHEADERS
+        }
+     );
+    }
+
+    getAllPostsOfFandom(query){
+        return axios.post(URL + '/comments/findByFandomId',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+    }
+
+}
 
 export default new ApiService();
