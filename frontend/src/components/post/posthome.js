@@ -69,6 +69,7 @@ class PostHome extends Component {
                    this.state.loading = false;
                    this.state.comments = data;
                    console.log("Find Post");
+                   this.props.history.push(this.props)
                }
                else{
                 this.props.history.push('/notFind');
@@ -93,7 +94,7 @@ class PostHome extends Component {
                 console.log("Success");
                 let data = res.data;
                 console.log(data.id);
-                this.props.history.push(this.props)
+                window.location.reload();
 
             })
             .catch(error => {

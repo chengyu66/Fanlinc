@@ -26,7 +26,7 @@ class Mynavbar extends Component {
     componentWillMount() {
         if (Cookies.get('username')) {
                 this.state.username = Cookies.get('username');
-                this.state.link = '/editUser';
+                this.state.link = '/user/' + Cookies.get("id");
           }
     }
 

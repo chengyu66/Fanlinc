@@ -50,6 +50,7 @@ class login extends Component{
                     Cookies.set('id', data.id);
                     Cookies.set('username', data.firstName);
                     Cookies.set('email', data.email);
+                    window.location.reload();
                     this.props.history.push('/');
                 }
                 else{

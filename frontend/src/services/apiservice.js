@@ -134,9 +134,25 @@ class ApiService {
      );
     }
 
-    getAllPostsOfFandom(query){
-        return axios.post(URL + '/comments/findByFandomId',
-            query,
+    getAllPostByFandom(query){
+        return axios.get(URL + '/posts/findByFandomId',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+    }
+
+    getAllEventsByFandom(query){
+        return axios.get(URL + '/posts/findByFandomId',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+    }
+
+    createEvent(query){
+        return axios.post(URL + '/events/createEvent',
+        query,
             {
                 headers: POSTHEADERS
             });

@@ -51,17 +51,20 @@ class edidUser extends Component{
         Cookies.remove('id');
         Cookies.remove('email');
         Cookies.remove('username');
+        // window.location.reload();
         this.props.history.push('/');
     }
 
     saveUser = (e) => {
          e.preventDefault();
-         let user = {firstname: this.state.firstname, lastname:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
+         let user = {firstName: this.state.firstname, lastName:this.state.lastname, password: this.state.password, age: this.state.age, email: this.state.email};
+         console.log(user);
          ApiService.setUser(user)
              .then(res => {
                  if(res.data){
                     alert("Successfully updated")
                     this.setState({message : 'User edit successfully.'});
+                    Cookies.set('username', this.state.firstname)
                  }
                  this.props.history.push('/');
              })
@@ -76,22 +79,22 @@ class edidUser extends Component{
                 <form>
                     <div className="form-group">
                         <label>First Name:</label>
-                        <input type="text" placeholder="firstname" name="fname" defaultValue={this.state.firstname} onChange={this.onChange}/>
+                        <input type="text" placeholder="firstname" name="firstname" value={this.state.firstname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Last Name:</label>
-                        <input type="text" placeholder="lastname"  name="lname" defaultValue={this.state.lastname} onChange={this.onChange}/>
+                        <input type="text" placeholder="lastname"  name="lastname" value={this.state.lastname} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Age:</label>
-                        <input type="number" placeholder="age" name="age" defaultValue={this.state.age} onChange={this.onChange}/>
+                        <input type="number" placeholder="age" name="age" value={this.state.age} onChange={this.onChange}/>
                     </div>
 
                     <div className="form-group">
                         <label>Email:</label>
-                        <input type="email" placeholder="email" name="mail" defaultValue={this.state.email} onChange={this.onChange}/>
+                        <input type="email" placeholder="email" name="mail" value={this.state.email} onChange={this.onChange}/>
                     </div>
 
                     <button className="save" onClick={this.saveUser}>Save</button>

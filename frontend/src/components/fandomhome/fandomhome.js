@@ -21,12 +21,14 @@ class FandomHome extends Component {
         this.ifJoin = this.ifJoin.bind(this);
         this.quitFandom = this.quitFandom.bind(this);
         this.goToPostWriting = this.goToPostWriting.bind(this);
+        this.displayPosts = this.displayPosts.bind(this);
     }
 
     componentWillMount() {
         const { match: { params } } = this.props;
         this.state.fandomId = params.fandomId;
         this.getFandom();
+        this.displayPosts();
         console.log(this.state);
     }
 
@@ -115,7 +117,8 @@ class FandomHome extends Component {
             .then(res => {
                 let data = res.data;
                 if(data){
-                    this.state.setState({posts: data});
+                    this.state.posts = data
+                    console.log(this.state);
                 }
             })
             .catch(error => {
@@ -143,9 +146,7 @@ class FandomHome extends Component {
                     <table>
                         {this.state.posts.map(item => (
                             <tr>
-                                <td>{item.postId}</td>
-                                <td>: </td>
-                                <td>{item.postTitle}</td>
+                                <td><a href={"/fandom/" + item.fandomId + "/post/" + item.postId} >{item.postTitle}</a></td>
                             </tr>
                         ))}
                     </table>
@@ -161,6 +162,14 @@ class FandomHome extends Component {
 
                         <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                     </Jumbotron>
+
+                    <table>
+                        {this.state.posts.map(item => (
+                            <tr>
+                                <td><a href={"/fandom/" + item.fandomId + "/post/" + item.postId} >{item.postTitle}</a></td>
+                            </tr>
+                        ))}
+                    </table>
                 </div>
             )
         }            
