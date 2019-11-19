@@ -22,7 +22,8 @@ public class Post {
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long postId;
-	
+
+    @JsonProperty("time")
 	private String time;
 
 	@JsonProperty("title")
@@ -111,6 +112,8 @@ public class Post {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getTime(String time) { return time; }
 
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }
