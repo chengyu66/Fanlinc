@@ -143,7 +143,7 @@ class ApiService {
     }
 
     getAllEventsByFandom(query){
-        return axios.get(URL + '/posts/findByFandomId',
+        return axios.get(URL + '/events/findByFandomId',
             {
                 params: query,
                 headers: GETHEADERS

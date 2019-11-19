@@ -44,7 +44,7 @@ class PostHome extends Component {
                     this.setState({loading:false, 
                         title:data.title,
                         content:data.content,
-                         date:data.date
+                         date:data.time
                     })
                    console.log("Find Post");
                    console.log(this.state.loading);

@@ -31,8 +31,8 @@ class Post extends Component{
         e.preventDefault();
         let user = {
             description: this.state.content,
-            fandomId: this.state.fandomId,
-            owneremail: this.state.email,
+            fandom_id: this.state.fandomId,
+            ownerEmail: this.state.email,
             eventName: this.state.title,
             date: this.state.date,
             deadline: this.state.date
@@ -56,7 +56,7 @@ class Post extends Component{
 
     componentWillMount() {
         const { match: { params } } = this.props;
-        this.email = Cookies.get('email');
+        this.state.email = Cookies.get('email');
         this.state.fandomId = params.fandomId;
     }
 
@@ -83,7 +83,7 @@ class Post extends Component{
                     </div>
                     <div className="form-group">
                         <label className="form-label">Description:</label>
-                        <textarea placeholder = "Enter you description here" name="description" className="form-control" value={this.state.description} onChange={this.onChange}></textarea>         
+                        <textarea placeholder = "Enter you description here" name="content" className="form-control" value={this.state.content} onChange={this.onChange}></textarea>         
                     </div>
                     <div className="button-div">
                         <Button className="Post" onClick={this.addEvent}>Create Event</Button>
