@@ -6,6 +6,8 @@ import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.post.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -48,6 +50,7 @@ public class User {
                     // CascadeType.MERGE //was casuing the multiple entities error
             },
             mappedBy = "usersWhoLiked")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Post> likedPost = new HashSet<>();
 
     // event and users

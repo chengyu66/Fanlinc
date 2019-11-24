@@ -1,11 +1,13 @@
 package com.fanlinc.fanlinc.fandom;
 
 import com.fanlinc.fanlinc.exceptions.FandomExistsException;
+import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -86,34 +88,20 @@ public class FandomController {
         Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
         Long fidtoremove = fandom.getFandomId();
         Long uidtoremove = user.getId();
-        System.out.println("fandomId to remove: "+fidtoremove);
-        System.out.println("userId to remove: "+uidtoremove);
-        System.out.println(user.getFandoms().size());
-        System.out.println(fandom.getUser().size());
-        System.out.println(user.getFandoms());
-        System.out.println(fandom.getUser());
-        System.out.println(fandom);
-        System.out.println(user);
         for (User users: fandom.getUser()){
-            System.out.println("users:" + users.getId());
             if (users.getId().equals(uidtoremove)){
-                fandom.removeUser(users);
-                System.out.println("removing user...:" + users.getId());
+                User temp = users;
+                fandom.removeUser(temp);
+                break;
             }
-
         }
         for (Fandom fandoms: user.getFandoms()) {
-            System.out.println("fans: " + fandoms.getFandomId());
             if (fandoms.getFandomId().equals(fidtoremove)) {
                 Fandom temp = fandoms;
                 user.removeFandom(temp);
-                System.out.println("removing fandom...:" + fandom.getFandomId());
+                break;
             }
         }
-        System.out.println(user.getFandoms());
-        System.out.println(fandom.getUser());
-        System.out.println(user.getFandoms().size());
-        System.out.println(fandom.getUser().size());
         fservice.save(fandom);
     }
 
