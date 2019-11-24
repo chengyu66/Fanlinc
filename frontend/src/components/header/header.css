@@ -29,10 +29,10 @@ header #branding h1{
   min-height: 0;
 }
 
-header nav{
+/* header nav{
   float: left;
   margin-top:10px;
-}
+} */
 
 header .highlight, header .current a{
   color:#e8491d;
