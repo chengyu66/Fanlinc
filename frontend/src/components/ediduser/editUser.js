@@ -10,7 +10,8 @@ class edidUser extends Component{
          lastname: '',
          password: '',
          email: '',
-         age: ''
+         age: '',
+         loading: true
         };
         this.loadUser = this.loadUser.bind(this);
         this.saveUser = this.saveUser.bind(this);
@@ -31,13 +32,21 @@ class edidUser extends Component{
             .then((res) => {
                 console.log("Good");
                 let user = res.data;
-                this.state.firstname = user.firstName;
-                this.state.lastname= user.lastName;
-                this.state.password= user.password;
-                this.state.age= user.age;
-                this.state.email= user.email;
-                console.log("Good end");
-                console.log(this.state);
+                if (user){
+                    this.setState({
+                        firstname: user.firstName,
+                        lastname: user.lastName,
+                        password: user.password,
+                        age: user.age,
+                        email: user.email,
+                        loading: false
+                    })
+                    console.log("Good end");
+                    console.log(this.state);
+                }
+                else{
+                    this.props.history.push('/');
+                }
             })
             .catch(err=>{
                 console.log("Error");
@@ -61,7 +70,7 @@ class edidUser extends Component{
              .then(res => {
                  if(res.data){
                     alert("Successfully updated")
-                    this.setState({message : 'User edit successfully.'});
+                    window.location.reload();
                     Cookies.set('username', this.state.firstname)
                  }
                  this.props.history.push('/');
@@ -71,9 +80,12 @@ class edidUser extends Component{
              });
     }
     render() {
+        if (this.state.loading){
+            return 'Loading...'
+        }
         return (
             <div>
-                <h2 className="text-center">Edit Profile</h2>
+                <h2 className="text-center">Profile</h2>
                 <form>
                     <div className="form-group">
                         <label>First Name:</label>

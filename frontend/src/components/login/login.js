@@ -19,7 +19,7 @@ class login extends Component{
     componentDidMount() {
             if (Cookies.get('username')) {
                 const location = {
-                    pathname: '/Home'
+                    pathname: '/'
                 };
                 this.props.history.push(location);
             } else {

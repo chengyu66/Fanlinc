@@ -1,5 +1,4 @@
 /* Header **/
-.nav-search {
-  margin-left: 50px;
-  float: right;
+.search {
+  width: 25% !important;
 }

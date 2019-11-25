@@ -12,9 +12,9 @@ function App() {
       <div>
           <Header />
       </div>
-      <div>
+      {/* <div>
           <Search />
-      </div>
+      </div> */}
       <div>
           <AppRouter />
       </div>

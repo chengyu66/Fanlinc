@@ -13,23 +13,22 @@ class Search extends Component{
         this.state = {
          query: "",
          items: [],
-         hasQuery: false
+        //  hasQuery: false
         };
         this.search = this.search.bind(this);
     }
 
     componentDidMount() {
-        if(this.state.hasQuery) {
-            const { match: { params } } = this.props;
-            this.state.query = params.query;
-            this.search();
-            console.log(this.state);
-        }
-        
+        const { match: { params } } = this.props;
+        console.log(params);
+        this.state.query = params.query;
+        console.log(this.state.query);
+        this.search();
+        console.log(this.state);
     }
 
     search = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         let query = {name: this.state.query};
         console.log(query);
         ApiService.seachfandom(query)
@@ -43,6 +42,7 @@ class Search extends Component{
                }
                else{
                    alert("Not found");
+                   this.props.history.push("/")
                }
            })
            .catch(error => {
@@ -56,10 +56,10 @@ class Search extends Component{
      render() {
           return (
             <div className="search">
-                <div className="bar">
+                {/* <div className="bar">
                     <FormControl type="text" placeholder="Search" onChange={this.onChange} name="query"/>
                     <Button variant="outline-success" onClick={this.search} >Search</Button>
-                </div>
+                </div> */}
                 <form>
                     <ul>
                         {this.state.items.map(item => (
