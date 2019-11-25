@@ -1,4 +1,6 @@
 package com.fanlinc.fanlinc.Event;
+import com.fanlinc.fanlinc.exceptions.EventExistsException;
+import com.fanlinc.fanlinc.exceptions.EventJoinedException;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
@@ -26,33 +28,38 @@ public class EventController {
     }
     @CrossOrigin(origins = "*")
     @PostMapping(path="/createEvent") // Map ONLY POST Requests
-    public Event createNewEvent (@RequestBody Event newEvent) {
+    public Event createNewEvent (@RequestBody Event newEvent) /*throws EventExistsException*/ {
+        // check event same name
+//        if (eservice.findByEventName(newEvent.getEventName()) != null) {
+//            throw new EventExistsException(newEvent.getEventName());
+//        }
         // find the owner
         String ownerEmail = newEvent.getOwnerEmail();
         User owner = uservice.findByEmail(ownerEmail);
 
         Fandom fandom = fservice.findByFandomId(newEvent.getFandom_id());
         newEvent.setFandom(fandom);
-//         add the owner to the evenr
+//         add the owner to the event
         return eservice.save(newEvent);
     }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path="/joinEvent") // Map ONLY POST Requests
-    public Event JoinEvent (@RequestBody Map<String, String> values) {
+    public Event JoinEvent (@RequestBody Map<String, String> values) throws EventJoinedException {
         // get owner
         //Event event = eservice.findByEventId(newEvent.getEventId());
         // System.out.println(event.getOwnerEmail());
-
-        Event event = eservice.findByEventId(new Long(values.get("eventId")));
+        Event event = eservice.findByEventId(Long.valueOf(values.get("eventId")));
         User user = uservice.findByEmail(values.get("email"));
+        for (User users: event.getParticipants()){
+            if (users.getId().equals(user.getId())){
+                throw new EventJoinedException(event.getEventName());
+            }
+        }
 //        System.out.println(fandom.getFandomId());
 //        System.out.println(user.getId());
-        System.out.println(event.getParticipants().contains(user));
         event.setParticipants(user);
-        System.out.println(event.getParticipants().contains(user));
         user.setEvent(event);
-        System.out.println(user.getEvent().contains(event));
         return eservice.save(event);
     }
 
