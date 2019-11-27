@@ -48,8 +48,8 @@ class Mynavbar extends Component {
 
     render() {
         return (
-              <Navbar  expand="lg">
-                <Navbar.Brand className="logo" href="/">Fanlink</Navbar.Brand>
+              <Navbar className="bar" fixed = "top" expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand className="logo" href="/">Fanlinc</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
