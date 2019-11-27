@@ -4,13 +4,9 @@ import {Card, Navbar, NavbarBrand, Container} from 'react-bootstrap';
 class Footer extends Component {
   render() {
     return (
-        <div>
-            <Navbar>
-                <Container>
-                    <p><NavbarBrand>Fanlinc</NavbarBrand>, Copyright &copy; 2019</p>
-                </Container>
-            </Navbar>
-        </div>
+        <Card.Footer>
+          <p align="center">Fanlinc, Copyright &copy; 2019</p>
+        </Card.Footer>
     );
   }
 }
