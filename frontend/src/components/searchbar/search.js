@@ -4,7 +4,7 @@ import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
 import "./search.css";
 
-import {Table, Form , FormControl, Button} from 'react-bootstrap';
+import {Table, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import FandomCards from '../fandomhome/fandomCard';
 
@@ -14,7 +14,7 @@ class Search extends Component{
         this.state = {
          query: "",
          items: [],
-        //  hasQuery: false
+         loading:true
         };
         this.search = this.search.bind(this);
         this.displayFandoms = this.displayFandoms.bind(this);
@@ -37,9 +37,10 @@ class Search extends Component{
         .then(res => {
                console.log("Success");
                let data = res.data;
-               if (data){
+               if (data.length > 0){
                    this.state.items = data
-                   this.setState({hasQuery: true});
+                   this.setState({loading: false});
+                   console.log(this.state);
                    console.log(data);
                }
                else{
@@ -76,6 +77,9 @@ class Search extends Component{
         this.setState({ [e.target.name]: e.target.value });
 
      render() {
+         if(this.state.loading){
+                return <Spinner animation="grow"/>
+         }
           return (
             <div className="search">
                 <Table>{this.displayFandoms()}</Table>

@@ -69,9 +69,9 @@ class login extends Component{
 
     render() {
         return (
-            <div className="forms">
-                <h2>Log in</h2>
-                <Form className="form">
+            <Form className="form">
+                <h2>Sign in</h2>
+                {/* <Form className="form"> */}
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email:</Form.Label>
                         <Form.Control type="email" placeholder="123@email.com" name="email" className="form-control" value={this.state.email} onChange={this.onChange}/>
@@ -84,8 +84,8 @@ class login extends Component{
                         <Button className="Login" onClick={this.getUser}>Log in</Button>
                         <Button className="Signup" onClick={this.goToSignUp}>Sign up</Button>
                     </div>
-                </Form>
-            </div>
+                {/* </Form> */}
+            </Form>
         );
     }
 }
