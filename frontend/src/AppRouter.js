@@ -18,7 +18,7 @@ const AppRouter = () => {
     return(
         <div>
             <Router>
-                <div className="col-md-6">
+                <div>
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path='/about' component={About}/>

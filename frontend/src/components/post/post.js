@@ -61,7 +61,7 @@ class Post extends Component{
         return (
             <div>
                 <h2>Create Post</h2>
-                <form>
+                <form className="form">
                     <div className="form-group">
                         <label className="form-label">Title:</label>
                         <Input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
