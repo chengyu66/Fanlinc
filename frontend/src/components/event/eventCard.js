@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import {Card, Form , FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-class PostCards extends Component{
+class EventCard extends Component{
 
     constructor(){
         super();
@@ -14,38 +14,37 @@ class PostCards extends Component{
             email: '',
             fandomId: '',
             title: '',
-            like: "",
-            postId: "",
+            date:"",
+            deadline:"",
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
-            num: 0,
             status:false
         };
-        this.getPost = this.getPost.bind(this);
+        this.addEvent = this.addEvent.bind(this);
+        this.goToFandom = this.goToFandom.bind();
     }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
     componentWillMount() {
-        this.state.postId = this.props.postId;
-        this.getPost();
+        this.state.postId = this.props.eventId;
+        this.getEvent();
         this.state.num = Math.floor(Math.random() * this.state.array.length);
     }
 
-    getPost() {
-        let postId = {id: this.state.postId};
-        ApiService.getPost(postId)
+    getEvent() {
+        let eventId = {id: this.state.eventId};
+        ApiService.getEvent(eventId)
         .then(res => {
                let data = res.data;
                if (data){
                 //    this.state.loading = false;
                     this.setState({loading:false, 
-                        title:data.title,
-                        content:data.content,
-                        date:data.time,
-                        email:data.email,
-                        like: data.likeNum,
-                        fandomId: data.fandomId
+                        eventName:data.eventName,
+                        description:data.description,
+                        owner:data.ownerEmail,
+                        date:data.date,
+                        deadline:data.deadline
                     })
                    console.log("Find Post");
                    console.log(this.state.loading);
@@ -61,6 +60,7 @@ class PostCards extends Component{
            });
     };
 
+
     goToFandom = () => {
         this.props.history.push(`/fandom`);
     };
@@ -68,13 +68,14 @@ class PostCards extends Component{
     render() {
         return (
             <div>
-                <a href={"/fandom/"+this.state.fandomId+"/post/"+this.state.postId}>
+                <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.postId}>
                 <Card border={this.state.array[this.state.num]} style={{ width: '18rem' }}>
                 <Card.Header>Post</Card.Header>
                     <Card.Body>
                         <Card.Title>{this.state.title}</Card.Title>
                         <Card.Text>
                             {this.state.content}
+                            {this.state.date}
                         </Card.Text>
                     </Card.Body>
                 </Card>
@@ -85,4 +86,4 @@ class PostCards extends Component{
 }
 
 
-export default PostCards;
+export default EventCard;

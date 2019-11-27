@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import {Form , FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-class Post extends Component{
+class Event extends Component{
 
     
     constructor(){
@@ -93,7 +93,7 @@ class Post extends Component{
                         <textarea placeholder = "Enter you description here" name="content" className="form-control" value={this.state.content} onChange={this.onChange}></textarea>         
                     </div>
                     <div className="button-div">
-                        <Button className="Post" onClick={this.addEvent}>Create Event</Button>
+                        <Button className="Event" onClick={this.addEvent}>Create Event</Button>
                         <Button className="Cancel" onClick={this.goToFandom}>Cancel</Button>
                     </div>
                 </form>
@@ -103,4 +103,4 @@ class Post extends Component{
 }
 
 
-export default Post;
+export default Event;
