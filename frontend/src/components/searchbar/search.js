@@ -4,8 +4,9 @@ import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
 import "./search.css";
 
-import {Form , FormControl, Button} from 'react-bootstrap';
+import {Table, Form , FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import FandomCards from '../fandomhome/fandomCard';
 
 class Search extends Component{
     constructor(){
@@ -16,6 +17,7 @@ class Search extends Component{
         //  hasQuery: false
         };
         this.search = this.search.bind(this);
+        this.displayFandoms = this.displayFandoms.bind(this);
     }
 
     componentDidMount() {
@@ -50,23 +52,33 @@ class Search extends Component{
            });
    };
 
+   displayFandoms(){
+    let column = 4;
+    let cardTable = [];
+    let len = this.state.items.length;
+    let row = Math.ceil(len / column);
+    console.log("row = " + row);
+    for (let i = 0; i < row; i++) {
+        let row = [];
+        let j = 0;
+        console.log("i = " + i);
+        while (j < column && j < (len - ( i * column))) {
+            console.log("j = " + j);
+            row.push(<td><FandomCards fandomId={this.state.items[(i*4)+j].fandomId}/></td>);
+            j++;
+        }
+        cardTable.push(<tr>{row}</tr>);
+    }
+    return cardTable;
+}
+
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
      render() {
           return (
             <div className="search">
-                {/* <div className="bar">
-                    <FormControl type="text" placeholder="Search" onChange={this.onChange} name="query"/>
-                    <Button variant="outline-success" onClick={this.search} >Search</Button>
-                </div> */}
-                <form>
-                    <ul>
-                        {this.state.items.map(item => (
-                            <li id={item.fandomId}><a href={"/fandom/" + item.fandomId} >{item.fandomName}</a></li>
-                        ))}
-                    </ul>
-                </form>
+                <Table>{this.displayFandoms()}</Table>
             </div>
           );
      }

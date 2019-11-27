@@ -214,49 +214,11 @@ class FandomHome extends Component {
                     <div>
                         <h2>Posts</h2>
                         <Table>{this.displayPosts()}</Table>
-                        {/*<>*/}
-                        {/*{this.state.posts.map(item => (*/}
-                        {/*        console.log(item),*/}
-                        {/*        <PostCards postId={item.postId}/>*/}
-                        {/*    ))}*/}
-                        
-                        {/* <Table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author Email</th>
-                                <th>Time</th>
-                            </tr>
-                            {this.state.posts.map(item => (
-                                <tr>
-                                    <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
-                                    <td>{item.email}</td>
-                                    <td>{item.time}</td>
-                                </tr>
-
-                            ))}
-                        </Table> */}
-                        {/*</>*/}
                     </div>
 
                     <div>
                         <h2>Events</h2>
                         <Table>{this.displayEvents()}</Table>
-                        {/*<Table>*/}
-                        {/*    <tr>*/}
-                        {/*        <th>Title</th>*/}
-                        {/*        <th>description</th>*/}
-                        {/*        <th>Time</th>*/}
-                        {/*        <th>Register Deadline</th>*/}
-                        {/*    </tr>*/}
-                        {/*    {this.state.events.map(item => (*/}
-                        {/*        <tr>*/}
-                        {/*            <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>*/}
-                        {/*            <td>{item.description}</td>*/}
-                        {/*            <td>{item.date}</td>*/}
-                        {/*            <td>{item.deadline}</td>*/}
-                        {/*        </tr>*/}
-                        {/*    ))}*/}
-                        {/*</Table>*/}
                     </div>
 
 
@@ -275,33 +237,12 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        {/*{this.state.posts.map(item => (*/}
-                        {/*        console.log(item),*/}
-                        {/*        <PostCards postId={item.postId}/>*/}
-                        {/*    ))}*/}
-                        
                         <Table>{this.displayPosts()}</Table>
                     </div>
 
                     <div>
                         <h2>Events</h2>
                         <Table>{this.displayEvents()}</Table>
-                        {/*<Table>*/}
-                        {/*    <tr>*/}
-                        {/*        <th>Title</th>*/}
-                        {/*        <th>description</th>*/}
-                        {/*        <th>Time</th>*/}
-                        {/*        <th>Register Deadline</th>*/}
-                        {/*    </tr>*/}
-                        {/*    {this.state.events.map(item => (*/}
-                        {/*        <tr>*/}
-                        {/*            <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>*/}
-                        {/*            <td>{item.description}</td>*/}
-                        {/*            <td>{item.date}</td>*/}
-                        {/*            <td>{item.deadline}</td>*/}
-                        {/*        </tr>*/}
-                        {/*    ))}*/}
-                        {/*</Table>*/}
                     </div>
                 </div>
             )
