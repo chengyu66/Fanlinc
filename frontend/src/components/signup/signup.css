@@ -1,21 +1,22 @@
-h2 {
+h2{
     text-align: center;
     font-size: xx-large;
 }
 
-form {
-    top: 50%;
-    left: 50%;
-    margin-top: -100px;
-    margin-left: -100px;
-    width:200px;
-    height:200px;
+.form {
+    margin-left: -15%;
+    /* margin-top: -15%;
+    height: 50%; */
+    padding: 20px; 
+    width:30%;
     position: fixed;
-
+    background-color: white;
+    border-radius: 25px;
     display: table;
 }
 
-.form-group form {
+
+/* .form-group form {
 
     padding-bottom: 20px;
     display: table-row;
@@ -31,7 +32,7 @@ form {
 .form-control form {
     display: table-cell;
     text-align: left;
-}
+} */
 
 .button-div form {
     display: table-row;

@@ -49,22 +49,21 @@ class Mynavbar extends Component {
     render() {
         return (
               <Navbar  expand="lg">
-                <Navbar.Brand href="/"><span className="highlight">Fan</span>link</Navbar.Brand>
-                {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-                {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+                <Navbar.Brand className="logo" href="/">Fanlink</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/about" className="current">About</Nav.Link>
                     <Nav.Link href="/fandom/create">Fandoms</Nav.Link>
                     <Nav.Link href={this.state.link}>{this.state.username}</Nav.Link>
                   </Nav>
-                  
-                {/* </Navbar.Collapse> */}
+
                   {/* <Form inline> */}
                     <FormControl type="text" placeholder="Search" className="search" onChange={this.onChange} name="query"/>
                     <Button  variant="outline-info" href={"/search/" + this.state.query} >Search</Button>
                   {/* </Form> */}
-                  {/* </Navbar.Collapse> */}
+                  </Navbar.Collapse>
               </Navbar>
                 );
     }

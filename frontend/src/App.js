@@ -12,15 +12,12 @@ function App() {
       <div>
           <Header />
       </div>
-      {/* <div>
-          <Search />
-      </div> */}
       <div>
           <AppRouter />
       </div>
-       <div>
+       {/* <div>
           <Footer />
-       </div>
+       </div> */}
     </div>
   );
 }

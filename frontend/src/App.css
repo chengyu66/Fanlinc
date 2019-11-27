@@ -1,5 +1,8 @@
 .App {
-  background-color: white;
+  background-image: url(/Backroung_Home.jpg);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
 }
 
 footer{

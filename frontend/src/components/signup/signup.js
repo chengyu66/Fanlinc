@@ -52,7 +52,7 @@ class signup extends Component{
         return (
             <div>
                 <h2>Sign Up</h2>
-                <form>
+                <form className="form">
                     <div className="form-group">
                         <label className="form-label">First Name:</label>
                         <Input type="text" placeholder="first name" name="firstName" className="form-control" value={this.state.firstName} onChange={this.onChange}/>
