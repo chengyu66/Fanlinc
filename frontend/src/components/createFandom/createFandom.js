@@ -49,7 +49,7 @@ class CreateFandom extends Component {
         return (
         <div>
             <h2>Create your own Fandom!</h2>
-            <form>
+            <form className="form">
                 <div className="form-group">
                     <label className="form-label">Fandom:</label>
                     <Input type="fandomName" placeholder="FandomName" name="fandomName" className="form-control"  value={this.state.fandomName} onChange={this.onChange}/>

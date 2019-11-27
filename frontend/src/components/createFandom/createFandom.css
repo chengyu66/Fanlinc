@@ -11,7 +11,8 @@ form {
     width:200px;
     height:200px;
     position: fixed;
-
+    background-color: white;
+    border-radius: 25px;
     display: table;
 }
 
