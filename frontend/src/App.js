@@ -9,7 +9,7 @@ import Search from './components/searchbar/search';
 function App() {
   return (
     <div className="App">
-      <div>
+      <div className="head">
           <Header />
       </div>
       <div>
