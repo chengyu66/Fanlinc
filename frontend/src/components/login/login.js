@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
-import {Button, Input } from "@material-ui/core";
+import {Button, Input} from "@material-ui/core";
+import {Form} from 'react-bootstrap';
 import "./login.css"
 import Cookies from 'js-cookie';
 
@@ -68,22 +69,22 @@ class login extends Component{
 
     render() {
         return (
-            <div>
+            <div className="forms">
                 <h2>Log in</h2>
-                <form>
-                    <div className="form-group">
-                        <label className="form-label">Email:</label>
-                        <Input type="email" placeholder="email" name="email" className="form-control" value={this.state.email} onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label className="form-label">password:</label>
-                        <Input type="password" placeholder="password" name="password" className="form-control" value={this.state.password} onChange={this.onChange}/>
-                    </div>
+                <Form className="form">
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="email" placeholder="123@email.com" name="email" className="form-control" value={this.state.email} onChange={this.onChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" placeholder="password" name="password" className="form-control" value={this.state.password} onChange={this.onChange}/>
+                    </Form.Group>
                     <div className="button-div">
                         <Button className="Login" onClick={this.getUser}>Log in</Button>
                         <Button className="Signup" onClick={this.goToSignUp}>Sign up</Button>
                     </div>
-                </form>
+                </Form>
             </div>
         );
     }
