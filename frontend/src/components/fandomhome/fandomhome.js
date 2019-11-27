@@ -3,6 +3,7 @@ import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Table} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
+import PostCards from './../post/postCards';
 
 class FandomHome extends Component {
     constructor(){
@@ -170,7 +171,13 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <Table>
+                        <>
+                        {this.state.posts.map(item => (
+                                console.log(item),
+                                <PostCards postId={item.postId}/>
+                            ))}
+                        
+                        {/* <Table>
                             <tr>
                                 <th>Title</th>
                                 <th>Author Email</th>
@@ -182,8 +189,10 @@ class FandomHome extends Component {
                                     <td>{item.email}</td>
                                     <td>{item.time}</td>
                                 </tr>
+                                
                             ))}
-                        </Table>
+                        </Table> */}
+                        </>
                     </div>
 
                     <div>
@@ -222,7 +231,13 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <Table>
+                        <>
+                        {this.state.posts.map(item => (
+                                console.log(item),
+                                <PostCards postId={item.postId}/>
+                            ))}
+                        
+                        {/* <Table>
                             <tr>
                                 <th>Title</th>
                                 <th>Author Email</th>
@@ -234,8 +249,10 @@ class FandomHome extends Component {
                                     <td>{item.email}</td>
                                     <td>{item.time}</td>
                                 </tr>
+                                
                             ))}
-                        </Table>
+                        </Table> */}
+                        </>
                     </div>
 
                     <div >

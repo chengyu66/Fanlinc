@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
 import Cookies from 'js-cookie';
+import "./editUser.css";
 
 class edidUser extends Component{
     constructor(){
@@ -86,7 +87,7 @@ class edidUser extends Component{
         return (
             <div>
                 <h2 className="text-center">Profile</h2>
-                <form>
+                <form className="form">
                     <div className="form-group">
                         <label>First Name:</label>
                         <input type="text" placeholder="firstname" name="firstname" defaultValue={this.state.firstname} onChange={this.onChange}/>

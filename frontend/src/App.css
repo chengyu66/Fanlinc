@@ -1,5 +1,6 @@
 .App {
   background-image: url(/Backroung_Home.jpg);
+  /* background-image: url(/Home.jpg); */
   height: 100vh;
   background-size: cover;
   background-position: center;
