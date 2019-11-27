@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Table} from 'react-bootstrap';
+import {Jumbotron, Button, Table, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
@@ -22,6 +22,7 @@ class FandomHome extends Component {
         this.ifJoin = this.ifJoin.bind(this);
         this.quitFandom = this.quitFandom.bind(this);
         this.goToPostWriting = this.goToPostWriting.bind(this);
+        this.getPosts = this.getPosts.bind(this);
         this.displayPosts = this.displayPosts.bind(this);
         this.displayEvents = this.displayEvents.bind(this);
         this.goToCreateEvent = this.goToCreateEvent.bind(this);
@@ -31,7 +32,7 @@ class FandomHome extends Component {
         const { match: { params } } = this.props;
         this.state.fandomId = params.fandomId;
         this.getFandom();
-        this.displayPosts();
+        this.getPosts();
         this.displayEvents();
         console.log(this.state);
     }
@@ -88,7 +89,7 @@ class FandomHome extends Component {
                 //console.log(query);
                 ApiService.joinFandom(query)
                 .then(res => {
-                    if (res.status == 200){
+                    if (res.status === 200){
                         this.setState({isJoin: true});
                     }
                 })
@@ -105,7 +106,7 @@ class FandomHome extends Component {
                              fandomName: this.state.data.fandomName};
             ApiService.quitFandom(query)
             .then(res => {
-                if (res.status == 200){
+                if (res.status === 200){
                     this.setState({isJoin: false});
                 }
             })
@@ -115,7 +116,7 @@ class FandomHome extends Component {
         }
     }
 
-    displayPosts(){
+    getPosts(){
         let query = {id: this.state.fandomId};
         ApiService.getAllPostByFandom(query)
             .then(res => {
@@ -128,6 +129,26 @@ class FandomHome extends Component {
             .catch(error => {
                 console.log("Fail to get Posts");
             });
+    }
+
+    displayPosts(){
+        let column = 4;
+        let cardTable = [];
+        let len = this.state.posts.length;
+        let row = Math.ceil(len / column);
+        console.log("row = " + row);
+        for (let i = 0; i < row; i++) {
+            let row = [];
+            let j = 0;
+            console.log("i = " + i);
+            while (j < column && j < (len - ( i * column))) {
+                console.log("j = " + j);
+                row.push(<td><PostCards postId={this.state.posts[(i*4)+j].postId}/></td>);
+                j++;
+            }
+            cardTable.push(<tr>{row}</tr>);
+        }
+        return cardTable;
     }
 
     displayEvents(){
@@ -153,7 +174,7 @@ class FandomHome extends Component {
     render() {
 
         if(this.state.loading) {
-            return 'Loading...'
+            return <Spinner animation="grow" />
         } 
 
         if(this.state.isJoin) {
@@ -171,11 +192,12 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <>
-                        {this.state.posts.map(item => (
-                                console.log(item),
-                                <PostCards postId={item.postId}/>
-                            ))}
+                        <Table>{this.displayPosts()}</Table>
+                        {/*<>*/}
+                        {/*{this.state.posts.map(item => (*/}
+                        {/*        console.log(item),*/}
+                        {/*        <PostCards postId={item.postId}/>*/}
+                        {/*    ))}*/}
                         
                         {/* <Table>
                             <tr>
@@ -189,10 +211,10 @@ class FandomHome extends Component {
                                     <td>{item.email}</td>
                                     <td>{item.time}</td>
                                 </tr>
-                                
+
                             ))}
                         </Table> */}
-                        </>
+                        {/*</>*/}
                     </div>
 
                     <div>
@@ -231,31 +253,15 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Posts</h2>
-                        <>
-                        {this.state.posts.map(item => (
-                                console.log(item),
-                                <PostCards postId={item.postId}/>
-                            ))}
+                        {/*{this.state.posts.map(item => (*/}
+                        {/*        console.log(item),*/}
+                        {/*        <PostCards postId={item.postId}/>*/}
+                        {/*    ))}*/}
                         
-                        {/* <Table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Author Email</th>
-                                <th>Time</th>
-                            </tr>
-                            {this.state.posts.map(item => (
-                                <tr>
-                                    <td><a href={this.props.location.pathname + "/post/" + item.postId} >{item.postTitle}</a></td>
-                                    <td>{item.email}</td>
-                                    <td>{item.time}</td>
-                                </tr>
-                                
-                            ))}
-                        </Table> */}
-                        </>
+                        <Table>{this.displayPosts()}</Table>
                     </div>
 
-                    <div >
+                    <div>
                         <h2>Events</h2>
                         <Table>
                             <tr>
