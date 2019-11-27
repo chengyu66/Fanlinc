@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
+import {Card} from 'react-bootstrap';
 
 class Footer extends Component {
   render() {
     return (
-        <footer className="fixed-bottom">
+        <Card.Footer>
               <p>Fanlinc, Copyright &copy; 2019</p>
-        </footer>
+        </Card.Footer>
     );
   }
 }

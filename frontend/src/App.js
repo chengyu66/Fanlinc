@@ -15,9 +15,9 @@ function App() {
       <div>
           <AppRouter />
       </div>
-       {/* <div>
+      <div>
           <Footer />
-       </div> */}
+      </div>
     </div>
   );
 }
