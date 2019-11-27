@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
         <Card.Footer>
-              <p>Fanlinc, Copyright &copy; 2019</p>
+          <p align="center">Fanlinc, Copyright &copy; 2019</p>
         </Card.Footer>
     );
   }

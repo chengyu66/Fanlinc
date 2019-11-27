@@ -8,16 +8,19 @@
   background-position: center;
 } */
 
-footer{
-    padding:5px;
-    margin-top:20px;
+/* .foot{
     color:#ffffff;
-    background-color:#e8491d;
+    background-color:#cac9c9;
     text-align: center;
     position: absolute;
     bottom: 0;
-    right:0;
-    left:0;
+    width: 100%;
+    height: 100;
+} */
+
+.content{
+  /* padding-bottom: 50px; */
+  min-height: 90vh;
 }
 
 .head{
