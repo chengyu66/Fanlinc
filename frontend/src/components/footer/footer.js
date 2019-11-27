@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card} from 'react-bootstrap';
+import {Card, Navbar, NavbarBrand, Container} from 'react-bootstrap';
 
 class Footer extends Component {
   render() {
