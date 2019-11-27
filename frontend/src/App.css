@@ -2,7 +2,9 @@
   background-image: url(/Backroung_Home.jpg);
   height: 100vh;
   background-size: cover;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  /* background-position: center; */
 }
 
 footer{
