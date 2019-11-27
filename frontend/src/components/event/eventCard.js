@@ -11,10 +11,10 @@ class EventCard extends Component{
         super();
         this.state = {
             eventId: '',
-            content: '',
+            description: '',
             email: '',
             fandomId: '',
-            title: '',
+            eventName: '',
             date:"",
             deadline:"",
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
@@ -45,7 +45,8 @@ class EventCard extends Component{
                         description:data.description,
                         owner:data.ownerEmail,
                         date:data.date,
-                        deadline:data.deadline
+                        deadline:data.deadline,
+                        fandomId: data.fandomId
                     });
                    console.log("Find Post");
                    console.log(this.state.loading);
@@ -69,13 +70,15 @@ class EventCard extends Component{
     render() {
         return (
             <div>
-                <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.postId}>
+                <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.eventId}>
                 <Card border={this.state.array[this.state.num]} style={{ width: '18rem' }}>
-                <Card.Header>Post</Card.Header>
+                <Card.Header>Event</Card.Header>
                     <Card.Body>
-                        <Card.Title>{this.state.title}</Card.Title>
+                        <Card.Title>{this.state.eventName}</Card.Title>
                         <Card.Text>
-                            {this.state.content}
+                            {this.state.description}
+                        </Card.Text>
+                        <Card.Text>
                             {this.state.date}
                         </Card.Text>
                     </Card.Body>

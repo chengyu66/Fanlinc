@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 
 import {Form , FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import './event.css';
 
 class Event extends Component{
 
@@ -75,7 +76,7 @@ class Event extends Component{
         return (
             <div>
                 <h2>Create Event</h2>
-                <form>
+                <form className="form">
                     <div className="form-group">
                         <label className="form-label">Event Name:</label>
                         <Input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
