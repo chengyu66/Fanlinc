@@ -1,5 +1,5 @@
 package com.fanlinc.fanlinc.Event;
-import com.fanlinc.fanlinc.exceptions.EventExistsException;
+//import com.fanlinc.fanlinc.exceptions.EventExistsException;
 import com.fanlinc.fanlinc.exceptions.EventJoinedException;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
