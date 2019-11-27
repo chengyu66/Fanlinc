@@ -4,6 +4,7 @@ import {Jumbotron, Button, Table, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
+import EventCard from "../event/eventCard";
 
 class FandomHome extends Component {
     constructor(){
@@ -24,7 +25,7 @@ class FandomHome extends Component {
         this.goToPostWriting = this.goToPostWriting.bind(this);
         this.getPosts = this.getPosts.bind(this);
         this.displayPosts = this.displayPosts.bind(this);
-        this.displayEvents = this.displayEvents.bind(this);
+        this.getEvents = this.getEvents.bind(this);
         this.goToCreateEvent = this.goToCreateEvent.bind(this);
     }
 
@@ -33,7 +34,7 @@ class FandomHome extends Component {
         this.state.fandomId = params.fandomId;
         this.getFandom();
         this.getPosts();
-        this.displayEvents();
+        this.getEvents();
         console.log(this.state);
     }
 
@@ -102,7 +103,7 @@ class FandomHome extends Component {
 
     quitFandom() {
         if (this.state.isJoin) {
-            let query = {email: Cookies.get('email'), 
+            let query = {email: Cookies.get('email'),
                              fandomName: this.state.data.fandomName};
             ApiService.quitFandom(query)
             .then(res => {
@@ -151,7 +152,7 @@ class FandomHome extends Component {
         return cardTable;
     }
 
-    displayEvents(){
+    getEvents(){
         let query = {id: this.state.fandomId};
         ApiService.getAllEventsByFandom(query)
             .then(res => {
@@ -165,6 +166,26 @@ class FandomHome extends Component {
             .catch(error => {
                 console.log("Fail to get Events");
             });
+    }
+
+    displayEvents(){
+        let column = 4;
+        let cardTable = [];
+        let len = this.state.events.length;
+        let row = Math.ceil(len / column);
+        console.log("row = " + row);
+        for (let i = 0; i < row; i++) {
+            let row = [];
+            let j = 0;
+            console.log("i = " + i);
+            while (j < column && j < (len - ( i * column))) {
+                console.log("j = " + j);
+                row.push(<td><EventCard eventId={this.state.events[(i*4)+j].eventId}/></td>);
+                j++;
+            }
+            cardTable.push(<tr>{row}</tr>);
+        }
+        return cardTable;
     }
 
     goToCreateEvent(){
@@ -219,22 +240,23 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Events</h2>
-                        <Table>
-                            <tr>
-                                <th>Title</th>
-                                <th>description</th>
-                                <th>Time</th>
-                                <th>Register Deadline</th>
-                            </tr>
-                            {this.state.events.map(item => (
-                                <tr>
-                                    <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>
-                                    <td>{item.description}</td>
-                                    <td>{item.date}</td>
-                                    <td>{item.deadline}</td>
-                                </tr>
-                            ))}
-                        </Table>
+                        <Table>{this.displayEvents()}</Table>
+                        {/*<Table>*/}
+                        {/*    <tr>*/}
+                        {/*        <th>Title</th>*/}
+                        {/*        <th>description</th>*/}
+                        {/*        <th>Time</th>*/}
+                        {/*        <th>Register Deadline</th>*/}
+                        {/*    </tr>*/}
+                        {/*    {this.state.events.map(item => (*/}
+                        {/*        <tr>*/}
+                        {/*            <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>*/}
+                        {/*            <td>{item.description}</td>*/}
+                        {/*            <td>{item.date}</td>*/}
+                        {/*            <td>{item.deadline}</td>*/}
+                        {/*        </tr>*/}
+                        {/*    ))}*/}
+                        {/*</Table>*/}
                     </div>
 
 
@@ -263,22 +285,23 @@ class FandomHome extends Component {
 
                     <div>
                         <h2>Events</h2>
-                        <Table>
-                            <tr>
-                                <th>Title</th>
-                                <th>description</th>
-                                <th>Time</th>
-                                <th>Register Deadline</th>
-                            </tr>
-                            {this.state.events.map(item => (
-                                <tr>
-                                    <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>
-                                    <td>{item.description}</td>
-                                    <td>{item.date}</td>
-                                    <td>{item.deadline}</td>
-                                </tr>
-                            ))}
-                        </Table>
+                        <Table>{this.displayEvents()}</Table>
+                        {/*<Table>*/}
+                        {/*    <tr>*/}
+                        {/*        <th>Title</th>*/}
+                        {/*        <th>description</th>*/}
+                        {/*        <th>Time</th>*/}
+                        {/*        <th>Register Deadline</th>*/}
+                        {/*    </tr>*/}
+                        {/*    {this.state.events.map(item => (*/}
+                        {/*        <tr>*/}
+                        {/*            <td><a href={this.props.location.pathname + "/event/" + item.eventId} >{item.eventName}</a></td>*/}
+                        {/*            <td>{item.description}</td>*/}
+                        {/*            <td>{item.date}</td>*/}
+                        {/*            <td>{item.deadline}</td>*/}
+                        {/*        </tr>*/}
+                        {/*    ))}*/}
+                        {/*</Table>*/}
                     </div>
                 </div>
             )

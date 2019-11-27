@@ -10,6 +10,7 @@ class EventCard extends Component{
     constructor(){
         super();
         this.state = {
+            eventId: '',
             content: '',
             email: '',
             fandomId: '',
@@ -19,7 +20,7 @@ class EventCard extends Component{
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
             status:false
         };
-        this.addEvent = this.addEvent.bind(this);
+        this.getEvent = this.getEvent.bind(this);
         this.goToFandom = this.goToFandom.bind();
     }
 
@@ -27,7 +28,7 @@ class EventCard extends Component{
         this.setState({ [e.target.name]: e.target.value });
 
     componentWillMount() {
-        this.state.postId = this.props.eventId;
+        this.state.eventId = this.props.eventId;
         this.getEvent();
         this.state.num = Math.floor(Math.random() * this.state.array.length);
     }
@@ -45,7 +46,7 @@ class EventCard extends Component{
                         owner:data.ownerEmail,
                         date:data.date,
                         deadline:data.deadline
-                    })
+                    });
                    console.log("Find Post");
                    console.log(this.state.loading);
                    console.log("States");
