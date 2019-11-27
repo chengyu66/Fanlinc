@@ -9,15 +9,15 @@ import Search from './components/searchbar/search';
 function App() {
   return (
     <div className="App">
-      <div>
+      <div className="head">
           <Header />
       </div>
       <div>
           <AppRouter />
       </div>
-       {/* <div>
+      <div>
           <Footer />
-       </div> */}
+      </div>
     </div>
   );
 }

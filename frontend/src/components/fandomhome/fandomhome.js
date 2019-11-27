@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Table, Spinner} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
 import EventCard from "../event/eventCard";
@@ -204,11 +203,9 @@ class FandomHome extends Component {
                     <Jumbotron fluid>
                         <h1>Welcome to {this.state.data.fandomName}</h1>
                         <p>Fandom ID: {this.state.data.fandomId}</p>
-                        {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
                         <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
                         <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
                         <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
-                        
                     </Jumbotron>
 
                     <div>
@@ -220,8 +217,6 @@ class FandomHome extends Component {
                         <h2>Events</h2>
                         <Table>{this.displayEvents()}</Table>
                     </div>
-
-
                 </div>
             )
         } else {
@@ -230,8 +225,6 @@ class FandomHome extends Component {
                     <Jumbotron fluid>
                         <h1>Welcome to {this.state.data.fandomName}</h1>
                         <p>Fandom ID: {this.state.data.fandomId}</p>
-                        {/* <p>Owner: {this.state.data.user[0].firstName} {this.state.data.user[0].lastName}</p> */}
-
                         <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                     </Jumbotron>
 
