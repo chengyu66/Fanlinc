@@ -50,9 +50,8 @@ class signup extends Component{
 
     render() {
         return (
-            <div>
-                <h2>Sign Up</h2>
                 <form className="form">
+                    <h2>Sign Up</h2>
                     <div className="form-group">
                         <label className="form-label">First Name:</label>
                         <Input type="text" placeholder="first name" name="firstName" className="form-control" value={this.state.firstName} onChange={this.onChange}/>
@@ -63,7 +62,7 @@ class signup extends Component{
                     </div>
                     <div className="form-group">
                         <label className="form-label">Email:</label>
-                        <Input type="email" placeholder="email" name="email" className="form-control" value={this.state.email} onChange={this.onChange}/>
+                        <Input type="email" placeholder="123@email.com" name="email" className="form-control" value={this.state.email} onChange={this.onChange}/>
                     </div>
                     <div className="form-group">
                         <label className="form-label">password:</label>
@@ -74,7 +73,7 @@ class signup extends Component{
                         <Button className="Login" onClick={this.goToLogin}>Log in</Button>
                     </div>
                 </form>
-            </div>
+
         );
     };
 }

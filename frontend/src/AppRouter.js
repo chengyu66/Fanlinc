@@ -31,7 +31,7 @@ const AppRouter = () => {
                         <Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>
                         <Route path='/fandom/:fandomId/event' exact component={Event}/>
                         <Route path='/fandom/:fandomId/event/:eventId' component={EventHome}/>
-                        <Route path='/search' exact component={Home}/>
+                        {/* <Route path='/search/' exact component={Home}/> */}
                         <Route path='/search/:query' component={Search}/>
                         <Route path="/*" component={NotFound}/>
                     </Switch>

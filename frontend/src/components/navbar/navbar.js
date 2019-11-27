@@ -14,7 +14,7 @@ class Mynavbar extends Component {
             this.state = {
                 username: 'Sign in',
                 link:'/Login',
-                query: "",
+                query: "Default",
                 form: "",
                 items:[]
             };

@@ -26,30 +26,36 @@ class Post extends Component{
 
     addPost = (e) => {
         e.preventDefault();
-        let user = {
-            content: this.state.content,
-            fandomId: this.state.fandomId,
-            email: this.state.email,
-            title: this.state.title
-        };
-        console.log(user);
-        ApiService.createPost(user)
-            .then(res => {
-                console.log("Success");
-                let data = res.data;
-                console.log(data.id);
-                this.state.status = true;
-                this.props.history.push(`/fandom/`+this.state.fandomId);
+        if (!this.state.email){
+            alert("Please log in first")
+            this.props.history.push('/Login');
+        }
+        else{
+            let user = {
+                content: this.state.content,
+                fandomId: this.state.fandomId,
+                email: this.state.email,
+                title: this.state.title
+            };
+            console.log(user);
+            ApiService.createPost(user)
+                .then(res => {
+                    console.log("Success");
+                    let data = res.data;
+                    console.log(data.id);
+                    this.state.status = true;
+                    this.props.history.push(`/fandom/`+this.state.fandomId);
 
-            })
-            .catch(error => {
-                console.log("Fail");
-            });
+                })
+                .catch(error => {
+                    console.log("Fail");
+                });
+        }
     };
 
     componentWillMount() {
         const { match: { params } } = this.props;
-        this.email = Cookies.get('email');
+        this.state.email = Cookies.get('email');
         this.state.fandomId = params.fandomId;
     }
 
@@ -59,9 +65,8 @@ class Post extends Component{
 
     render() {
         return (
-            <div>
-                <h2>Create Post</h2>
                 <form className="form">
+                <h2>Create Post</h2>
                     <div className="form-group">
                         <label className="form-label">Title:</label>
                         <Input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
@@ -75,7 +80,6 @@ class Post extends Component{
                         <Button className="Cancel" onClick={this.goToFandom}>Cancel</Button>
                     </div>
                 </form>
-            </div>
         );
     };
 }

@@ -30,36 +30,42 @@ class Event extends Component{
 
     addEvent = (e) => {
         e.preventDefault();
-        let user = {
-            description: this.state.content,
-            fandomId: this.state.fandomId,
-            ownerEmail: this.state.email,
-            eventName: this.state.title,
-            date: this.state.date,
-            deadline: this.state.date
-        };
-        console.log(user);
-        ApiService.createEvent(user)
-            .then(res => {
-                console.log("Success");
-                let data = res.data;
-                if (data){
+        if (!this.state.email){
+            alert("Please log in first")
+            this.props.history.push('/Login');
+        }
+        else{
+            let user = {
+                description: this.state.content,
+                fandomId: this.state.fandomId,
+                ownerEmail: this.state.email,
+                eventName: this.state.title,
+                date: this.state.date,
+                deadline: this.state.date
+            };
+            console.log(user);
+            ApiService.createEvent(user)
+                .then(res => {
                     console.log("Success");
                     let data = res.data;
-                    console.log(data);
-                    console.log("yes");
-                    this.state.status = true;
-                    alert("You have succesfully created the event");
-                    this.props.history.push(`/fandom/`+this.state.fandomId);
-                }
-                else{
-                    alert("No event");
-                }
-            })
-            .catch(error => {
-                alert("Somethong wrong event")
-                console.log("Fail");
-            });
+                    if (data){
+                        console.log("Success");
+                        let data = res.data;
+                        console.log(data);
+                        console.log("yes");
+                        this.state.status = true;
+                        alert("You have succesfully created the event");
+                        this.props.history.push(`/fandom/`+this.state.fandomId);
+                    }
+                    else{
+                        alert("No event");
+                    }
+                })
+                .catch(error => {
+                    alert("Somethong wrong event")
+                    console.log("Fail");
+                });
+            }
     };
 
     componentWillMount() {
@@ -74,9 +80,8 @@ class Event extends Component{
 
     render() {
         return (
-            <div>
-                <h2>Create Event</h2>
                 <form className="form">
+                <h2>Create Event</h2>
                     <div className="form-group">
                         <label className="form-label">Event Name:</label>
                         <Input type="text" placeholder="title" name="title" className="form-control" value={this.state.title} onChange={this.onChange}/>
@@ -98,7 +103,6 @@ class Event extends Component{
                         <Button className="Cancel" onClick={this.goToFandom}>Cancel</Button>
                     </div>
                 </form>
-            </div>
         );
     };
 }

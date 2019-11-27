@@ -10,7 +10,7 @@ class home extends Component{
             <Carousel>
                 <Carousel.Item>
                 <img
-                    src="./home2.jpg"
+                    src="./home1.webp"
                     alt="First slide"
                 />
                 <Carousel.Caption>
