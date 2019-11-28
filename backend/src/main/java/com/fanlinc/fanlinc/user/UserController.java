@@ -35,7 +35,7 @@ public class UserController {
         User user = service.findByEmail(email);
         Long uid = user.getId();
         String fileName = fileStorageService.storeFile(file,uid);
-        user.setProfile_pic(fileName+uid.toString());
+        user.setProfile_pic(fileName);
         return service.save(user);
     }
 
