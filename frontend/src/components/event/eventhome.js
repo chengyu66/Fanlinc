@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Alert} from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import  {Redirect} from 'react-router-dom';
 
@@ -16,8 +15,10 @@ class PostHome extends Component {
             deadline:"",
             email:"",
             eventId:"",
-            loading: true
-            
+            loading: true,
+            lat: 0,
+            lng: 0,
+            address: ''
         };
         this.getEvent = this.getEvent.bind(this);
         this.join = this.join.bind(this);
@@ -45,8 +46,11 @@ class PostHome extends Component {
                         description:data.description,
                         owner:data.ownerEmail,
                         date:data.date,
-                        deadline:data.deadline
-                    })
+                        deadline:data.deadline,
+                        lng: data.longitude,
+                        lat: data.latitude,
+                        address: data.address
+                    });
                    console.log("Find Post");
                    console.log(this.state.loading);
                    console.log("States");
