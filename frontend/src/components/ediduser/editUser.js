@@ -14,6 +14,7 @@ class edidUser extends Component{
          email: '',
          age: '',
          file:null,
+         path: "",
          loading: true
         };
         this.loadUser = this.loadUser.bind(this);
@@ -21,11 +22,35 @@ class edidUser extends Component{
         this.onChange = this.onChange.bind(this);
         this.logout = this .logout.bind(this);
         this.upload = this.upload.bind(this);
+        this.loadImage = this.loadImage.bind(this);
     }
 
      componentDidMount() {
          this.loadUser();
      }
+
+     loadImage() {
+        let param = {email:this.state.email};
+        ApiService.getImage(param)
+        .then((res) => {
+            console.log("Good");
+            let data = res.data;
+            if (data){
+                this.setState({
+                    path:data.path 
+                })
+                console.log("Good end");
+                console.log(this.state);
+            }
+            else{
+                this.props.history.push('/');
+            }
+        })
+        .catch(err=>{
+            console.log("Error");
+            console.log(err);
+        });
+    }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
@@ -87,6 +112,7 @@ class edidUser extends Component{
     upload = ()=> {
         const fd = new FormData();
         fd.append('file', this.state.file);
+        fd.append('email', this.state.email);
         console.log(this.state.file);
         console.log(fd);
         ApiService.uploadImage(fd)
@@ -106,6 +132,7 @@ class edidUser extends Component{
 
     filechange = event =>{
         this.setState({file:event.target.files[0]})
+        console.log(event)
     }
     render() {
         if (this.state.loading){
@@ -115,9 +142,14 @@ class edidUser extends Component{
             <div>
              <h2 className="text-center">Profile</h2>
                 <div className="image">
-                        <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange}/>
-                        <button className="save" onClick={() => this.fileiInput.click()}>New Avatar</button>
-                        <button className="save" onClick={this.upload}>Change</button>
+                        <div>
+                            <img src={this.state.path} alt="Avatar"></img>
+                        </div>
+                        <div>
+                            <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange} accept="image/*"/>
+                            <button className="save" onClick={() => this.fileiInput.click()}>New Avatar</button>
+                            <button className="save" onClick={this.upload}>Change</button>
+                        </div>
                 </div>
                 <form className="form">
                     <div className="form-group">
