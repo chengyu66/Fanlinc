@@ -1,15 +1,21 @@
 package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.exceptions.EmailExistsException;
+import com.fanlinc.fanlinc.property.FileStorageProperties;
+import com.fanlinc.fanlinc.exceptions.MyFileNotFoundException;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.net.MalformedURLException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -22,10 +28,15 @@ public class UserController {
     private final FandomService fservice;
     @Autowired
     private FileStorageService fileStorageService;
+    private final Path fileStorageLocation;
 
-    public UserController(UserService service, FandomService fservice) {
+    public UserController(UserService service,
+                          FandomService fservice,
+                          FileStorageProperties fileStorageProperties) {
         this.service = service;
         this.fservice = fservice;
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                .toAbsolutePath().normalize();
     }
 
 
@@ -40,9 +51,20 @@ public class UserController {
     }
 
     @GetMapping("/downloadFile")
-    public String downloadFile(@RequestParam("email") String email){
+    public Resource downloadFile(@RequestParam("email") String email){
         User user = service.findByEmail(email);
-        return user.getProfile_pic();
+        String fileName = user.getProfile_pic();
+        try {
+            Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
+            Resource resource = new UrlResource(filePath.toUri());
+            if(resource.exists()) {
+                return resource;
+            } else {
+                throw new MyFileNotFoundException("File not found " + fileName);
+            }
+        } catch (MalformedURLException ex) {
+            throw new MyFileNotFoundException("File not found " + fileName, ex);
+        }
     }
 
     @CrossOrigin(origins = "*")
