@@ -36,6 +36,14 @@ public class Event {
 
     @JsonProperty("fandomId")
     private Long fandomId;
+    // longitutede latitude, address
+    @JsonProperty("longitude")
+    private double longitude;
+    @JsonProperty("latitude")
+    private double latitude;
+    @JsonProperty("address")
+    private String address;
+
 
     // participants(users and events)
     @JsonIgnore
@@ -57,13 +65,16 @@ public class Event {
     private Fandom fandom;
 
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
+    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId, double longitude, double latitude, String address) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
         this.ownerEmail = ownerEmail;
         this.eventName = eventName;
         this.fandomId = fandomId;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.address = address;
     }
     public Event(){
     }
