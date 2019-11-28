@@ -174,6 +174,14 @@ class ApiService {
             });
     }
 
+    uploadImage(query){
+        return axios.post(URL + '/files/uploadFile',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+    }
+
 }
 
 export default new ApiService();
