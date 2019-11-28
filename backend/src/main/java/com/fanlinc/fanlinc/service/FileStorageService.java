@@ -1,5 +1,6 @@
 package com.fanlinc.fanlinc.service;
 
+import com.amazonaws.services.s3.AmazonS3;
 import com.fanlinc.fanlinc.exceptions.FileStorageException;
 import com.fanlinc.fanlinc.exceptions.MyFileNotFoundException;
 import com.fanlinc.fanlinc.property.FileStorageProperties;
@@ -22,6 +23,9 @@ public class FileStorageService {
 
     private final Path fileStorageLocation;
 
+//    @Autowired
+//    private AmazonS3 amazonS3Client;
+
     @Autowired
     public FileStorageService(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
@@ -34,9 +38,9 @@ public class FileStorageService {
         }
     }
 
-    public String storeFile(MultipartFile file) {
+    public String storeFile(MultipartFile file, Long uid) {
         // Normalize file name
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        String fileName = "id:"+uid.toString()+"+"+StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
             // Check if the file's name contains invalid characters
@@ -48,7 +52,7 @@ public class FileStorageService {
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
-            return fileName;
+            return targetLocation.toString();
         } catch (IOException ex) {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
