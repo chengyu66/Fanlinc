@@ -36,7 +36,6 @@ public class EventController {
         // find the owner
         String ownerEmail = newEvent.getOwnerEmail();
         User owner = uservice.findByEmail(ownerEmail);
-
         Fandom fandom = fservice.findByFandomId(newEvent.getFandom_id());
         newEvent.setFandom(fandom);
 //         add the owner to the event
