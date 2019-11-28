@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
+import {Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import "./editUser.css";
 
@@ -12,12 +13,14 @@ class edidUser extends Component{
          password: '',
          email: '',
          age: '',
+         file:null,
          loading: true
         };
         this.loadUser = this.loadUser.bind(this);
         this.saveUser = this.saveUser.bind(this);
         this.onChange = this.onChange.bind(this);
         this.logout = this .logout.bind(this);
+        this.upload = this.upload.bind(this);
     }
 
      componentDidMount() {
@@ -80,13 +83,42 @@ class edidUser extends Component{
                 console.log("Error");
              });
     }
+
+    upload = ()=> {
+        const fd = new FormData();
+        fd.append('file', this.state.file);
+        console.log(this.state.file);
+        console.log(fd);
+        ApiService.uploadImage(fd)
+        .then(res => {
+            if(res.data){
+               alert("Successfully updated")
+               window.location.reload();
+               Cookies.set('username', this.state.firstname)
+            }
+            this.props.history.push('/');
+        })
+        .catch(err => {
+           console.log("Error");
+        });
+    }
+    
+
+    filechange = event =>{
+        this.setState({file:event.target.files[0]})
+    }
     render() {
         if (this.state.loading){
-            return 'Loading...'
+                return <Spinner animation="grow"/>
         }
         return (
             <div>
-                <h2 className="text-center">Profile</h2>
+             <h2 className="text-center">Profile</h2>
+                <div className="image">
+                        <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange}/>
+                        <button className="save" onClick={() => this.fileiInput.click()}>New Avatar</button>
+                        <button className="save" onClick={this.upload}>Change</button>
+                </div>
                 <form className="form">
                     <div className="form-group">
                         <label>First Name:</label>
@@ -109,7 +141,6 @@ class edidUser extends Component{
                     </div>
 
                     <button className="save" onClick={this.saveUser}>Save</button>
-
                     <button className="logout" onClick={this.logout}>Log out</button>
                 </form>
             </div>

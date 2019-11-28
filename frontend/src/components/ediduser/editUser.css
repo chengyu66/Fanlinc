@@ -15,25 +15,6 @@ h2{
     display: table;
 }
 
-
-/* .form-group form {
-
-    padding-bottom: 20px;
-    display: table-row;
-    width: 100%;
-    align-items: start;
-}
-
-.form-label form {
-    float: left;
-    display: table-cell;
-}
-
-.form-control form {
-    display: table-cell;
-    text-align: left;
-} */
-
 .button-div form {
     display: table-row;
 }
@@ -42,4 +23,8 @@ Button form {
     display: table-cell;
     padding: 20px;
     margin: 10px;
+}
+
+.image{
+    text-align: center;
 }
