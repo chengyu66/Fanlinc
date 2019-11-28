@@ -2,15 +2,14 @@ package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.exceptions.EmailExistsException;
 import com.fanlinc.fanlinc.fandom.FandomService;
-import com.fanlinc.fanlinc.payload.UploadFileResponse;
 import com.fanlinc.fanlinc.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.nio.file.Path;
 import java.util.List;
 
 
@@ -33,11 +32,17 @@ public class UserController {
     @PostMapping("/uploadFile")
     public User uploadFile(@RequestParam("file") MultipartFile file,
                                          @RequestParam("email") String email) {
-        String fileName = fileStorageService.storeFile(file);
         User user = service.findByEmail(email);
         Long uid = user.getId();
-        user.setProfile_pic(uid.toString()+fileName);
+        String fileName = fileStorageService.storeFile(file,uid);
+        user.setProfile_pic(fileName);
         return service.save(user);
+    }
+
+    @GetMapping("/downloadFile")
+    public String downloadFile(@RequestParam("email") String email){
+        User user = service.findByEmail(email);
+        return user.getProfile_pic();
     }
 
     @CrossOrigin(origins = "*")
