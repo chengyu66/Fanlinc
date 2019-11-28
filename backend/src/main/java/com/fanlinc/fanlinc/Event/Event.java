@@ -64,6 +64,18 @@ public class Event {
     @JsonIgnore
     private Fandom fandom;
 
+    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
+        this.deadline = deadline;
+        this.date = date;
+        this.description = description;
+        this.ownerEmail = ownerEmail;
+        this.eventName = eventName;
+        this.fandomId = fandomId;
+        this.setLongitude(-79.5181442);
+        this.setLatitude(43.7184038);
+        this.setAddress("1265 Military Trail, Scarborough, ON M1C 1A4");
+    }
+
 
     public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId, double longitude, double latitude, String address) {
         this.deadline = deadline;
@@ -125,5 +137,17 @@ public class Event {
 
     public void setParticipants(User newUser) {this.participants.add(newUser); }
     public void removeUser(User user) {this.participants.remove(user); }
+
+    public void setLongitude(double longitude){
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude){
+        this.latitude = latitude;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
 
 }
