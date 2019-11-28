@@ -33,6 +33,9 @@ public class User {
     @JsonProperty("password")
     private String password;
 
+    @JsonProperty("profile_pic")
+    private String profile_pic = "default_profile_pic.png";
+
     String description;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -75,12 +78,13 @@ public class User {
     private Set<Event> events = new HashSet<>();
 
 
-    public User(String firstName, String lastName, String email, String password, String description) {
+    public User(String firstName, String lastName, String email, String password, String description, String profile_pic) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.email = email;
         this.password = password;
+        this.profile_pic = profile_pic;
     }
 
     public User() {}
@@ -157,5 +161,12 @@ public class User {
     }
     public void removeLiked(Post post) {
         likedPost.remove(post);
+    }
+
+    public void setProfile_pic(String profile_pic){
+        this.profile_pic = profile_pic;
+    }
+    public String getProfile_pic(){
+        return profile_pic;
     }
 }
