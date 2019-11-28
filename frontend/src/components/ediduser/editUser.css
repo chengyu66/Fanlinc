@@ -28,3 +28,11 @@ Button form {
 .image{
     text-align: center;
 }
+
+img{
+    border-radius: 25%;
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border: 1px solid #ddd;
+}

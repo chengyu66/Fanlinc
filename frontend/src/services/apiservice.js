@@ -182,6 +182,14 @@ class ApiService {
             });
     }
 
+    getImage(query){
+        return axios.get(URL + '/files/findByEventId',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+    }
+
 }
 
 export default new ApiService();
