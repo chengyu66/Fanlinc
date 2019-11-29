@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface fandomUserRepository extends CrudRepository<FandomUser, Long>{
     FandomUser findByFandomFandomIdAndUserId(Long fid, Long uid);
+    List<FandomUser> findByUserId(Long uid);
 }

@@ -1,10 +1,14 @@
 package com.fanlinc.fanlinc.fandomUser;
 
+import com.fanlinc.fanlinc.exceptions.FandomExistsException;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.Map;
 
@@ -20,6 +24,22 @@ public class fandomUserController {
         this.fuservice = fuservice;
         this.uservice = uservice;
         this.fservice = fservice;
+    }
+
+    @PostMapping(path="/createFandom") // Map ONLY POST Requests
+    public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
+        String email = values.get("email");
+        String fandomName = values.get("fandomName");
+        String level = values.get("level");
+        if (fservice.findByFandomName(fandomName) != null) {
+            throw new FandomExistsException(fandomName);
+        }
+        User user = uservice.findByEmail(email);
+        Fandom fandom = fservice.findByFandomName(fandomName);
+        FandomUser fu = new FandomUser(user, fandom, level);
+        fandom.setFandomUsers(fu);
+        user.setFandomUsers (fu);
+        return fuservice.save(fu);
     }
 
     @CrossOrigin(origins = "*")
@@ -103,5 +123,20 @@ public class fandomUserController {
         }else{
             return true;
         }
+    }
+
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findFandomInUser") // Find if this user is in fandom
+    @ResponseBody
+    public List<Fandom> findFandomsByUsers (@RequestParam Long userId) {
+
+        List<Fandom> fandoms = new ArrayList<>();
+        //Fandom fandom = findFandomById(fandomId);
+        List<FandomUser> fus = fuservice.findListOfFandomsByUserId(userId);
+        //
+        for (FandomUser elem: fus){
+            fandoms.add(elem.getFandom());
+        }
+        return fandoms;
     }
 }
