@@ -41,14 +41,14 @@
     font-weight: 400;
     line-height: 1.778;
     margin-left: 0;
-    color: rgb(0, 0, 0);
+    color: white;
 }
 
 .buttons{
     display: flex;
     justify-content: space-between;
-    margin-left: 750px;
-    margin-right: 750px;
+    margin-left: 40%;
+    margin-right: 40%;
     padding: 50px;
 }
 
