@@ -26,9 +26,11 @@ Button form {
 }
 
 .image-div {
+    display: flex;
     margin: auto;
     width: 180px;
     height: 180px;
+    overflow: hidden;
 }
 
 .load{

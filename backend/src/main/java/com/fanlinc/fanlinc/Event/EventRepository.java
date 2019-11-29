@@ -7,5 +7,5 @@ import java.util.List;
 public interface EventRepository extends CrudRepository<Event, Long> {
     Event findByEventId(Long id);
     Event findByEventName(String eventName);
-    List<Event> findByFandomId(Long id);
+    List<Event> findByFandomIdOrderByDateDesc(Long id);
 }
