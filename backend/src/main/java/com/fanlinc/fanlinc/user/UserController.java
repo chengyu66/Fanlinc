@@ -33,15 +33,11 @@ public class UserController {
     private final FandomService fservice;
     @Autowired
     private FileStorageService fileStorageService;
-    private final Path fileStorageLocation;
 
     public UserController(UserService service,
-                          FandomService fservice,
-                          FileStorageProperties fileStorageProperties) {
+                          FandomService fservice) {
         this.service = service;
         this.fservice = fservice;
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
-                .toAbsolutePath().normalize();
     }
 
 
@@ -50,38 +46,42 @@ public class UserController {
                                          @RequestParam("email") String email) {
         User user = service.findByEmail(email);
         Long uid = user.getId();
-        String fileName = fileStorageService.storeFile(file,uid);
-        user.setProfile_pic(fileName);
+        String url = fileStorageService.storeFile(file,uid);
+        user.setProfile_pic(url);
         return service.save(user);
     }
 
     @GetMapping("/downloadFile")
-    public ResponseEntity<Resource> downloadFile(@RequestParam("email") String email,
-                                                 HttpServletRequest request){
+    public byte[] downloadFile(@RequestParam("email") String email){
         User user = service.findByEmail(email);
         String fileName = user.getProfile_pic();
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return  ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
-
+        System.out.println(fileName);
+        return fileStorageService.downloadFile(fileName);
     }
+//        User user = service.findByEmail(email);
+//        String fileName = user.getProfile_pic();
+//        // Load file as Resource
+//        Resource resource = fileStorageService.loadFileAsResource(fileName);
+//
+//        // Try to determine file's content type
+//        String contentType = null;
+//        try {
+//            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//        } catch (IOException ex) {
+//            logger.info("Could not determine file type.");
+//        }
+//
+//        // Fallback to the default content type if type could not be determined
+//        if(contentType == null) {
+//            contentType = "application/octet-stream";
+//        }
+//
+//        return  ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(contentType))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//                .body(resource);
+//
+//    }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addUser") // Map ONLY POST Requests
