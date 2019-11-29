@@ -14,6 +14,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -48,8 +49,9 @@ public class UserController {
                                          @RequestParam("email") String email) {
         User user = service.findByEmail(email);
         Long uid = user.getId();
-        String url = fileStorageService.storeFile(file,uid);
-        user.setProfile_pic(url);
+        String fileName = "id" + uid.toString() + "_profile_picture";
+        fileStorageService.storeFile(file,fileName);
+        user.setProfile_pic(fileName);
         return service.save(user);
     }
 

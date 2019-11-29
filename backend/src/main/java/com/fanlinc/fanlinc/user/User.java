@@ -34,7 +34,7 @@ public class User {
     private String password;
 
     @JsonProperty("profile_pic")
-    private String profile_pic = "default_profile_pic.png";
+    private String profile_pic = "default_profile_picture";
 
     String description;
 
