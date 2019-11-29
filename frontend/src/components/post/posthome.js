@@ -3,6 +3,7 @@ import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
+import './posthome.css';
 import  {Redirect} from 'react-router-dom';
 
 class PostHome extends Component {
@@ -118,32 +119,34 @@ class PostHome extends Component {
         } 
 
         return(
-            <div className="form-group">
-                <div className="form-group">
+            <div className="body">
+                <div className="title">
                     {this.state.title}
                 </div>
-                <div className="form-group">
+                <div className="date">
                     {this.state.date}
                 </div>
-                <div className="form-group">
+                <div className="txt">
                     {this.state.content}
                 </div>
-                <div className="form-group">
-                        <label className="form-label">Commnet:</label>
-                        <textarea placeholder = "Enter your Comment here" name="comment" className="form-control" defaultValue={this.state.comment} onChange={this.onChange}></textarea>   
-                        <div className="button-div">
-                            <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
-                        </div>      
-                </div>
-                        <table>
-                            {this.state.comments.map(item => (
-                                <tr>
-                                    <td>{item.email}</td>
-                                    <td>: </td>
-                                    <td>{item.content}</td>
-                                </tr>
-                            ))}
-                        </table>
+                <div className="commentBody">
+                    <div id="comment" className="form-group">
+                            <label>Commnet:</label>
+                            <textarea placeholder = "Enter your Comment here" name="comment" className="form-control" defaultValue={this.state.comment} onChange={this.onChange}></textarea>   
+                            <div className="button-div">
+                                <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
+                            </div>      
+                    </div>
+                            <table>
+                                {this.state.comments.map(item => (
+                                    <tr>
+                                        <td>{item.email}</td>
+                                        <td>: </td>
+                                        <td>{item.content}</td>
+                                    </tr>
+                                ))}
+                            </table>
+                 </div>
             </div>
         )          
     }
