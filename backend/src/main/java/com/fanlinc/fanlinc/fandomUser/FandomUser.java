@@ -45,4 +45,6 @@ public class FandomUser {
 
     public void setLevel(String level){this.level = level;}
 
+    public Fandom getFandom(){return fandom;}
+
 }
