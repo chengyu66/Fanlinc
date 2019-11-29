@@ -22,7 +22,6 @@ public class Fandom {
     @JsonProperty("fandomName")
     private String fandomName;
 
-
     @JsonProperty("ownerEmail")
     private String ownerEmail;
 
@@ -45,17 +44,17 @@ public class Fandom {
     private Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "fandom", cascade = CascadeType.ALL)
-    private Set<FandomUser> fandomUsers = new HashSet<>();
+    private Set<FandomUser> fandomuser = new HashSet<>();
 
     public void setFandomUsers (FandomUser newFu){
-        this.fandomUsers.add(newFu);
-        this.number = fandomUsers.size();
+        this.fandomuser.add(newFu);
+        this.number = fandomuser.size();
     }
-    public Set<FandomUser> getFandomUsers() { return this.fandomUsers; }
+    public Set<FandomUser> getFandomUser() { return this.fandomuser; }
 
     public void removeFandomUser(FandomUser fu) {
-        this.fandomUsers.remove(fu);
-        this.number = fandomUsers.size();
+        this.fandomuser.remove(fu);
+        this.number = fandomuser.size();
     }
 
     public Fandom(String fandomName, String ownerEmail, String fandom_pic) {
