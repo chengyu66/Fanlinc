@@ -1,16 +1,26 @@
 package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.exceptions.EmailExistsException;
+import com.fanlinc.fanlinc.property.FileStorageProperties;
+import com.fanlinc.fanlinc.exceptions.MyFileNotFoundException;
 import com.fanlinc.fanlinc.fandom.FandomService;
-import com.fanlinc.fanlinc.payload.UploadFileResponse;
 import com.fanlinc.fanlinc.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -23,21 +33,54 @@ public class UserController {
     private final FandomService fservice;
     @Autowired
     private FileStorageService fileStorageService;
+    private final Path fileStorageLocation;
 
-    public UserController(UserService service, FandomService fservice) {
+    public UserController(UserService service,
+                          FandomService fservice,
+                          FileStorageProperties fileStorageProperties) {
         this.service = service;
         this.fservice = fservice;
+        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+                .toAbsolutePath().normalize();
     }
 
 
     @PostMapping("/uploadFile")
     public User uploadFile(@RequestParam("file") MultipartFile file,
                                          @RequestParam("email") String email) {
-        String fileName = fileStorageService.storeFile(file);
         User user = service.findByEmail(email);
         Long uid = user.getId();
-        user.setProfile_pic(uid.toString()+fileName);
+        String fileName = fileStorageService.storeFile(file,uid);
+        user.setProfile_pic(fileName);
         return service.save(user);
+    }
+
+    @GetMapping("/downloadFile")
+    public ResponseEntity<Resource> downloadFile(@RequestParam("email") String email,
+                                                 HttpServletRequest request){
+        User user = service.findByEmail(email);
+        String fileName = user.getProfile_pic();
+        // Load file as Resource
+        Resource resource = fileStorageService.loadFileAsResource(fileName);
+
+        // Try to determine file's content type
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            logger.info("Could not determine file type.");
+        }
+
+        // Fallback to the default content type if type could not be determined
+        if(contentType == null) {
+            contentType = "application/octet-stream";
+        }
+
+        return  ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+
     }
 
     @CrossOrigin(origins = "*")
