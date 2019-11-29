@@ -8,6 +8,7 @@ import com.fanlinc.fanlinc.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -52,11 +54,16 @@ public class UserController {
     }
 
     @GetMapping("/downloadFile")
-    public byte[] downloadFile(@RequestParam("email") String email){
+    public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam("email") String email){
         User user = service.findByEmail(email);
         String fileName = user.getProfile_pic();
         System.out.println(fileName);
-        return fileStorageService.downloadFile(fileName);
+        byte[] data = Base64.getEncoder().encodeToString(fileStorageService.downloadFile(fileName)).getBytes();
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + fileName + "\"")
+                .contentLength(data.length)
+                .body(new ByteArrayResource(data));
     }
 //        User user = service.findByEmail(email);
 //        String fileName = user.getProfile_pic();
