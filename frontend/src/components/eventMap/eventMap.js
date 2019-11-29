@@ -22,6 +22,7 @@ class EventMap extends Component {
             eventName: '',
             date:"",
             deadline:"",
+            placeId: '',
             lat: 0,
             lng: 0,
             address: '',
@@ -30,6 +31,7 @@ class EventMap extends Component {
         };
 
         this.getEvent = this.getEvent.bind(this);
+        this.goToGoogleMap = this.goToGoogleMap.bind(this);
     }
 
     componentDidMount() {
@@ -56,7 +58,8 @@ class EventMap extends Component {
                         fandomId: data.fandomId,
                         lng: data.longitude,
                         lat: data.latitude,
-                        address: data.address
+                        address: data.address,
+                        placeId: data.placeId
                     });
                     console.log("Loading event");
                     console.log(this.state);
@@ -85,6 +88,12 @@ class EventMap extends Component {
         }
     };
 
+    goToGoogleMap() {
+        let linkToMap = "https://www.google.com/maps/search/?api=1&query="
+            + this.state.lat + "," + this.state.lng +"&query_place_id=" + this.state.placeId;
+        return <a href={linkToMap} target='_blank'>{this.state.address}</a>;
+    }
+
     render() {
         if(this.state.loading) {
             return (<Spinner animation="grow" />);
@@ -111,7 +120,7 @@ class EventMap extends Component {
                             <Card.Body>
                                 <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.eventId}><Card.Title>{this.state.eventName}</Card.Title></a>
                                 <Card.Text>
-                                    Address: {this.state.address}
+                                    Address: {this.goToGoogleMap()}
                                 </Card.Text>
                                 <Card.Text>
                                     {this.state.date}
