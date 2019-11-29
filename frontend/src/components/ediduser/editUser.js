@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
-import {Spinner, Image} from 'react-bootstrap';
+import {Spinner, Image, Figure} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import "./editUser.css";
 import { encode } from 'punycode';
@@ -155,8 +155,19 @@ class edidUser extends Component{
             <div>
              <h2 className="text-center">Profile</h2>
                 <div className="load">
-                        <div>
-                            <img src={this.state.path} className="rounded float-right"/>
+                        <div className='image-div'>
+                            <Figure.Image
+                                width={180}
+                                height={180}
+                                alt="180x180"
+                                src={this.state.path}
+                                style={{
+                                    max_width: '100%',
+                                    max_height: '100%'
+                                }}
+                                roundedCircle
+                            />
+                            {/*<Image src={this.state.path} roundedCircle />*/}
                         </div>
                         <div>
                             <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange} accept="image/*"/>

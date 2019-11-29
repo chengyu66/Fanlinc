@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.fanlinc.fanlinc.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,5 +113,29 @@ public class PostController {
     public void deleteByPostId(@RequestParam Long id) {
     	pservice.deleteByPostId(id);
     }
-	
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/userLike") // Map ONLY POST Requests
+    @ResponseBody
+    public int userLike (@RequestBody Map<String, String> values) {
+        //System.out.println(postID);
+        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        //System.out.println(post);
+        User user = service.findByEmail(values.get("email"));
+        //System.out.println(user);
+        post.setLike(user);
+        user.setLiked(post);
+        pservice.save(post);
+        return post.getLikeNum();
+    }
+
+//    @CrossOrigin(origins ="*")
+//    @GetMapping(path="/isUserLiked") // Map ONLY GET Requests
+//    @ResponseBody
+//    public boolean isUserLike (@RequestParam Long postID, @RequestParam Long userID) {
+//        // @ResponseBody means the returned String is the response, not a view name
+//        // @RequestParam means it is a parameter from the GET or POST request
+//        Post post = pservice.findByPostId(postID);
+//        return post.isUserLike(userID);
+//    }
 }
