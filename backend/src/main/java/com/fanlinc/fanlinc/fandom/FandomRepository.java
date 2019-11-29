@@ -10,8 +10,7 @@ import java.util.List;
 public interface FandomRepository extends CrudRepository<Fandom, Long> {
     Fandom findByFandomName(String fandomId);
     Fandom findByFandomId(Long id);
-
 //    @Query("SELECT fandom_id, fandom_name FROM fandoms")
 //    List<Fandom> findSimilarFandomByName(String fandomName);
-    List<Fandom> findByFandomNameContaining(String fandomName);
+    List<Fandom> findByFandomNameContainingOrderByNumberDesc(String fandomName);
 }
