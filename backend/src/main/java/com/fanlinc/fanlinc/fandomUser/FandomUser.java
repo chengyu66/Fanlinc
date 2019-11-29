@@ -21,7 +21,6 @@ public class FandomUser {
     // additional fields
     private String level;
 //
-//
 //    public void setId(long id) {
 //        this.id = id;
 //    }
@@ -46,11 +45,4 @@ public class FandomUser {
 
     public void setLevel(String level){this.level = level;}
 
-//    public Long getId(){
-//        return this.id;
-//    }
-
-//    public User getUser(){
-////        return user;
-////    }
 }
