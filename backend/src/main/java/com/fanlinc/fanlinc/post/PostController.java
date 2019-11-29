@@ -3,6 +3,7 @@ package com.fanlinc.fanlinc.post;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -37,15 +38,17 @@ public class PostController {
     }
     
     @CrossOrigin(origins = "*")
-    @PutMapping(path = "/edit") // Map ONLY PUT Requests
+    @PostMapping(path = "/edit") // Map ONLY PUT Requests
     @ResponseBody
-    public void edit (@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
+    public void edit (@RequestBody Map<String, String> values) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
+        String title = values.get("title");
+        String content = values.get("content");
+        Long id = Long.parseLong(values.get("id"));
         Post post = pservice.findByPostId(id);
         post.setPostTitle(title);
         post.setContent(content);
-        
         pservice.save(post);
     }
     
