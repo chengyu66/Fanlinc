@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
 import {Jumbotron, Button, Alert} from 'react-bootstrap';
 import Cookies from 'js-cookie';
+import './eventhome.css';
 import  {Redirect} from 'react-router-dom';
 
 class PostHome extends Component {
@@ -112,20 +113,20 @@ class PostHome extends Component {
         } 
 
         return(
-            <div className="form-group">
-                <div className="form-group">
+            <div className="body">
+                <div className="name">
                     {this.state.eventName}
                 </div>
-                <div className="form-group">
+                <div className="date">
                     {this.state.date}
                 </div>
-                <div className="form-group">
+                <div className="description">
                     {this.state.description}
                 </div>
-                <p><Button  variant="primary" onClick={this.goToEventMap}>Location Info</Button></p>
-                <div className="form-group">
+                <div className="buttons">
+                    <p><button  classname="location" variant="primary" onClick={this.goToEventMap}>Location Info</button></p>
                         <div className="button-div">
-                            <Button className="Join" onClick={this.join}>Join</Button>
+                            <button className="join" onClick={this.join}>Join</button>
                         </div>      
                 </div>
             </div>

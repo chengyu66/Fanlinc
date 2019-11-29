@@ -8,12 +8,17 @@
     margin-bottom: 0.6rem;
 }
 
+/* .post {
+    background-image: url(/event.jpeg);
+} */
+
 .date{
     text-align: center;
     padding: 10px;
     list-style: none;
-    font-size: 1.2rem;
     font-weight: 300;
+    font-size: 1.5rem;
+    font-family: 'Brush Script MT';
     line-height: 1.778;
     margin-left: 0;
     color: #000000;
