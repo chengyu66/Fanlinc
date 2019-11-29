@@ -4,6 +4,7 @@ import {Jumbotron, Button, Table, Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
 import EventCard from "../event/eventCard";
+import styles from 'bootstrap/dist/css/bootstrap.css';
 
 class FandomHome extends Component {
     constructor(){
@@ -200,13 +201,15 @@ class FandomHome extends Component {
         if(this.state.isJoin) {
             return (
                 <div>
-                    <Jumbotron fluid>
-                        <h1>Welcome to {this.state.data.fandomName}</h1>
-                        <p>Fandom ID: {this.state.data.fandomId}</p>
-                        <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
-                        <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
-                        <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
-                    </Jumbotron>
+                    <div className={styles.jumbotronFluid}>
+                        <div className={styles.bgTransparent}>
+                            <h1>Welcome to {this.state.data.fandomName}</h1>
+                            <p>Fandom ID: {this.state.data.fandomId}</p>
+                            <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
+                            <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
+                            <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                        </div>
+                    </div>
 
                     <div>
                         <h2>Posts</h2>
@@ -222,11 +225,13 @@ class FandomHome extends Component {
         } else {
             return (
                 <div>
-                    <Jumbotron fluid>
-                        <h1>Welcome to {this.state.data.fandomName}</h1>
-                        <p>Fandom ID: {this.state.data.fandomId}</p>
-                        <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
-                    </Jumbotron>
+                    <div className={styles.jumbotron}>
+                        <div className={styles.bgTransparent + styles.dFlex + styles.alignItemsCenter + styles.justifyContentCenter}>
+                            <h1>Welcome to {this.state.data.fandomName}</h1>
+                            <p>Fandom ID: {this.state.data.fandomId}</p>
+                            <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
+                        </div>
+                    </div>
 
                     <div>
                         <h2>Posts</h2>

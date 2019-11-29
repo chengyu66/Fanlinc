@@ -22,6 +22,7 @@ class PostHome extends Component {
         };
         this.getEvent = this.getEvent.bind(this);
         this.join = this.join.bind(this);
+        this.goToEventMap = this.goToEventMap.bind(this);
         // this.componentWillMount = this.componentWillMount.bind(this);
     }
 
@@ -100,6 +101,10 @@ class PostHome extends Component {
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
+    goToEventMap() {
+        this.props.history.push(this.props.location.pathname + '/map');
+    }
+
     render() {
 
         if(this.state.loading) {
@@ -117,6 +122,7 @@ class PostHome extends Component {
                 <div className="form-group">
                     {this.state.description}
                 </div>
+                <p><Button  variant="primary" onClick={this.goToEventMap}>Location Info</Button></p>
                 <div className="form-group">
                         <div className="button-div">
                             <Button className="Join" onClick={this.join}>Join</Button>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import ApiService from "../../services/apiservice";
-import EventCard from "../event/eventCard";
+import {Card, Spinner} from "react-bootstrap";
 
 const mapStyles = {
     width: '100%',
@@ -14,6 +14,7 @@ class EventMap extends Component {
         super();
 
         this.state = {
+            loading: true,
             eventId: '',
             description: '',
             email: '',
@@ -21,11 +22,9 @@ class EventMap extends Component {
             eventName: '',
             date:"",
             deadline:"",
-
-            location: {
-                lat: 0,
-                lng: 0
-            },
+            lat: 0,
+            lng: 0,
+            address: '',
             activeMarker: null,
             showingInfoWindow: false
         };
@@ -33,26 +32,11 @@ class EventMap extends Component {
         this.getEvent = this.getEvent.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { match: { params } } = this.props;
         this.state.eventId = params.eventId;
-        //this.setState({eventId: params.eventId});
-        this.setState({
-            location: {
-                lat: params.lat,
-                lng: params.lng
-            }
-        });
-        //this.getEvent();
+        this.getEvent();
         console.log(this.state);
-    }
-
-    initialCenter() {
-        let intial = {
-            lat: 43.7184038,
-            lng: -79.5181442
-        };
-        return intial;
     }
 
     getEvent(){
@@ -63,17 +47,18 @@ class EventMap extends Component {
                 if (data){
                     //    this.state.loading = false;
                     this.setState({
-                        loading:false,
+                        loading: false,
                         eventName:data.eventName,
                         description:data.description,
                         owner:data.ownerEmail,
                         date:data.date,
                         deadline:data.deadline,
-                        fandomId: data.fandomId
+                        fandomId: data.fandomId,
+                        lng: data.longitude,
+                        lat: data.latitude,
+                        address: data.address
                     });
-                    console.log("Find Post");
-                    console.log(this.state.loading);
-                    console.log("States");
+                    console.log("Loading event");
                     console.log(this.state);
                 }
                 else{
@@ -100,19 +85,19 @@ class EventMap extends Component {
         }
     };
 
-
     render() {
+        if(this.state.loading) {
+            return (<Spinner animation="grow" />);
+        }
+
         return (
             <Map
                 google={this.props.google}
-                zoom={8}
+                zoom={15}
                 style={mapStyles}
-                initialCenter={this.initialCenter()}>
-
-
+                initialCenter={{lat :this.state.lat, lng : this.state.lng}}>
                 <Marker
-                    name={'UTSC'}
-                    position={this.state.location}
+                    position={{lat :this.state.lat, lng : this.state.lng}}
                     onClick={this.onMarkerClick}
                 />
                 <InfoWindow
@@ -121,7 +106,18 @@ class EventMap extends Component {
                     onClose={this.onClose}
                 >
                     <div>
-                        <EventCard eventId={this.state.eventId}/>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Header>Event</Card.Header>
+                            <Card.Body>
+                                <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.eventId}><Card.Title>{this.state.eventName}</Card.Title></a>
+                                <Card.Text>
+                                    Address: {this.state.address}
+                                </Card.Text>
+                                <Card.Text>
+                                    {this.state.date}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
                     </div>
                 </InfoWindow>
 
