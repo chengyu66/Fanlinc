@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
 import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
-import {Card, Form , FormControl, Button} from 'react-bootstrap';
+import {Card, Form, FormControl, Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import './posthome.css';
 
 class PostCards extends Component{
 
@@ -18,7 +19,7 @@ class PostCards extends Component{
             postId: "",
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
             num: 0,
-            status:false
+            loading: true
         };
         this.getPost = this.getPost.bind(this);
     }
@@ -39,14 +40,15 @@ class PostCards extends Component{
                let data = res.data;
                if (data){
                 //    this.state.loading = false;
-                    this.setState({loading:false, 
+                    this.setState({
+                        loading: false,
                         title:data.title,
                         content:data.content,
                         date:data.time,
                         email:data.email,
                         like: data.likeNum,
                         fandomId: data.fandomId
-                    })
+                    });
                    console.log("Find Post");
                    console.log(this.state.loading);
                    console.log("States");
@@ -66,6 +68,11 @@ class PostCards extends Component{
     };
 
     render() {
+
+        if(this.state.loading) {
+            return (<div className='loading'><Spinner animation='grow' variant="info"/></div>);
+        }
+
         return (
             <div>
                 <a href={"/fandom/"+this.state.fandomId+"/post/"+this.state.postId}>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Alert} from 'react-bootstrap';
+import {Jumbotron, Button, Alert, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import './posthome.css';
@@ -143,14 +143,13 @@ class PostHome extends Component {
             alert("Please Log in First");
             this.props.history.push('/login');
         }
-    
-        
     }
+
     render() {
 
         if(this.state.loading) {
-            return 'Loading...'
-        } 
+            return (<div className='loading'><Spinner animation='grow' variant="info"/></div>);
+        }
 
         return(
             <div className="body">
