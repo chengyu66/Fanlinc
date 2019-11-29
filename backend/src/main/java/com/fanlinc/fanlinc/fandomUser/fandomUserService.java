@@ -19,7 +19,7 @@ public class fandomUserService {
         return fandomUser;
     }
 
-    public FandomUser findByFandomNameAndEmail(Long fid, Long uid){
+    public FandomUser findByFidAndUid(Long fid, Long uid){
         return fandomUserRepository.findByFandomFandomIdAndUserId(fid, uid);
     }
 

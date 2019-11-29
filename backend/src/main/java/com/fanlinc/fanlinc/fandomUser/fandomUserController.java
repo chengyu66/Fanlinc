@@ -23,7 +23,7 @@ public class fandomUserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/joinFandom2") // Map ONLY POST Requests
+    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
     @ResponseBody
     public FandomUser createFandomUser (@RequestBody Map<String, String> values) {
         User user = uservice.findByEmail(values.get("email"));
@@ -38,7 +38,7 @@ public class fandomUserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/quitFandom2") // Map ONLY POST Requests
+    @PostMapping(path="/quitFandom") // Map ONLY POST Requests
     @ResponseBody
     public void QuitFandom (@RequestBody Map<String, String> values) {
         String email = values.get("email");
@@ -51,7 +51,7 @@ public class fandomUserController {
         Long uidtoremove = user.getId();
         System.out.println(fidtoremove);
         System.out.println(uidtoremove);
-        FandomUser fu = fuservice.findByFandomNameAndEmail(fidtoremove, uidtoremove);
+        FandomUser fu = fuservice.findByFidAndUid(fidtoremove, uidtoremove);
         System.out.println("hello");
         String level = fu.getLevel();
         System.out.println(level);
@@ -90,5 +90,18 @@ public class fandomUserController {
         }
 
         fuservice.deleteByFandomNameAndEmail(fu);
+    }
+
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findUserInFandom") // Find if this user is in fandom
+    @ResponseBody
+    public Boolean findUser (@RequestParam Long userId, @RequestParam Long fandomId) {
+        //Fandom fandom = findFandomById(fandomId);
+        FandomUser fu = fuservice.findByFidAndUid(fandomId, userId);
+        if (fu.equals(null)){
+            return null;
+        }else{
+            return true;
+        }
     }
 }
