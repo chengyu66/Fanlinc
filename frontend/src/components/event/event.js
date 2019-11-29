@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
     geocodeByAddress,
     getLatLng,
 } from 'react-places-autocomplete';
-import {Form , FormControl, Button} from 'react-bootstrap';
+import {Button, Spinner, Card} from 'react-bootstrap';
 import styles from 'bootstrap/dist/css/bootstrap.css';
 import './event.css';
 
@@ -37,8 +37,16 @@ class Event extends Component{
     handleSelect = address => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
+            .then(latLng => this.setState({
+                address: address,
+                lat: latLng.lat,
+                lng: latLng.lng
+            }))
             .catch(error => console.error('Error', error));
+    };
+
+    handleChange = address => {
+        this.setState({ address : address });
     };
 
     addEvent = (e) => {
@@ -116,7 +124,41 @@ class Event extends Component{
                 </div>
                 <div className="form-group">
                     <label className="form-label">Location:</label>
-                    <Input type="text" placeholder="location" name="location" className="form-control" value={this.state.location} onChange={this.onChange}/>
+                    <PlacesAutocomplete
+                        value={this.state.address}
+                        onChange={this.handleChange}
+                        onSelect={this.handleSelect}
+                    >
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                            <div>
+                                <Input
+                                    type="text"
+                                    placeholder="location"
+                                    name="location"
+                                    className="form-control"
+                                    value={this.state.address}
+                                    {...getInputProps({
+                                        placeholder: 'Search Places ...',
+                                        className: 'location-search-input',
+                                    })}
+                                />
+                                <div className="autocomplete-dropdown">
+                                    {loading && <div><Spinner animation="grow" /></div>}
+                                    {suggestions.map(suggestion => (
+                                        <Card body
+                                              border='dark'
+                                              bg='light'
+                                              style={{cursor: 'pointer', height: '0%', paddingBottom: 0}}>
+                                            <div {...getSuggestionItemProps(suggestion)}>
+                                                <Card.Text>{suggestion.description}</Card.Text>
+                                            </div>
+                                        </Card>
+
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+                    </PlacesAutocomplete>
                 </div>
                 <div className="button-div">
                     <Button className="Event" onClick={this.addEvent}>Create Event</Button>
