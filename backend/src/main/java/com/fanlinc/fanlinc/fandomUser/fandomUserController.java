@@ -1,5 +1,6 @@
 package com.fanlinc.fanlinc.fandomUser;
 
+import com.fanlinc.fanlinc.exceptions.FandomExistsException;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
@@ -23,6 +24,22 @@ public class fandomUserController {
         this.fuservice = fuservice;
         this.uservice = uservice;
         this.fservice = fservice;
+    }
+
+    @PostMapping(path="/createFandom") // Map ONLY POST Requests
+    public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
+        String email = values.get("email");
+        String fandomName = values.get("fandomName");
+        String level = values.get("level");
+        if (fservice.findByFandomName(fandomName) != null) {
+            throw new FandomExistsException(fandomName);
+        }
+        User user = uservice.findByEmail(email);
+        Fandom fandom = fservice.findByFandomName(fandomName);
+        FandomUser fu = new FandomUser(user, fandom, level);
+        fandom.setFandomUsers(fu);
+        user.setFandomUsers (fu);
+        return fuservice.save(fu);
     }
 
     @CrossOrigin(origins = "*")
