@@ -12,7 +12,7 @@ class login extends Component{
         this.state = {
          password: '',
          email: '',
-         status:false
+         loading:true
         };
         this.getUser = this.getUser.bind(this);
     }
@@ -47,7 +47,7 @@ class login extends Component{
                 if (data){
                     this.state.email = data.email;
                     this.state.password = data.password;
-                    this.state.status = true;
+                    this.state.loading = false;
                     Cookies.set('id', data.id);
                     Cookies.set('username', data.firstName);
                     Cookies.set('email', data.email);
