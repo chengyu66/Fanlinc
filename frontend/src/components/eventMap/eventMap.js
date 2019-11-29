@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from 'google-maps-react';
 import ApiService from "../../services/apiservice";
 import {Card, Spinner} from "react-bootstrap";
+import moment from "moment";
 
 const mapStyles = {
     width: '100%',
@@ -119,11 +120,13 @@ class EventMap extends Component {
                             <Card.Header>Event</Card.Header>
                             <Card.Body>
                                 <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.eventId}><Card.Title>{this.state.eventName}</Card.Title></a>
+                                <Card.Text>Address:</Card.Text>
                                 <Card.Text>
-                                    Address: {this.goToGoogleMap()}
+                                    {this.goToGoogleMap()}
                                 </Card.Text>
+                                <Card.Text>Date of event:</Card.Text>
                                 <Card.Text>
-                                    {this.state.date}
+                                    {moment(this.state.date).format("LL")}
                                 </Card.Text>
                             </Card.Body>
                         </Card>

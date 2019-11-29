@@ -3,7 +3,7 @@ import ApiService from '../../services/apiservice';
 import {Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import './eventhome.css';
-import  {Redirect} from 'react-router-dom';
+import moment, {} from "moment";
 
 class PostHome extends Component {
     constructor(){
@@ -25,7 +25,7 @@ class PostHome extends Component {
         this.getEvent = this.getEvent.bind(this);
         this.join = this.join.bind(this);
         this.goToEventMap = this.goToEventMap.bind(this);
-        // this.componentWillMount = this.componentWillMount.bind(this);
+        this.ableToJoin = this.ableToJoin.bind(this);
     }
 
     componentWillMount() {
@@ -54,17 +54,13 @@ class PostHome extends Component {
                         eventName:data.eventName,
                         description:data.description,
                         owner:data.ownerEmail,
-                        date:data.date,
-                        deadline:data.deadline,
+                        date: data.date,
+                        deadline: data.deadline,
                         lng: data.longitude,
                         lat: data.latitude,
                         address: data.address,
                         placeId: data.placeId
                     });
-                   console.log("Find Post");
-                   console.log(this.state.loading);
-                   console.log("States");
-                   console.log(this.state);    
                }
                else{
                 this.props.history.push('/notFind');
@@ -114,6 +110,19 @@ class PostHome extends Component {
         this.props.history.push(this.props.location.pathname + '/map');
     }
 
+    ableToJoin() {
+        let m = moment.now();
+        if(moment(this.state.date).isBefore(m)) {
+            return <p>Too late to Join the event.</p>
+        } else {
+            return (
+                <div className="button-div">
+                    <button className="join" onClick={this.join}>Join</button>
+                </div>
+            );
+        }
+    }
+
     render() {
 
         if(this.state.loading) {
@@ -126,7 +135,10 @@ class PostHome extends Component {
                     {this.state.eventName}
                 </div>
                 <div className="date">
-                    {this.state.date}
+                    Date of event: {moment(this.state.date).format("LL")}
+                </div>
+                <div className="date">
+                    Register Deadline: {moment(this.state.deadline).format("LL")}
                 </div>
                 <div className="description">
                     <p>{this.state.description}</p>
@@ -134,9 +146,7 @@ class PostHome extends Component {
                 </div>
                 <div className="buttons">
                     <p><button  classname="location" variant="primary" onClick={this.goToEventMap}>Location Info</button></p>
-                        <div className="button-div">
-                            <button className="join" onClick={this.join}>Join</button>
-                        </div>      
+                    {this.ableToJoin()}
                 </div>
             </div>
         )          
