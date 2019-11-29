@@ -6,6 +6,9 @@ import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Map;
 
 
@@ -103,5 +106,20 @@ public class fandomUserController {
         }else{
             return true;
         }
+    }
+
+    @CrossOrigin(origins ="*")
+    @GetMapping(path="/findFandomInUser") // Find if this user is in fandom
+    @ResponseBody
+    public List<Fandom> findFandomsByUsers (@RequestParam Long userId) {
+
+        List<Fandom> fandoms = new ArrayList<>();
+        //Fandom fandom = findFandomById(fandomId);
+        List<FandomUser> fus = fuservice.findListOfFandomsByUserId(userId);
+        //
+        for (FandomUser elem: fus){
+            fandoms.add(elem.getFandom());
+        }
+        return fandoms;
     }
 }
