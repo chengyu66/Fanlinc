@@ -113,7 +113,7 @@ class PostHome extends Component {
     ableToJoin() {
         let m = moment.now();
         if(moment(this.state.date).isBefore(m)) {
-            return <p>Too late to Join the event.</p>
+            return <em>Too late to Join the event.</em>
         } else {
             return (
                 <div className="button-div">
