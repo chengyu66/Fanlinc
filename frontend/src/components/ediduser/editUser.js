@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
-import {Spinner} from 'react-bootstrap';
+import {Spinner, Image} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import "./editUser.css";
+import { encode } from 'punycode';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 class edidUser extends Component{
     constructor(){
@@ -27,30 +30,8 @@ class edidUser extends Component{
 
      componentDidMount() {
          this.loadUser();
+         this.loadImage();
      }
-
-     loadImage() {
-        let param = {email:this.state.email};
-        ApiService.getImage(param)
-        .then((res) => {
-            console.log("Good");
-            let data = res.data;
-            if (data){
-                this.setState({
-                    path:data.path 
-                })
-                console.log("Good end");
-                console.log(this.state);
-            }
-            else{
-                this.props.history.push('/');
-            }
-        })
-        .catch(err=>{
-            console.log("Error");
-            console.log(err);
-        });
-    }
 
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
@@ -109,18 +90,17 @@ class edidUser extends Component{
              });
     }
 
-    upload = ()=> {
+    upload = () => {
         const fd = new FormData();
         fd.append('file', this.state.file);
         fd.append('email', this.state.email);
-        console.log(this.state.file);
+        console.log(this.state);
         console.log(fd);
         ApiService.uploadImage(fd)
         .then(res => {
             if(res.data){
                alert("Successfully updated")
                window.location.reload();
-               Cookies.set('username', this.state.firstname)
             }
             this.props.history.push('/');
         })
@@ -129,10 +109,43 @@ class edidUser extends Component{
         });
     }
     
+    loadImage() {
+        console.log(this.state)
+        let param = {email:Cookies.get('email')};
+        ApiService.getImage(param)
+        .then((res) => {
+            console.log(res);
+            console.log("Good Image");
+            let data = res.data;
+            if (data){
+                console.log(data);
+                this.setState({
+                    file: data,
+                    path: `data:${res.headers['content-type']};base64, ${data}`
+                })
+                console.log("Good Image Start");
+                console.log(this.state);
+                console.log(data.json().blob());
+                console.log("Good Image end");
+            }
+            else{
+                this.props.history.push('/');
+            }
+        })
+        .catch(err=>{
+            console.log("Error Image");
+            console.log(err);
+        });
+    }
 
     filechange = event =>{
-        this.setState({file:event.target.files[0]})
-        console.log(event)
+        this.setState(
+            {file:event.target.files[0],
+            path: URL.createObjectURL(event.target.files[0])
+            })
+        console.log("Upload Image")
+        console.log(this.state)
+        console.log(this.state.file)
     }
     render() {
         if (this.state.loading){
@@ -141,9 +154,9 @@ class edidUser extends Component{
         return (
             <div>
              <h2 className="text-center">Profile</h2>
-                <div className="image">
+                <div className="load">
                         <div>
-                            <img src={this.state.path} alt="Avatar"></img>
+                            <img src={this.state.path} className="rounded float-right"/>
                         </div>
                         <div>
                             <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange} accept="image/*"/>
