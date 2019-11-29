@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import ApiService from '../../services/apiservice';
 import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
-import {Card, Form , FormControl, Button} from 'react-bootstrap';
+import {Card, Form, FormControl, Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import moment from "moment";
 
 class EventCard extends Component{
 
     constructor(){
         super();
         this.state = {
+            loading: true,
             eventId: '',
             description: '',
             email: '',
@@ -18,7 +20,10 @@ class EventCard extends Component{
             date:"",
             deadline:"",
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
-            status:false
+            status:false,
+            lat: 0,
+            lng: 0,
+            address: ''
         };
         this.getEvent = this.getEvent.bind(this);
         this.goToFandom = this.goToFandom.bind();
@@ -40,16 +45,18 @@ class EventCard extends Component{
                let data = res.data;
                if (data){
                 //    this.state.loading = false;
-                    this.setState({loading:false, 
+                    this.setState({
+                        loading:false,
                         eventName:data.eventName,
                         description:data.description,
                         owner:data.ownerEmail,
                         date:data.date,
                         deadline:data.deadline,
-                        fandomId: data.fandomId
+                        fandomId: data.fandomId,
+                        lng: data.longitude,
+                        lat: data.latitude,
+                        address: data.address
                     });
-                   console.log("Find Post");
-                   console.log(this.state.loading);
                    console.log("States");
                    console.log(this.state);    
                }
@@ -68,6 +75,10 @@ class EventCard extends Component{
     };
 
     render() {
+        if(this.state.loading) {
+            return (<Spinner animation="grow" />);
+        }
+
         return (
             <div>
                 <a href={"/fandom/"+this.state.fandomId+"/event/"+this.state.eventId}>
@@ -79,7 +90,7 @@ class EventCard extends Component{
                             {this.state.description}
                         </Card.Text>
                         <Card.Text>
-                            {this.state.date}
+                            {moment(this.state.date).format("LL")}
                         </Card.Text>
                     </Card.Body>
                 </Card>

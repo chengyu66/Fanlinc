@@ -1,5 +1,7 @@
 package com.fanlinc.fanlinc;
 
+
+import com.fanlinc.fanlinc.config.ApplicationConfig;
 import com.fanlinc.fanlinc.property.FileStorageProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

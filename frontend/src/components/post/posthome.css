@@ -1,0 +1,77 @@
+.title{
+    margin-top: 30px;
+    /* font-size: 40px; */
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 1.231;
+    margin-bottom: 0.6rem;
+}
+
+/* .post {
+    background-image: url(/event.jpeg);
+} */
+
+.date{
+    text-align: center;
+    padding: 10px;
+    list-style: none;
+    font-weight: 300;
+    font-size: 1.8rem;
+    font-family: 'Brush Script MT';
+    line-height: 1.778;
+    margin-left: 0;
+    color: #000000;
+    border-bottom: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+.txt {
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 100px;
+    text-align: center;
+    font-family: "Lora", serif;
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.833;
+    margin-bottom: 3.6rem;
+    color: #000000;
+    border: 10px solid rgb(119, 176, 250);
+    background-color: rgb(255, 255, 255,0.85);
+    border-radius: 100px;
+}
+
+.txt:first-letter {
+    font-family: "Lora", serif;
+    font-weight: 700;
+    font-size: 2.0rem;
+    line-height: 6rem;
+    text-indent: 0;
+    background: transparent;
+    color: #000000;
+}
+
+.commentBody {
+    background-color: rgb(193, 228, 241, 0.9);
+    margin-top: 150px;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding-top: 2rem;
+    padding-bottom: 1.2rem;
+    border-top: 5px solid rgba(0, 0, 0, 0.1);
+}
+
+#comment {
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-bottom: 1.2rem;
+}
+
+table{
+    border-top: 5px solid rgba(0, 0, 0, 0.1);
+    margin-left: 100px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+    padding-bottom: 1.2rem;
+}

@@ -36,14 +36,19 @@ public class Event {
 
     @JsonProperty("fandomId")
     private Long fandomId;
+
     // longitutede latitude, address
     @JsonProperty("longitude")
     private double longitude;
+
     @JsonProperty("latitude")
     private double latitude;
+
     @JsonProperty("address")
     private String address;
 
+    @JsonProperty("placeId")
+    private String placeId;
 
     // participants(users and events)
     @JsonIgnore
@@ -77,7 +82,16 @@ public class Event {
     }
 
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId, double longitude, double latitude, String address) {
+    public Event(String description,
+                 String ownerEmail,
+                 String date,
+                 String deadline,
+                 String eventName,
+                 Long fandomId,
+                 double longitude,
+                 double latitude,
+                 String address,
+                 String placeId) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
@@ -87,6 +101,7 @@ public class Event {
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = address;
+        this.placeId = placeId;
     }
     public Event(){
     }
@@ -138,6 +153,7 @@ public class Event {
     public void setParticipants(User newUser) {this.participants.add(newUser); }
     public void removeUser(User user) {this.participants.remove(user); }
 
+
     public void setLongitude(double longitude){
         this.longitude = longitude;
     }
@@ -149,5 +165,14 @@ public class Event {
     public void setAddress(String address){
         this.address = address;
     }
+=======
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
 
 }

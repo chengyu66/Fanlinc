@@ -38,6 +38,10 @@ public class Post {
 	@JsonProperty("fandomId")
 	private Long fandomId;
 
+    @JsonProperty("postPic")
+    private String postPic;
+
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
@@ -55,11 +59,12 @@ public class Post {
             cascade = CascadeType.ALL)
     private Set<Comment> comments = new HashSet<>();
 
-	public Post(String title, String content, String email, Long fandomId) {
+	public Post(String title, String content, String email, Long fandomId, String postPic) {
         this.title = title;
         this.content = content;
         this.email = email;
         this.fandomId = fandomId;
+        this.postPic = postPic;
     }
     public Post(){
     }
@@ -114,6 +119,10 @@ public class Post {
     }
 
     public String getTime(String time) { return time; }
+
+    public String getPostPic(){return postPic;}
+
+    public void setPostPic(String postPic){ this.postPic = postPic;}
 
 //    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
 }

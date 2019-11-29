@@ -27,11 +27,11 @@ const AppRouter = () => {
                         <Route path="/signup" component={Signup} />
                         <Route path="/user/:userId" component={EditUser} />
                         <Route path='/fandom/create' component={CreateFandom}/>
-                        <Route path='/fandom/:fandomId' exact component={FandomHome}/>
+                        <Route classname="fandom" path='/fandom/:fandomId' exact component={FandomHome}/>
                         <Route path='/fandom/:fandomId/post' exact component={Post}/>
-                        <Route path='/fandom/:fandomId/post/:postId' component={PostHome}/>
+                        <Route classname="post" path='/fandom/:fandomId/post/:postId' component={PostHome}/>
                         <Route path='/fandom/:fandomId/event' exact component={Event}/>
-                        <Route path='/fandom/:fandomId/event/:eventId/map/:lat/:lng' component={EventMap}/>
+                        <Route path='/fandom/:fandomId/event/:eventId/map' component={EventMap}/>
                         <Route path='/fandom/:fandomId/event/:eventId' component={EventHome}/>
                         {/* <Route path='/search/' exact component={Home}/> */}
                         <Route path='/search/:query' component={Search}/>
