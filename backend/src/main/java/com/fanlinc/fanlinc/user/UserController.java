@@ -42,7 +42,7 @@ public class UserController {
         this.fservice = fservice;
     }
 
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/uploadFile")
     public User uploadFile(@RequestParam("file") MultipartFile file,
                                          @RequestParam("email") String email) {
@@ -53,6 +53,7 @@ public class UserController {
         return service.save(user);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/downloadFile")
     public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam("email") String email){
         User user = service.findByEmail(email);
