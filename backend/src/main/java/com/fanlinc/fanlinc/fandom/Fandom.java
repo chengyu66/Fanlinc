@@ -46,11 +46,11 @@ public class Fandom {
     @OneToMany(mappedBy = "fandom", cascade = CascadeType.ALL)
     private Set<FandomUser> fandomuser = new HashSet<>();
 
-    public void setFandomUsers (FandomUser newFu){
+    public void setFandomusers (FandomUser newFu){
         this.fandomuser.add(newFu);
         this.number = fandomuser.size();
     }
-    public Set<FandomUser> getFandomUser() { return this.fandomuser; }
+    public Set<FandomUser> getFandomuser() { return this.fandomuser; }
 
     public void removeFandomUser(FandomUser fu) {
         this.fandomuser.remove(fu);

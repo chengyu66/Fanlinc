@@ -8,6 +8,7 @@ import com.fanlinc.fanlinc.user.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Map;
@@ -27,19 +28,26 @@ public class fandomUserController {
     }
 
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
-    public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
+    public HashMap<String, Object> createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
         String email = values.get("email");
         String fandomName = values.get("fandomName");
         String level = values.get("level");
         if (fservice.findByFandomName(fandomName) != null) {
             throw new FandomExistsException(fandomName);
         }
+        //find the user
         User user = uservice.findByEmail(email);
-        Fandom fandom = fservice.findByFandomName(fandomName);
+        // create the new fandom
+        Fandom fandom = new Fandom(fandomName,email);
         FandomUser fu = new FandomUser(user, fandom, level);
-        fandom.setFandomUsers(fu);
+        fandom.setFandomusers(fu);
         user.setFandomUsers (fu);
-        return fuservice.save(fu);
+
+        fuservice.save(fu);
+        HashMap<String, Object> res = new HashMap<>();
+        res.put("id", fandom.getFandomId());
+        res.put("fandomName", fandomName);
+        return res;
     }
 
     @CrossOrigin(origins = "*")
@@ -52,7 +60,7 @@ public class fandomUserController {
         System.out.println(fandom.getFandomId());
         System.out.println(user.getId());
         FandomUser fu = new FandomUser(user, fandom, level);
-        fandom.setFandomUsers(fu);
+        fandom.setFandomusers(fu);
         user.setFandomUsers (fu);
         return fuservice.save(fu);
     }
@@ -79,17 +87,17 @@ public class fandomUserController {
         System.out.println(fuidtoremove);
 
         System.out.println("before:");
-        for (FandomUser fus: fandom.getFandomUsers()){
+        for (FandomUser fus: fandom.getFandomuser()){
             System.out.println(fus.getLevel());
         }
-        for (FandomUser fus: fandom.getFandomUsers()){
+        for (FandomUser fus: fandom.getFandomuser()){
             if (fus.getId().equals(fuidtoremove)){
                 fandom.removeFandomUser(fus);
                 break;
             }
         }
         System.out.println("after:");
-        for (FandomUser fus: fandom.getFandomUsers()){
+        for (FandomUser fus: fandom.getFandomuser()){
             System.out.println(fus.getLevel());
         }
 
@@ -97,7 +105,7 @@ public class fandomUserController {
         for (FandomUser fus: user.getFandomUsers()){
             System.out.println(fus.getLevel());
         }
-        System.out.println(fandom.getFandomUsers());
+        System.out.println(fandom.getFandomuser());
         for (FandomUser fus: user.getFandomUsers()) {
             if (fus.getId().equals(fuidtoremove)) {
                 user.removeFandomUser(fus);

@@ -13,9 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Base64;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 @RestController    // This means that this class is a Controller
 @RequestMapping(path="/api/fandoms")
@@ -33,8 +32,15 @@ public class FandomController {
     @CrossOrigin(origins = "*")
     @GetMapping(path="/findFandomById") // Map ONLY GET Requests
     @ResponseBody
-    public Fandom findFandomById(@RequestParam long id) {
-        return fservice.findByFandomId(id);
+    public HashMap<String, Object> findFandomById(@RequestParam long id) {
+        HashMap<String, Object> res = new HashMap<String, Object>();
+        Fandom fandom = fservice.findByFandomId(id);
+        Long fid = fandom.getFandomId();
+        String fandomName = fandom.getFandomName();
+        res.put("id", fid);
+        res.put("fandomName", fandomName);
+//        return fservice.findByFandomId(id);
+        return res;
     }
 
 
