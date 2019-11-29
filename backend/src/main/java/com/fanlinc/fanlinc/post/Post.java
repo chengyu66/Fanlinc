@@ -50,11 +50,11 @@ public class Post {
                     //CascadeType.PERSIST,
                     //CascadeType.MERGE
             })
-    @JoinTable(name = "userLike_post",
+    @JoinTable(name = "user_post",
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<User> usersWhoLiked = new HashSet<>();
+    private Set<User> liked = new HashSet<>();
 
 
     @OneToMany(fetch = FetchType.EAGER,
@@ -102,12 +102,12 @@ public class Post {
 
     public void setFandomId(Long fandomId) {this.fandomId = fandomId;}
 
-    public void setLike(User user) {usersWhoLiked.add(user);}
+    public void setLike(User user) {liked.add(user);}
 
-    public Set<User> getLike() {return usersWhoLiked;}
+    public Set<User> getLike() {return liked;}
 
     public void removeLike(User user) {
-        usersWhoLiked.remove(user);
+        liked.remove(user);
     }
     public Set<Comment> getComment() { return this.comments;}
 
@@ -115,7 +115,7 @@ public class Post {
 
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
 
-    public int getLikeNum() { return usersWhoLiked.size(); }
+    public int getLikeNum() { return liked.size(); }
     
     public void setTime(String time) {
         this.time = time;

@@ -50,6 +50,9 @@ public class Event {
     @JsonProperty("placeId")
     private String placeId;
 
+    @JsonProperty("event_pic")
+    private String event_pic;
+
     // participants(users and events)
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
@@ -69,7 +72,10 @@ public class Event {
     @JsonIgnore
     private Fandom fandom;
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
+    public Event(String description, String ownerEmail,
+                 String date, String deadline,
+                 String eventName, Long fandomId,
+                 String event_pic) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
@@ -173,5 +179,8 @@ public class Event {
         return longitude;
     }
 
+    public void setEvent_pic(String event_pic){this.event_pic=event_pic;}
+
+    public String getEvent_pic(){return this.event_pic;}
 
 }

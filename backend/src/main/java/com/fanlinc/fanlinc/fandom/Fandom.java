@@ -29,6 +29,9 @@ public class Fandom {
     @JsonProperty("number")
     private int number;
 
+    @JsonProperty("fandom_pic")
+    private String fandom_pic;
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
@@ -55,9 +58,10 @@ public class Fandom {
         this.number = fandomUsers.size();
     }
 
-    public Fandom(String fandomName, String ownerEmail) {
+    public Fandom(String fandomName, String ownerEmail, String fandom_pic) {
         this.fandomName = fandomName;
         this.ownerEmail = ownerEmail;
+        this.fandom_pic = fandom_pic;
         this.number = 0;
     }
     public Fandom(){
@@ -91,4 +95,8 @@ public class Fandom {
     public void setUsers(User newUser) {this.users.add(newUser); }
 
     public void removeUser(User user) {this.users.remove(user); }
+
+    public String getFandomPic(){return this.fandom_pic;}
+
+    public void setFandomPic(String fandom_pic){this.fandom_pic = fandom_pic;}
 }
