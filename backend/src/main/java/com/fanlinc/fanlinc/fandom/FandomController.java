@@ -60,7 +60,9 @@ public class FandomController {
         return temp;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
+    @ResponseBody
     public Fandom createNewFandom (@RequestBody Fandom fandom) throws FandomExistsException {
         String email = fandom.getOwnerEmail();
         String fandomName = fandom.getFandomName();
