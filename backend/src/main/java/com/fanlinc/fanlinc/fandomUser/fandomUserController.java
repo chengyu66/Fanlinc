@@ -23,7 +23,7 @@ public class fandomUserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/joinFandom2") // Map ONLY POST Requests
+    @PostMapping(path="/joinFandom") // Map ONLY POST Requests
     @ResponseBody
     public FandomUser createFandomUser (@RequestBody Map<String, String> values) {
         User user = uservice.findByEmail(values.get("email"));
@@ -38,7 +38,7 @@ public class fandomUserController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path="/quitFandom2") // Map ONLY POST Requests
+    @PostMapping(path="/quitFandom") // Map ONLY POST Requests
     @ResponseBody
     public void QuitFandom (@RequestBody Map<String, String> values) {
         String email = values.get("email");
