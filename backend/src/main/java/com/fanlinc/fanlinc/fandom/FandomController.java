@@ -39,20 +39,6 @@ public class FandomController {
         return fservice.findSimilarFandomByName(name);
     }
 
-    @CrossOrigin(origins ="*")
-    @GetMapping(path="/findUserInFandom") // Find if this user is in fandom
-    @ResponseBody
-    public User findUser (@RequestParam Long userId, @RequestParam Long fandomId) {
-        Fandom fandom = findFandomById(fandomId);
-        User temp = null;
-        for (User user: fandom.getUser()){
-            System.out.println("users:" + user.getId());
-            if (user.getId().equals(userId)) {
-                temp = user;
-            }
-        }
-        return temp;
-    }
 
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
     public Fandom createNewFandom (@RequestBody Fandom fandom) throws FandomExistsException {
