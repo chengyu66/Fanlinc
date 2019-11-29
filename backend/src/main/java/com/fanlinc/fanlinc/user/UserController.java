@@ -8,11 +8,13 @@ import com.fanlinc.fanlinc.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +23,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -33,55 +36,62 @@ public class UserController {
     private final FandomService fservice;
     @Autowired
     private FileStorageService fileStorageService;
-    private final Path fileStorageLocation;
 
     public UserController(UserService service,
-                          FandomService fservice,
-                          FileStorageProperties fileStorageProperties) {
+                          FandomService fservice) {
         this.service = service;
         this.fservice = fservice;
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
-                .toAbsolutePath().normalize();
     }
 
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/uploadFile")
     public User uploadFile(@RequestParam("file") MultipartFile file,
                                          @RequestParam("email") String email) {
         User user = service.findByEmail(email);
         Long uid = user.getId();
-        String fileName = fileStorageService.storeFile(file,uid);
+        String fileName = "id" + uid.toString() + "_profile_picture";
+        fileStorageService.storeFile(file,fileName);
         user.setProfile_pic(fileName);
         return service.save(user);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/downloadFile")
-    public ResponseEntity<Resource> downloadFile(@RequestParam("email") String email,
-                                                 HttpServletRequest request){
+    public ResponseEntity<ByteArrayResource> downloadFile(@RequestParam("email") String email){
         User user = service.findByEmail(email);
         String fileName = user.getProfile_pic();
-        // Load file as Resource
-        Resource resource = fileStorageService.loadFileAsResource(fileName);
-
-        // Try to determine file's content type
-        String contentType = null;
-        try {
-            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
-        } catch (IOException ex) {
-            logger.info("Could not determine file type.");
-        }
-
-        // Fallback to the default content type if type could not be determined
-        if(contentType == null) {
-            contentType = "application/octet-stream";
-        }
-
-        return  ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                .body(resource);
-
+        System.out.println(fileName);
+        byte[] data = Base64.getEncoder().encodeToString(fileStorageService.downloadFile(fileName)).getBytes();
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + fileName + "\"")
+                .contentLength(data.length)
+                .body(new ByteArrayResource(data));
     }
+//        User user = service.findByEmail(email);
+//        String fileName = user.getProfile_pic();
+//        // Load file as Resource
+//        Resource resource = fileStorageService.loadFileAsResource(fileName);
+//
+//        // Try to determine file's content type
+//        String contentType = null;
+//        try {
+//            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+//        } catch (IOException ex) {
+//            logger.info("Could not determine file type.");
+//        }
+//
+//        // Fallback to the default content type if type could not be determined
+//        if(contentType == null) {
+//            contentType = "application/octet-stream";
+//        }
+//
+//        return  ResponseEntity.ok()
+//                .contentType(MediaType.parseMediaType(contentType))
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+//                .body(resource);
+//
+//    }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addUser") // Map ONLY POST Requests
