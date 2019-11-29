@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Alert} from 'react-bootstrap';
+import {Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import './eventhome.css';
 import  {Redirect} from 'react-router-dom';
@@ -19,7 +19,8 @@ class PostHome extends Component {
             loading: true,
             lat: 0,
             lng: 0,
-            address: ''
+            address: '',
+            placeId: ''
         };
         this.getEvent = this.getEvent.bind(this);
         this.join = this.join.bind(this);
@@ -34,6 +35,12 @@ class PostHome extends Component {
         this.getEvent();
         console.log("States");
         console.log(this.state);
+    }
+
+    goToGoogleMap() {
+        let linkToMap = "https://www.google.com/maps/search/?api=1&query="
+            + this.state.lat + "," + this.state.lng +"&query_place_id=" + this.state.placeId;
+        return <a href={linkToMap} target='_blank'>{this.state.address}</a>;
     }
 
     getEvent() {
@@ -51,7 +58,8 @@ class PostHome extends Component {
                         deadline:data.deadline,
                         lng: data.longitude,
                         lat: data.latitude,
-                        address: data.address
+                        address: data.address,
+                        placeId: data.placeId
                     });
                    console.log("Find Post");
                    console.log(this.state.loading);
@@ -109,7 +117,7 @@ class PostHome extends Component {
     render() {
 
         if(this.state.loading) {
-            return 'Loading...'
+            return <Spinner animation="grow" />
         } 
 
         return(
@@ -121,7 +129,8 @@ class PostHome extends Component {
                     {this.state.date}
                 </div>
                 <div className="description">
-                    {this.state.description}
+                    <p>{this.state.description}</p>
+                    <p>Address: {this.goToGoogleMap()}</p>
                 </div>
                 <div className="buttons">
                     <p><button  classname="location" variant="primary" onClick={this.goToEventMap}>Location Info</button></p>

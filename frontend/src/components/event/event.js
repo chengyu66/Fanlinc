@@ -20,8 +20,9 @@ class Event extends Component{
             email: '',
             fandomId: '',
             title: '',
-            date:"",
-            deadline:"",
+            date:'',
+            deadline:'',
+            placeId: '',
             lat: 0,
             lng: 0,
             address: '',
@@ -34,16 +35,20 @@ class Event extends Component{
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
-    handleSelect = address => {
+    handleSelect = (address, placeId) => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(latLng => this.setState({
-                address: address,
+                placeId: placeId,
+                address : address,
                 lat: latLng.lat,
                 lng: latLng.lng
             }))
             .catch(error => console.error('Error', error));
+        console.log("Setting Location info");
+        console.log(this.state);
     };
+
 
     handleChange = address => {
         this.setState({ address : address });
@@ -63,6 +68,7 @@ class Event extends Component{
                 eventName: this.state.title,
                 date: this.state.date,
                 deadline: this.state.date,
+                placeId: this.state.placeId,
                 longitude: this.state.lng,
                 latitude: this.state.lat,
                 address: this.state.address
