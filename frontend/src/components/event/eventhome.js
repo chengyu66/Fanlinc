@@ -126,8 +126,8 @@ class PostHome extends Component {
     render() {
 
         if(this.state.loading) {
-            return <Spinner animation="grow" />
-        } 
+            return (<div className='loading'><Spinner animation='grow' variant="dark"/></div>);
+        }
 
         return(
             <div className="body">

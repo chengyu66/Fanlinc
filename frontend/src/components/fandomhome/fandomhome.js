@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
 import EventCard from "../event/eventCard";
 import styles from 'bootstrap/dist/css/bootstrap.css';
+import './fandomhome.css';
 
 class FandomHome extends Component {
     constructor(){
@@ -195,7 +196,7 @@ class FandomHome extends Component {
     render() {
 
         if(this.state.loading) {
-            return <Spinner animation="grow" />
+            return <div className='loading'><Spinner animation='grow' variant="light"/></div>
         } 
 
         if(this.state.isJoin) {
