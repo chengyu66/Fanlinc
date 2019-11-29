@@ -78,7 +78,7 @@ class Search extends Component{
 
      render() {
          if(this.state.loading){
-                return <Spinner animation="grow"/>
+                return <div className='loading'><Spinner animation='grow' variant="light"/></div>
          }
           return (
             <div className="search">

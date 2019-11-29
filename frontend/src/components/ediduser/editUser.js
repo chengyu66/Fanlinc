@@ -162,8 +162,8 @@ class edidUser extends Component{
                                 alt="180x180"
                                 src={this.state.path}
                                 style={{
-                                    max_width: '100%',
-                                    max_height: '100%'
+                                    min_width: '100%',
+                                    min_height: '100%'
                                 }}
                                 roundedCircle
                             />

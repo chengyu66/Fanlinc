@@ -63,9 +63,8 @@ public class User {
                     //CascadeType.PERSIST,
                     // CascadeType.MERGE //was casuing the multiple entities error
             },
-            mappedBy = "usersWhoLiked")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<Post> likedPost = new HashSet<>();
+            mappedBy = "liked")
+    private Set<Post> likes = new HashSet<>();
 
     // event and users
     @JsonIgnore
@@ -153,14 +152,14 @@ public class User {
     }
 
     public Set<Post> getLike() {
-        return likedPost;
+        return this.likes;
     }
 
     public void setLiked(Post post) {
-        likedPost.add(post);
+        this.likes.add(post);
     }
     public void removeLiked(Post post) {
-        likedPost.remove(post);
+        this.likes.remove(post);
     }
 
     public void setProfile_pic(String profile_pic){

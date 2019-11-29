@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity(name = "Posts")
 public class Post {
@@ -46,12 +48,13 @@ public class Post {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    CascadeType.MERGE
+                    //CascadeType.MERGE
             })
-    @JoinTable(name = "userLike_post",
+    @JoinTable(name = "user_post",
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
-    private Set<User> usersWhoLiked = new HashSet<>();
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<User> liked = new HashSet<>();
 
 
     @OneToMany(fetch = FetchType.EAGER,
@@ -99,12 +102,12 @@ public class Post {
 
     public void setFandomId(Long fandomId) {this.fandomId = fandomId;}
 
-    public void setLike(User user) {usersWhoLiked.add(user);}
+    public void setLike(User user) {liked.add(user);}
 
-    public Set<User> getLike() {return usersWhoLiked;}
+    public Set<User> getLike() {return liked;}
 
     public void removeLike(User user) {
-        usersWhoLiked.remove(user);
+        liked.remove(user);
     }
     public Set<Comment> getComment() { return this.comments;}
 
@@ -112,7 +115,7 @@ public class Post {
 
     public void deleteComment(Comment comment) {this.comments.remove(comment);}
 
-    public int getLikeNum() { return usersWhoLiked.size(); }
+    public int getLikeNum() { return liked.size(); }
     
     public void setTime(String time) {
         this.time = time;
@@ -124,5 +127,12 @@ public class Post {
 
     public void setPostPic(String postPic){ this.postPic = postPic;}
 
-//    public boolean isUserLike(Long userID) { return usersWhoLiked.contains(userID); }
+    public boolean isUserLike(Long userID) {
+	    for(User users:liked) {
+	        if(users.getId() == userID) {
+	            return true;
+            }
+        }
+	    return false;
+	}
 }

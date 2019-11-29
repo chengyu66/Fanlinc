@@ -1,3 +1,14 @@
 .jumbotron-no-img {
     background: none;
 }
+
+.loading {
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.68);
+    border-radius: 4px;
+    margin-top: 20%;
+    margin-left: 45%;
+    margin-right: 45%;
+    padding: 30px 50px;
+}

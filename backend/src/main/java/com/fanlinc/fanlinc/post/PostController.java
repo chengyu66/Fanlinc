@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.fandom.FandomService;
 import com.fanlinc.fanlinc.user.User;
 import com.fanlinc.fanlinc.user.UserService;
@@ -129,6 +128,44 @@ public class PostController {
         user.setLiked(post);
         pservice.save(post);
         return post.getLikeNum();
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/userUnlike") // Map ONLY POST Requests
+    @ResponseBody
+    public int userUnlike (@RequestBody Map<String, String> values) {
+        //System.out.println(postID);
+        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        //System.out.println(post);
+        User user = service.findByEmail(values.get("email"));
+        //System.out.println(user);
+        Long pid = post.getPostId();
+        Long uid = user.getId();
+        for (User users: post.getLike()){
+            if (users.getId().equals(uid)){
+                post.removeLike(users);
+                break;
+            }
+        }
+        for (Post posts: user.getLike()) {
+            if (posts.getFandomId().equals(pid)) {
+                user.removeLiked(posts);
+                break;
+            }
+        }
+        pservice.save(post);
+        return post.getLikeNum();
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/isUserLiked") // Map ONLY POST Requests
+    @ResponseBody
+    public boolean isUserLiked (@RequestBody Map<String, String> values) {
+        //System.out.println(postID);
+        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        //System.out.println(post);
+        User user = service.findByEmail(values.get("email"));
+        return post.isUserLike(user.getId());
     }
 
 //    @CrossOrigin(origins ="*")
