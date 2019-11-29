@@ -67,7 +67,7 @@ class Event extends Component{
                 ownerEmail: this.state.email,
                 eventName: this.state.title,
                 date: this.state.date,
-                deadline: this.state.date,
+                deadline: this.state.deadline,
                 placeId: this.state.placeId,
                 longitude: this.state.lng,
                 latitude: this.state.lat,

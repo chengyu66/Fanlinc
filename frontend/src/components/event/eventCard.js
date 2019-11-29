@@ -4,6 +4,7 @@ import {Input} from "@material-ui/core";
 import Cookies from 'js-cookie';
 import {Card, Form, FormControl, Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
+import moment from "moment";
 
 class EventCard extends Component{
 
@@ -89,7 +90,7 @@ class EventCard extends Component{
                             {this.state.description}
                         </Card.Text>
                         <Card.Text>
-                            {this.state.date}
+                            {moment(this.state.date).format("LL")}
                         </Card.Text>
                     </Card.Body>
                 </Card>
