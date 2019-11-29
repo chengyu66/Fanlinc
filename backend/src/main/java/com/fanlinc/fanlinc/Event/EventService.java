@@ -26,5 +26,5 @@ public class EventService {
     public Event findByEventId(Long id){
         return eventRepository.findByEventId(id);
     }
-    public List<Event> findByFandomId(Long id){return eventRepository.findByFandomId(id);}
+    public List<Event> findByFandomId(Long id){return eventRepository.findByFandomIdOrderByDateDesc(id);}
 }

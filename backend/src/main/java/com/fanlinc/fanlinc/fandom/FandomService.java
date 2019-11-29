@@ -27,7 +27,7 @@ public class FandomService {
     }
 
     public List<Fandom> findSimilarFandomByName(String fandomName) {
-        List<Fandom> f = fandomRepository.findByFandomNameContaining(fandomName);
+        List<Fandom> f = fandomRepository.findByFandomNameContainingOrderByNumberDesc(fandomName);
         return f;
     }
 
