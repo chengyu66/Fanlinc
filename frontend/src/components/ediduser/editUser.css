@@ -25,6 +25,12 @@ Button form {
     margin: 10px;
 }
 
+.image-div {
+    margin: auto;
+    width: 180px;
+    height: 180px;
+}
+
 .load{
     text-align: center;
 }
