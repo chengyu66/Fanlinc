@@ -3,6 +3,7 @@ package com.fanlinc.fanlinc.user;
 import com.fanlinc.fanlinc.Event.Event;
 import com.fanlinc.fanlinc.fandom.Fandom;
 //import com.fanlinc.fanlinc.post.Post;
+import com.fanlinc.fanlinc.fandomUser.FandomUser;
 import com.fanlinc.fanlinc.post.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -33,6 +34,16 @@ public class User {
     private String password;
 
     String description;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<FandomUser> fandomUsers = new HashSet<>();
+
+    public void setFandomUsers (FandomUser newFu){
+        this.fandomUsers.add(newFu);
+    }
+    public Set<FandomUser> getFandomUsers() { return this.fandomUsers; }
+
+    public void removeFandomUser(FandomUser fu) {this.fandomUsers.remove(fu); }
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
