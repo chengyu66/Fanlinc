@@ -128,7 +128,7 @@ public class Post {
     public void setPostPic(String postPic){ this.postPic = postPic;}
 
     public boolean isUserLike(Long userID) {
-	    for(User users:usersWhoLiked) {
+	    for(User users:liked) {
 	        if(users.getId() == userID) {
 	            return true;
             }
