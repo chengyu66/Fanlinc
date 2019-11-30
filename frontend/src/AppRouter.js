@@ -14,7 +14,6 @@ import About from './components/about/about';
 import Event from './components/event/event';
 import EventHome from './components/event/eventhome';
 import EventMap from './components/eventMap/eventMap';
-import Profile from './components/ediduser/profile';
 
 const AppRouter = () => {
     return(
@@ -26,8 +25,7 @@ const AppRouter = () => {
                         <Route path='/about' component={About}/>
                         <Route path="/login" component={Login} />
                         <Route path="/signup" component={Signup} />
-                        <Route path="/user/:email" exact component={Profile} />
-                        <Route path="/user/:email/:userId" exact component={EditUser} />
+                        <Route path="/user/:email" component={EditUser} />
                         <Route path='/fandom/create' component={CreateFandom}/>
                         <Route classname="fandom" path='/fandom/:fandomId' exact component={FandomHome}/>
                         <Route path='/fandom/:fandomId/post' exact component={Post}/>
