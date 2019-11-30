@@ -111,6 +111,7 @@ class PostHome extends Component {
             console.log(res)
             let data = res.data;
             console.log(data)
+            this.setState({islike:data})
         })
         .catch(error => {
             console.log("Fail");

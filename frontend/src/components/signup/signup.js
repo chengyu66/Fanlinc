@@ -37,6 +37,7 @@ class signup extends Component{
                 let data = res.data;
                 console.log(data.id);
                 this.state.status = true;
+                this.goToLogin()
 
             })
             .catch(error => {

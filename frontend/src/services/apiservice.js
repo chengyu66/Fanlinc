@@ -66,7 +66,7 @@ class ApiService {
     }
 
     checkIfJoin(query) {
-        return axios.get(URL + '/fandomUsers/findUserInFandom', {
+        return axios.get(URL + '/fandoms/findUserInFandom', {
                 params: query,
                 headers: GETHEADERS
             }
@@ -74,7 +74,7 @@ class ApiService {
     }
 
     joinFandom(query) {
-        return axios.post(URL + '/fandomUsers/joinFandom',
+        return axios.post(URL + '/fandoms/joinFandom',
             query,
             {
                 headers: POSTHEADERS
@@ -83,7 +83,7 @@ class ApiService {
     }
 
     quitFandom(query) {
-        return axios.post(URL + '/fandomUsers/quitFandom',
+        return axios.post(URL + '/fandoms/quitFandom',
             query,
             {
                 headers: POSTHEADERS

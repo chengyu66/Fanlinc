@@ -1,0 +1,43 @@
+h2{
+    text-align: center;
+    font-size: xx-large;
+}
+
+.form {
+    margin-left: -15%;
+    /* margin-top: -15%;
+    height: 50%; */
+    padding: 20px; 
+    width:30%;
+    position: fixed;
+    background-color: white;
+    border-radius: 25px;
+    display: table;
+}
+
+.button-div form {
+    display: table-row;
+}
+
+Button form {
+    display: table-cell;
+    padding: 20px;
+    margin: 10px;
+}
+
+.comment-div {
+    display: flex;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.load{
+    text-align: center;
+}
+
+.comment{
+    display: flex;
+    justify-content: space-between;
+}
