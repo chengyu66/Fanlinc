@@ -17,6 +17,7 @@ class FandomHome extends Component {
             isJoin: false,
             fandomId: 0,
             posts: [],
+            level:"Limited",
             events: []
         };
 
@@ -87,7 +88,8 @@ class FandomHome extends Component {
         } else {
             if(!this.state.isJoin) {
                 let query = {email: Cookies.get('email'), 
-                             fandomName: this.state.data.fandomName};
+                             fandomName: this.state.data.fandomName,
+                            level: this.state.level};
                 //console.log(query);
                 ApiService.joinFandom(query)
                 .then(res => {
@@ -193,12 +195,16 @@ class FandomHome extends Component {
         this.props.history.push(this.props.location.pathname + '/event');
     }
 
+    onChange = (e) =>
+        this.setState({ [e.target.name]: e.target.value });
+
     render() {
 
         if(this.state.loading) {
             return <div className='loading'><Spinner animation='grow' variant="light"/></div>
         } 
 
+        
         if(this.state.isJoin) {
             return (
                 <div>
@@ -232,6 +238,12 @@ class FandomHome extends Component {
                         <div className={styles.bgTransparent + styles.dFlex + styles.alignItemsCenter + styles.justifyContentCenter}>
                             <h1>Welcome to {this.state.data.fandomName}</h1>
                             <p>Fandom ID: {this.state.data.fandomId}</p>
+                            <select value={this.state.level} onchange={this.onchange}>
+                                <option value="Limited">Limited</option>
+                                <option value="Casual">Casual</option>
+                                <option value="Very Involved">Very Involved</option>
+                                <option value="Expert">Expert</option>
+                            </select>
                             <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                         </div>
                     </div>
