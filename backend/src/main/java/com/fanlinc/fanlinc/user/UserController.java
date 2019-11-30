@@ -1,6 +1,7 @@
 package com.fanlinc.fanlinc.user;
 
 import com.fanlinc.fanlinc.exceptions.EmailExistsException;
+import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.property.FileStorageProperties;
 import com.fanlinc.fanlinc.exceptions.MyFileNotFoundException;
 import com.fanlinc.fanlinc.fandom.FandomService;
@@ -25,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 
 
 @RestController    // This means that this class is a Controller
@@ -92,6 +94,19 @@ public class UserController {
 //                .body(resource);
 //
 //    }
+
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="/joinedFandom") // Map ONLY GET Requests
+    @ResponseBody
+    public List<Long> joinedFandom(@RequestParam String email) {
+        User user = service.findByEmail(email);
+        List<Long> fandomIds = null;
+        for (Fandom fandoms: user.getFandoms()) {
+            fandomIds.add(fandoms.getFandomId());
+        }
+        return fandomIds;
+    }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addUser") // Map ONLY POST Requests

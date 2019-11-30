@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import {Card, Form, FormControl, Button, Spinner} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import moment from "moment";
+import './eventhome.css';
 
 class EventCard extends Component{
 
@@ -76,7 +77,7 @@ class EventCard extends Component{
 
     render() {
         if(this.state.loading) {
-            return (<Spinner animation="grow" />);
+            return (<div className='loading'><Spinner animation='grow' variant="dark"/></div>);
         }
 
         return (
