@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 h2{
     text-align: center;
     font-size: xx-large;
@@ -36,3 +37,82 @@ Button form {
 .load{
     text-align: center;
 }
+
+.profile{
+    font-size: 35px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+header img {
+    border-radius: 50%;
+    margin: 20px auto;
+    display: block;
+    width: 200px;
+    border: 5px solid #fff;
+  }
+  
+  aside {
+    border-top: 0px solid #26A69A;
+    border-bottom: 0px solid #00695C;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: block;
+    height: 230px;
+    width: 230px;
+    background: url(https://s-media-cache-ak0.pinimg.com/736x/3a/1f/02/3a1f02c10700daa80655a302c5a27acf.jpg);
+    background-size: cover;
+    overflow: hidden;
+    box-shadow: 0 0 100px 10px #fff;
+    transition: all ease 0.3s;
+  }
+  
+  aside:hover {
+    border-top: 4px solid #26A69A;
+    border-bottom: 4px solid #00695C;
+    border-radius: 5px;
+    height: 700px;
+    width: 700px;
+    box-shadow: 0 0 70px 10px #fff;
+  }
+  
+  aside:hover header img {
+    animation: profile_image 2000ms linear both;
+    animation-delay: 0.5s;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  header h1 {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    font-size: 25px;
+    line-height: 25px;
+    display: inline-block;
+    padding: 10px;
+    transition: all ease 0.250s;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+  
+  aside:hover header h1 {
+    margin-top: 0px;
+    outline: 0 solid #fff;
+    border-top: 0px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+  
+  header h2 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 0px;
+    margin: 0;
+  }

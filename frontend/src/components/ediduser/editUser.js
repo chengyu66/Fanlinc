@@ -157,11 +157,43 @@ class edidUser extends Component{
         const { match: { params } } = this.props
         if (params.email != Cookies.get('email')){
             return (
-                <div>
-                 <h2 className="text-center">Profile</h2>
-                    <div className="load">
-                            <div className='image-div'>
-                                <Figure.Image
+                // <div>
+                //  <h2 className="text-center">Profile</h2>
+                //     <div className="load">
+                //             <div className='image-div'>
+                //                 <Figure.Image
+                //                     width={180}
+                //                     height={180}
+                //                     alt="180x180"
+                //                     src={this.state.path}
+                //                     style={{
+                //                         min_width: '100%',
+                //                         min_height: '100%'
+                //                     }}
+                //                     roundedCircle
+                //                 />
+                //             </div>
+                //     </div>
+                //     <form className="form">
+                //         <div className="form-group">
+                //             {this.state.firstname}
+                //         </div>
+                //         <div className="form-group">
+                //             {this.state.lastname}
+                //         </div>
+    
+                //         <div className="form-group">
+                //             {this.state.email}
+                //         </div>
+    
+                //     </form>
+                // </div>
+                <aside class="profile-card">
+                    <header>
+                    <h2 className="profile">Profile</h2>
+                        <div className="load">
+                               <div className='image-div'>
+                                  <Figure.Image
                                     width={180}
                                     height={180}
                                     alt="180x180"
@@ -175,19 +207,15 @@ class edidUser extends Component{
                             </div>
                     </div>
                     <form className="form">
-                        <div className="form-group">
-                            {this.state.firstname}
+                        <div className="name">
+                            {this.state.firstname + this.state.lastname}
                         </div>
-                        <div className="form-group">
-                            {this.state.lastname}
-                        </div>
-    
                         <div className="form-group">
                             {this.state.email}
                         </div>
-    
                     </form>
-                </div>
+                    </header>
+                </aside>
             );
         }
         else{
