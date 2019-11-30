@@ -11,6 +11,7 @@ class PostCards extends Component{
     constructor(){
         super();
         this.state = {
+            userId:0,
             content: '',
             email: '',
             fandomId: '',
@@ -19,9 +20,12 @@ class PostCards extends Component{
             postId: "",
             array: ["primary", "secondary", "success", "danger", "warning", "info", "dark", "light"],
             num: 0,
-            loading: true
+            loading: true,
+            level: '',
+            firstName: ''
         };
         this.getPost = this.getPost.bind(this);
+        this.loadUser= this.loadUser.bind(this);
     }
 
     onChange = (e) =>
@@ -30,6 +34,8 @@ class PostCards extends Component{
     componentWillMount() {
         this.state.postId = this.props.postId;
         this.getPost();
+        // this.loadUser();
+        // this.getUserLevel();
         this.state.num = Math.floor(Math.random() * this.state.array.length);
     }
 
@@ -49,6 +55,8 @@ class PostCards extends Component{
                         like: data.likeNum,
                         fandomId: data.fandomId
                     });
+                   this.loadUser();
+                   // this.getUserLevel();
                    console.log("Find Post");
                    console.log(this.state.loading);
                    console.log("States");
@@ -67,6 +75,50 @@ class PostCards extends Component{
         this.props.history.push(`/fandom`);
     };
 
+    loadUser() {
+        let param = {email:this.state.email};
+        ApiService.getUser(param)
+            .then((res) => {
+                console.log("Good");
+                let user = res.data;
+                if (user){
+                    console.log(user);
+                    this.setState({
+                        userId: user.id,
+                        firstName: user.firstName
+                    });
+                    console.log("Good end");
+                    console.log(this.state);
+                    this.getUserLevel();
+                }
+                else{
+                    this.props.history.push('/');
+                }
+            })
+            .catch(err=>{
+                console.log("Error");
+                console.log(err);
+            });
+    }
+
+    getUserLevel(){
+        let query = {
+            uid: this.state.userId,
+            fid: this.state.fandomId};
+        ApiService.getLevel(query)
+            .then(res => {
+                let data = res.data;
+                if(data){
+                    this.setState({ level: data.level});
+                    console.log("Searching for Events");
+                    console.log(this.state);
+                }
+            })
+            .catch(error => {
+                console.log("Fail to get Events");
+            });
+    }
+
     render() {
 
         if(this.state.loading) {
@@ -80,6 +132,9 @@ class PostCards extends Component{
                 <Card.Header>Post</Card.Header>
                     <Card.Body>
                         <Card.Title>{this.state.title}</Card.Title>
+                        <Card.Text>
+                            From {this.state.firstName} as {this.state.level}
+                        </Card.Text>
                         <Card.Text>
                             {this.state.content}
                         </Card.Text>

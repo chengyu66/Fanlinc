@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
 import './home.css';
 import {Carousel} from 'react-bootstrap';
+import styles from 'bootstrap/dist/css/bootstrap.css';
 
 class home extends Component{
     render(){
@@ -14,8 +15,13 @@ class home extends Component{
                     alt="very First slide"
                 />
                 <Carousel.Caption>
-                    <h3>Naruto Shares New 20th Anniversary Poster</h3>
-                    <p>Come and join to share posts and participate in awesome events.</p>
+                    <div className='home-link'>
+                        <a href="http://localhost:3000/fandom/26" >
+                            <h3>Naruto Shares New 20th Anniversary Poster</h3>
+                            <p>Come and join to share posts and participate in awesome events.</p>
+                        </a>
+                    </div>
+
                 </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>

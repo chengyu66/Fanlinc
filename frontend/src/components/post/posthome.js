@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Spinner, Jumbotron, Button, Alert} from 'react-bootstrap';
+import {Spinner, Jumbotron, Button, Alert, Card} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import './posthome.css';
@@ -27,9 +27,12 @@ class PostHome extends Component {
             email: "",
             likeNum: 0,
             owner:"",
+            oname:"",
+            userId: "",
             islike: false,
             date: "",
-            fandomId: ""
+            fandomId: "",
+            level:""
         };
         this.getPost = this.getPost.bind(this);
         // this.getComments= this.getComments.bind(this);
@@ -40,7 +43,8 @@ class PostHome extends Component {
         this.dislike = this.dislike.bind(this);
         this.look =this.look.bind(this);
         this.changePost = this.changePost.bind(this);
-        this.goToFandom = this.goToFandom.bind(this)
+        this.goToFandom = this.goToFandom.bind(this);
+        this.loadUser= this.loadUser.bind(this);
         // this.deletePost = this.deletePost.bind(this);
         // this.componentWillMount = this.componentWillMount.bind(this);
     }
@@ -52,11 +56,55 @@ class PostHome extends Component {
         this.state.email = Cookies.get('email');
         this.getPost();
         this.haslike();
+
         // this.getComments();
         console.log("States");
         console.log(this.state);
     }
 
+    loadUser() {
+        let param = {email:this.state.owner};
+        ApiService.getUser(param)
+            .then((res) => {
+                console.log("Good");
+                let user = res.data;
+                if (user){
+                    console.log(user);
+                    this.setState({
+                        userId: user.id,
+                        oname: user.firstName
+                    });
+                    console.log("Good end");
+                    console.log(this.state);
+                    this.getUserLevel();
+                }
+                else{
+                    this.props.history.push('/');
+                }
+            })
+            .catch(err=>{
+                console.log("Error");
+                console.log(err);
+            });
+    }
+
+    getUserLevel(){
+        let query = {
+            uid: this.state.userId,
+            fid: this.state.fandomId};
+        ApiService.getLevel(query)
+            .then(res => {
+                let data = res.data;
+                if(data){
+                    this.setState({ level: data.level});
+                    console.log("Searching for Events");
+                    console.log(this.state);
+                }
+            })
+            .catch(error => {
+                console.log("Fail to get Events");
+            });
+    }
 
     getPost() {
         let postId = {id: this.state.postId};
@@ -72,7 +120,8 @@ class PostHome extends Component {
                         likeNum:data.likeNum,
                         comments: data.comment,
                         owner: data.email
-                    })
+                    });
+                   this.loadUser();
                    console.log("Find Post");
                    console.log(this.state.loading);
                    console.log("States");
@@ -275,11 +324,11 @@ class PostHome extends Component {
 
     render() {
 
-        if(this.state.loading) {
+        if(this.state.loading || this.state.level === '') {
             return <div className='loading'><Spinner animation='grow' variant="light"/></div>
         } 
 
-        if (this.state.email == this.state.owner){
+        if (this.state.email === this.state.owner){
             return( 
                 <div>
                     <form className="form">
@@ -326,6 +375,9 @@ class PostHome extends Component {
             <div className="body">
                 <div className="title">
                     {this.state.title}
+                </div>
+                <div className="date">
+                    <p>From <a href={"/user/" + this.state.owner}>{this.state.oname}</a> as {this.state.level}</p>
                 </div>
                 <div className="date">
                     {this.state.date}

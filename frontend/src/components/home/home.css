@@ -3,3 +3,12 @@ img {
   height: 95vh;
   width: 100%;
 }
+
+.home-link {
+  background-color: rgba(128, 123, 103, 0.31);
+}
+
+.home-link a, a:visited {
+  color: black;
+  text-decoration:none;
+}
