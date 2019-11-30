@@ -13,6 +13,11 @@ const PUTHEADERS = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Accept': 'application/json'
 };
+
+const DELETEHEADERS = {
+    'Accept': 'application/json'
+};
+
 class ApiService {
 
     getFandom(fandom) {
@@ -224,6 +229,25 @@ class ApiService {
                 headers: GETHEADERS
             });
     }
+
+    editPost(query){
+        return axios.post(URL + '/posts/edit',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+
+    }
+
+    // deletePost(query){
+    //     return axios.delete(URL + '/posts/delete',
+
+    //         {
+    //             params: query,
+    //             headers: DELETEHEADERS
+    //         });
+
+    // }
 
 }
 

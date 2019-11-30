@@ -62,8 +62,8 @@ class CommentCards extends Component{
 
         return (
             <div className="comment">
-                {/* <a href={"/fandom/"+this.state.fandomId+"/post/"+this.state.postId}> */}
                 <div className='comment-div'>
+                     <a href={"/user/"+this.state.email}>
                             <Figure.Image
                                 width={10}
                                 height={10}
@@ -75,6 +75,7 @@ class CommentCards extends Component{
                                 }}
                                 roundedCircle
                             />
+                    </a>
                 </div>
                  <div className="comment_body">
                     <h6>{this.state.email}</h6>
