@@ -54,16 +54,17 @@ public class fandomUserController {
     @CrossOrigin(origins = "*")
     @PostMapping(path="/joinFandom") // Map ONLY POST Requests
     @ResponseBody
-    public FandomUser createFandomUser (@RequestBody Map<String, String> values) {
+    public Fandom createFandomUser (@RequestBody Map<String, String> values) {
         User user = uservice.findByEmail(values.get("email"));
         Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
-        String level = values.get("level");
+        String level = "owner";
         System.out.println(fandom.getFandomId());
         System.out.println(user.getId());
         FandomUser fu = new FandomUser(user, fandom, level);
         fandom.setFandomUsers(fu);
         user.setFandomUsers (fu);
-        return fuservice.save(fu);
+        fuservice.save(fu);
+        return fandom;
     }
 
     @CrossOrigin(origins = "*")
