@@ -15,6 +15,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity(name = "Posts")
 public class Post {
@@ -42,11 +44,12 @@ public class Post {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
                     //CascadeType.PERSIST,
-                    CascadeType.MERGE
+//                    CascadeType.MERGE
             })
     @JoinTable(name = "userLike_post",
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<User> usersWhoLiked = new HashSet<>();
 
 
