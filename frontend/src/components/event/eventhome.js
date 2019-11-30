@@ -88,7 +88,7 @@ class PostHome extends Component {
                     window.location.reload();
                 }
                 else{
-                    alert("You cannot join the event")
+                    alert("You have already join the event")
                 }
             })
             .catch(error => {
