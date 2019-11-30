@@ -13,6 +13,11 @@ const PUTHEADERS = {
     'Content-Type': 'application/x-www-form-urlencoded',
     'Accept': 'application/json'
 };
+
+const DELETEHEADERS = {
+    'Accept': 'application/json'
+};
+
 class ApiService {
 
     getFandom(fandom) {
@@ -66,7 +71,7 @@ class ApiService {
     }
 
     checkIfJoin(query) {
-        return axios.get(URL + '/fandoms/findUserInFandom', {
+        return axios.get(URL + '/fandomUsers/findUserInFandom', {
                 params: query,
                 headers: GETHEADERS
             }
@@ -74,7 +79,7 @@ class ApiService {
     }
 
     joinFandom(query) {
-        return axios.post(URL + '/fandoms/joinFandom',
+        return axios.post(URL + '/fandomUsers/joinFandom',
             query,
             {
                 headers: POSTHEADERS
@@ -83,7 +88,7 @@ class ApiService {
     }
 
     quitFandom(query) {
-        return axios.post(URL + '/fandoms/quitFandom',
+        return axios.post(URL + '/fandomUsers/quitFandom',
             query,
             {
                 headers: POSTHEADERS
@@ -92,7 +97,7 @@ class ApiService {
     }
 
     createFandom(query) {
-        return axios.post(URL + '/fandoms/createFandom',
+        return axios.post(URL + '/fandomUsers/createFandom',
             query,
             {headers: POSTHEADERS}
         );
@@ -216,6 +221,25 @@ class ApiService {
             });
 
     }
+
+    editPost(query){
+        return axios.post(URL + '/posts/edit',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+
+    }
+
+    // deletePost(query){
+    //     return axios.delete(URL + '/posts/delete',
+        
+    //         {
+    //             params: query,
+    //             headers: DELETEHEADERS
+    //         });
+
+    // }
 
 }
 

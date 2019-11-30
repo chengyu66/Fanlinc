@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Alert} from 'react-bootstrap';
+import {Spinner, Jumbotron, Button, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import './posthome.css';
 import  {Redirect} from 'react-router-dom';
 import { FiThumbsUp } from 'react-icons/fi'
 import { IconContext } from "react-icons";
-import { Comment, Tooltip, List } from 'antd';
+import {Comment, Tooltip, List } from 'antd';
 import moment from 'moment';
 import CommentCards from './commentCard';
 import {Icon} from 'antd';
+import {Input} from "@material-ui/core";
 
 
 class PostHome extends Component {
@@ -37,6 +38,8 @@ class PostHome extends Component {
         this.likeIcon = this.likeIcon.bind(this);
         this.dislike = this.dislike.bind(this);
         this.look =this.look.bind(this);
+        this.changePost = this.changePost.bind(this);
+        // this.deletePost = this.deletePost.bind(this);
         // this.componentWillMount = this.componentWillMount.bind(this);
     }
 
@@ -65,7 +68,7 @@ class PostHome extends Component {
                         date:data.time,
                         likeNum:data.likeNum,
                         comments: data.comment,
-                        owner: data.ownerEmail
+                        owner: data.email
                     })
                    console.log("Find Post");
                    console.log(this.state.loading);
@@ -223,12 +226,95 @@ class PostHome extends Component {
         
     }
 
+    changePost = (e) => {
+        e.preventDefault();
+        let user = {
+            content: this.state.content,
+            id: this.state.postId,
+            title: this.state.title
+        };
+        console.log(user);
+        ApiService.editPost(user)
+            .then(res => {
+                console.log("Success");
+                alert("Succesfully changed")
+                let data = res.data;
+                window.location.reload();
+
+            })
+            .catch(error => {
+                console.log("Fail");
+            });
+    }
+
+    // deletePost = (e) => {
+    //     e.preventDefault();
+    //     let user = {
+    //         id: this.state.postId,
+    //     };
+    //     console.log(user);
+    //     ApiService.deletePost(user)
+    //         .then(res => {
+    //             console.log("Success");
+    //             alert("Succesfully deleted")
+    //             let data = res.data;
+    //             this.goToFandom()
+
+    //         })
+    //         .catch(error => {
+    //             console.log("Fail");
+    //         });
+    // }
+
     render() {
 
         if(this.state.loading) {
-            return 'Loading...'
+            return <div className='loading'><Spinner animation='grow' variant="light"/></div>
         } 
 
+        if (this.state.email == this.state.owner){
+            return( 
+                <div>
+                    <form className="form">
+                    <h2>Edit Post</h2>
+                    <div className="form-group">
+                        <label className="form-label">Title:</label>
+                        <Input type="text" placeholder="title" name="title" className="form-control" defaultValue={this.state.title} onChange={this.onChange}/>
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">content:</label>
+                        <textarea placeholder = "Enter you post here" name="content" className="form-control" defaultValue={this.state.content} onChange={this.onChange}></textarea>         
+                    </div>
+                    <div className="button-div">
+                        <Button className="Post" onClick={this.changePost}>Post</Button>
+                        <Button className="Cancel" onClick={this.goToFandom}>Cancel</Button>
+                        {/* <Button className="Delete" onClick={this.deletePost}>Delete</Button> */}
+                    </div>
+                    </form>
+                    <div className="like" style={{cursor: 'pointer', marginLeft:"20%", width:"10%"}} onClick={this.look}>
+                    <Icon type="like" theme={this.likeIcon()}/>
+                        {this.state.likeNum}
+                    </div>
+                    <div className="commentBody">
+                        <div id="comment" className="form-group">
+                                <label>Commnet:</label>
+                                <textarea placeholder = "Enter your Comment here" name="comment" className="form-control" defaultValue={this.state.comment} onChange={this.onChange}></textarea>   
+                                <div className="button-div">
+                                    <Button className="Comment" onClick={this.addComment}>Add Comment</Button>
+                                </div>      
+                        </div>
+                                <table>
+                                
+                                    {this.state.comments.map(item => (
+                                        <tr>
+                                            <td>{<CommentCards comment={item} />}</td>
+                                        </tr>
+                                    ))}
+                                </table>
+                    </div>
+             </div>
+            )}
+        else{
         return(
             <div className="body">
                 <div className="title">
@@ -262,7 +348,8 @@ class PostHome extends Component {
                             </table>
                  </div>
             </div>
-        )          
+            )          
+        }
     }
     
 }
