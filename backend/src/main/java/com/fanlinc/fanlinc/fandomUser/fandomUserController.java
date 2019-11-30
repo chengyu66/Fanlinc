@@ -57,7 +57,7 @@ public class fandomUserController {
     public Fandom createFandomUser (@RequestBody Map<String, String> values) {
         User user = uservice.findByEmail(values.get("email"));
         Fandom fandom = fservice.findByFandomName(values.get("fandomName"));
-        String level = "owner";
+        String level = values.get("level");
         System.out.println(fandom.getFandomId());
         System.out.println(user.getId());
         FandomUser fu = new FandomUser(user, fandom, level);
