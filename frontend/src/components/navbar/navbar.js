@@ -25,10 +25,10 @@ class Mynavbar extends Component {
         this.setState({ [e.target.name]: e.target.value });
     
     componentDidMount() {
-        if (Cookies.get('username')) {
+        if (Cookies.get('email')) {
                 this.setState({
                   username: Cookies.get('username'),
-                  link: '/user/'+Cookies.get('username')
+                  link: '/user/'+Cookies.get('email')+"/" + Cookies.get('username')
                 })
           }
         else{
