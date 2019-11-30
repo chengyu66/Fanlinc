@@ -304,14 +304,6 @@ class edidUser extends Component{
 
                     </div>
 
-
-                    <div className='fandoms-table-div'>
-                        <h3>Fandoms</h3>
-                        <table>
-                            {this.displayFandomsUserIn()}
-                        </table>
-                    </div>
-
                     <div id='info-form' className='info-form-div'>
                         <form className='info-form form'>
                             <div className="form-group">
@@ -337,6 +329,13 @@ class edidUser extends Component{
                             <button className="save" onClick={this.saveUser}>Save</button>
                             <button className="logout" onClick={this.logout}>Log out</button>
                         </form>
+                    </div>
+
+                    <div className='fandoms-table-div'>
+                        <h3>Fandoms</h3>
+                        <table>
+                            {this.displayFandomsUserIn()}
+                        </table>
                     </div>
                 </div>
 
