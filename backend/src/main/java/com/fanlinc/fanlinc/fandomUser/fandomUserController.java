@@ -26,7 +26,8 @@ public class fandomUserController {
         this.uservice = uservice;
         this.fservice = fservice;
     }
-
+    
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
     public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
         String email = values.get("email");

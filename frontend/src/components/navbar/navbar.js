@@ -28,7 +28,7 @@ class Mynavbar extends Component {
         if (Cookies.get('email')) {
                 this.setState({
                   username: Cookies.get('username'),
-                  link: '/user/'+Cookies.get('email')+"/" + Cookies.get('username')
+                  link: '/user/'+Cookies.get('email')
                 })
           }
         else{
