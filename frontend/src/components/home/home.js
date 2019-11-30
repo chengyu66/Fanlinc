@@ -14,8 +14,8 @@ class home extends Component{
                     alt="First slide"
                 />
                 <Carousel.Caption>
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>Show your collections</h3>
+                    <p>Share any collections in corresponding fandom.</p>
                 </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -25,8 +25,8 @@ class home extends Component{
                 />
             
                 <Carousel.Caption>
-                    <h3>Second slide label</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h3>Fandoms Collab</h3>
+                    <p>Chat with people in different fandoms and participate in events together.</p>
                 </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -35,8 +35,8 @@ class home extends Component{
                     alt="Third slide"
                 />
                 <Carousel.Caption>
-                    <h3>Third slide label</h3>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h3>Kpop Fans Group</h3>
+                    <p>Find the latest news about your favorite Kpop groups.</p>
                 </Carousel.Caption>
                 </Carousel.Item>
           </Carousel>

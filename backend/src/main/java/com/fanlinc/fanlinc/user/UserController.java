@@ -96,17 +96,17 @@ public class UserController {
 //    }
 
 
-    @CrossOrigin(origins = "*")
-    @GetMapping(path="/joinedFandom") // Map ONLY GET Requests
-    @ResponseBody
-    public List<Long> joinedFandom(@RequestParam String email) {
-        User user = service.findByEmail(email);
-        List<Long> fandomIds = null;
-        for (Fandom fandoms: user.getFandoms()) {
-            fandomIds.add(fandoms.getFandomId());
-        }
-        return fandomIds;
-    }
+//    @CrossOrigin(origins = "*")
+//    @GetMapping(path="/joinedFandom") // Map ONLY GET Requests
+//    @ResponseBody
+//    public List<Long> joinedFandom(@RequestParam String email) {
+//        User user = service.findByEmail(email);
+//        List<Long> fandomIds = null;
+//        for (Fandom fandoms: user.getFandoms()) {
+//            fandomIds.add(fandoms.getFandomId());
+//        }
+//        return fandomIds;
+//    }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/addUser") // Map ONLY POST Requests
