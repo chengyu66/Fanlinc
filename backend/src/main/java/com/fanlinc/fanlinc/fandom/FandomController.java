@@ -24,15 +24,13 @@ public class FandomController {
     @CrossOrigin(origins = "*")
     @GetMapping(path="/findFandomById") // Map ONLY GET Requests
     @ResponseBody
-    public HashMap<String, Object> findFandomById(@RequestParam long id) {
-        HashMap<String, Object> res = new HashMap<String, Object>();
+    public Fandom findFandomById(@RequestParam long id) {
         Fandom fandom = fservice.findByFandomId(id);
         Long fid = fandom.getFandomId();
         String fandomName = fandom.getFandomName();
-        res.put("id", fid);
-        res.put("fandomName", fandomName);
+        fandom.deleteAllFandomUser();
 //        return fservice.findByFandomId(id);
-        return res;
+        return fandom;
     }
 
 

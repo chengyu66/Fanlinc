@@ -53,6 +53,9 @@ public class Fandom {
         this.fandomuser.remove(fu);
         this.number = fandomuser.size();
     }
+    public void deleteAllFandomUser(){
+        this.fandomuser = null;
+    }
 
     public Fandom(String fandomName, String ownerEmail) {
         this.fandomName = fandomName;
