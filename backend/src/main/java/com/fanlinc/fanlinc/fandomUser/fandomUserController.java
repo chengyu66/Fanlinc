@@ -28,7 +28,7 @@ public class fandomUserController {
     }
 
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
-    public HashMap<String, Object> createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
+    public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
         String email = values.get("email");
         String fandomName = values.get("fandomName");
         String level = values.get("level");
@@ -40,14 +40,14 @@ public class fandomUserController {
         // create the new fandom
         Fandom fandom = new Fandom(fandomName,email);
         FandomUser fu = new FandomUser(user, fandom, level);
-        fandom.setFandomusers(fu);
+        fandom.setFandomUsers(fu);
         user.setFandomUsers (fu);
 
-        fuservice.save(fu);
-        HashMap<String, Object> res = new HashMap<>();
-        res.put("id", fandom.getFandomId());
-        res.put("fandomName", fandomName);
-        return res;
+        return fuservice.save(fu);
+//        HashMap<String, Object> res = new HashMap<>();
+//        res.put("id", fandom.getFandomId());
+//        res.put("fandomName", fandomName);
+//        return res;
     }
 
     @CrossOrigin(origins = "*")
@@ -60,7 +60,7 @@ public class fandomUserController {
         System.out.println(fandom.getFandomId());
         System.out.println(user.getId());
         FandomUser fu = new FandomUser(user, fandom, level);
-        fandom.setFandomusers(fu);
+        fandom.setFandomUsers(fu);
         user.setFandomUsers (fu);
         return fuservice.save(fu);
     }

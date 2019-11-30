@@ -12,6 +12,7 @@ import com.fanlinc.fanlinc.comment.Comment;
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -54,6 +55,7 @@ public class Post {
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") })
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties("likes")
     private Set<User> liked = new HashSet<>();
 
 

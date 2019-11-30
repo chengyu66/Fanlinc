@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CommentRepository extends CrudRepository<Comment, Long> {
 
-    List<Comment> findByPostid(Long post_id);
+    List<Comment> findByPostidOrderByDateDesc(Long post_id);
 
 }

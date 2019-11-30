@@ -22,7 +22,7 @@ public class CommentService {
 
 
     public List<Comment> findByPostid(Long post_id) {
-        List<Comment> c = commentRepository.findByPostid(post_id);
+        List<Comment> c = commentRepository.findByPostidOrderByDateDesc(post_id);
         return c;
     }
 

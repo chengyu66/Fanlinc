@@ -26,6 +26,9 @@ public class Comment {
     @JsonProperty("postid")
     private Long postid;
 
+    @JsonProperty("date")
+    private String date;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pid")
@@ -33,10 +36,11 @@ public class Comment {
     @JsonIgnore
     private Post post;
 
-    public Comment(String content, Long post_id, String email ) {
+    public Comment(String content, Long post_id, String email, String date) {
         this.content = content;
         this.email = email;
         this.postid = post_id;
+        this.date = date;
     }
     public Comment(){
     }

@@ -5,15 +5,14 @@ import com.fanlinc.fanlinc.fandom.Fandom;
 //import com.fanlinc.fanlinc.post.Post;
 import com.fanlinc.fanlinc.fandomUser.FandomUser;
 import com.fanlinc.fanlinc.post.Post;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Entity(name = "Users") // This tells Hibernate to make a table out of this class
 public class User {
 
@@ -39,6 +38,7 @@ public class User {
     String description;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    @JsonIgnoreProperties({"user"})
     private Set<FandomUser> fandomUsers = new HashSet<>();
 
     public void setFandomUsers (FandomUser newFu){
@@ -48,14 +48,14 @@ public class User {
 
     public void removeFandomUser(FandomUser fu) {this.fandomUsers.remove(fu); }
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {
-                    //CascadeType.PERSIST,
-                    // CascadeType.MERGE //was casuing the multiple entities error
-            },
-            mappedBy = "users")
-    private Set<Fandom> fandoms = new HashSet<>();
+//    @JsonIgnore
+//    @ManyToMany(fetch = FetchType.EAGER,
+//            cascade = {
+//                    //CascadeType.PERSIST,
+//                    // CascadeType.MERGE //was casuing the multiple entities error
+//            },
+//            mappedBy = "users")
+//    private Set<Fandom> fandoms = new HashSet<>();
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
@@ -64,6 +64,7 @@ public class User {
                     // CascadeType.MERGE //was casuing the multiple entities error
             },
             mappedBy = "liked")
+    @JsonIgnoreProperties("liked")
     private Set<Post> likes = new HashSet<>();
 
     // event and users
@@ -139,17 +140,17 @@ public class User {
         this.events.remove(event);
     }
 
-    public Set<Fandom> getFandoms() {
-        return this.fandoms;
-    }
-
-    public void setFandoms(Fandom fandom) {
-        this.fandoms.add(fandom);
-    }
-
-    public void removeFandom(Fandom fandom) {
-        this.fandoms.remove(fandom);
-    }
+//    public Set<Fandom> getFandoms() {
+//        return this.fandoms;
+//    }
+//
+//    public void setFandoms(Fandom fandom) {
+//        this.fandoms.add(fandom);
+//    }
+//
+//    public void removeFandom(Fandom fandom) {
+//        this.fandoms.remove(fandom);
+//    }
 
     public Set<Post> getLike() {
         return this.likes;

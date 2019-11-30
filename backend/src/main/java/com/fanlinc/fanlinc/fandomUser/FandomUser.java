@@ -2,8 +2,10 @@ package com.fanlinc.fanlinc.fandomUser;
 
 import com.fanlinc.fanlinc.fandom.Fandom;
 import com.fanlinc.fanlinc.user.User;
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.*;
 
+import javax.persistence.*;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Entity(name = "fu")
 public class FandomUser {
     @Id
@@ -12,10 +14,13 @@ public class FandomUser {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
+//    @JsonIgnoreProperties({"fandomUsers"})
+//    @JsonManagedReference
     private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn
+//    @JsonIgnoreProperties({"fandomUsers"})
     private Fandom fandom;
 
     // additional fields
