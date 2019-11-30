@@ -68,6 +68,25 @@ public class fandomUserController {
     }
 
     @CrossOrigin(origins = "*")
+    @GetMapping(path="/getLevel") // Map ONLY POST Requests
+    public FandomUser getLevel (@RequestParam Long uid, @RequestParam Long fid) {
+        FandomUser fu = fuservice.findByFidAndUid(fid, uid);
+        return fuservice.save(fu);
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/setLevel") // Map ONLY POST Requests
+    public FandomUser setLevel (@RequestBody Map<String, String> values) {
+        Long fid = Long.parseLong(values.get("fid"));
+        Long uid = Long.parseLong(values.get("uid"));
+        String level = values.get("level");
+        System.out.println(level);
+        FandomUser fu = fuservice.findByFidAndUid(fid, uid);
+        fu.setLevel(level);
+        return fuservice.save(fu);
+    }
+
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/quitFandom") // Map ONLY POST Requests
     @ResponseBody
     public void QuitFandom (@RequestBody Map<String, String> values) {
