@@ -28,7 +28,8 @@ class PostHome extends Component {
             likeNum: 0,
             owner:"",
             islike: false,
-            date: ""
+            date: "",
+            fandomId: ""
         };
         this.getPost = this.getPost.bind(this);
         // this.getComments= this.getComments.bind(this);
@@ -39,6 +40,7 @@ class PostHome extends Component {
         this.dislike = this.dislike.bind(this);
         this.look =this.look.bind(this);
         this.changePost = this.changePost.bind(this);
+        this.goToFandom = this.goToFandom.bind(this)
         // this.deletePost = this.deletePost.bind(this);
         // this.componentWillMount = this.componentWillMount.bind(this);
     }
@@ -46,6 +48,7 @@ class PostHome extends Component {
     componentWillMount() {
         const { match: { params } } = this.props;
         this.state.postId = params.postId;
+        this.state.fandomId = params.fandomId;
         this.state.email = Cookies.get('email');
         this.getPost();
         this.haslike();
@@ -265,6 +268,10 @@ class PostHome extends Component {
     //             console.log("Fail");
     //         });
     // }
+
+    goToFandom(){
+        this.props.history.push('/fandom/'+this.state.fandomId);
+    }
 
     render() {
 
