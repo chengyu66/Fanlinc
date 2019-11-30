@@ -206,14 +206,14 @@ class edidUser extends Component{
                                 />
                             </div>
                     </div>
-                    <form className="form">
+                    <div className="test">
                         <div className="name">
                             {this.state.firstname + this.state.lastname}
                         </div>
                         <div className="form-group">
                             {this.state.email}
                         </div>
-                    </form>
+                    </div>
                     </header>
                 </aside>
             );
