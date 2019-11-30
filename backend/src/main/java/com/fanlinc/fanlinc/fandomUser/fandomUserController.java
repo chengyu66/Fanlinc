@@ -28,7 +28,7 @@ public class fandomUserController {
     }
     @CrossOrigin(origins = "*")
     @PostMapping(path="/createFandom") // Map ONLY POST Requests
-    public FandomUser createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
+    public Fandom createNewFandom (@RequestBody Map<String, String> values) throws FandomExistsException {
         String email = values.get("email");
         String fandomName = values.get("fandomName");
         String level = "Owner";
@@ -43,7 +43,8 @@ public class fandomUserController {
         fandom.setFandomUsers(fu);
         user.setFandomUsers (fu);
 
-        return fuservice.save(fu);
+        fuservice.save(fu);
+        return fandom;
 //        HashMap<String, Object> res = new HashMap<>();
 //        res.put("id", fandom.getFandomId());
 //        res.put("fandomName", fandomName);
