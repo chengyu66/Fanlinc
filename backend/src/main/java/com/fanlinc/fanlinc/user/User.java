@@ -79,13 +79,12 @@ public class User {
     private Set<Event> events = new HashSet<>();
 
 
-    public User(String firstName, String lastName, String email, String password, String description, String profile_pic) {
+    public User(String firstName, String lastName, String email, String password, String description) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.email = email;
         this.password = password;
-        this.profile_pic = profile_pic;
     }
 
     public User() {}

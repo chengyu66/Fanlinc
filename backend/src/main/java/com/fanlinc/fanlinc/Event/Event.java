@@ -36,14 +36,22 @@ public class Event {
 
     @JsonProperty("fandomId")
     private Long fandomId;
+
     // longitutede latitude, address
     @JsonProperty("longitude")
     private double longitude;
+
     @JsonProperty("latitude")
     private double latitude;
+
     @JsonProperty("address")
     private String address;
 
+    @JsonProperty("placeId")
+    private String placeId;
+
+    @JsonProperty("event_pic")
+    private String event_pic = "default_event_picture";
 
     // participants(users and events)
     @JsonIgnore
@@ -64,7 +72,9 @@ public class Event {
     @JsonIgnore
     private Fandom fandom;
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId) {
+    public Event(String description, String ownerEmail,
+                 String date, String deadline,
+                 String eventName, Long fandomId) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
@@ -77,7 +87,16 @@ public class Event {
     }
 
 
-    public Event(String description, String ownerEmail, String date, String deadline, String eventName, Long fandomId, double longitude, double latitude, String address) {
+    public Event(String description,
+                 String ownerEmail,
+                 String date,
+                 String deadline,
+                 String eventName,
+                 Long fandomId,
+                 double longitude,
+                 double latitude,
+                 String address,
+                 String placeId) {
         this.deadline = deadline;
         this.date = date;
         this.description = description;
@@ -87,6 +106,7 @@ public class Event {
         this.longitude = longitude;
         this.latitude = latitude;
         this.address = address;
+        this.placeId = placeId;
     }
     public Event(){
     }
@@ -149,5 +169,16 @@ public class Event {
     public void setAddress(String address){
         this.address = address;
     }
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setEvent_pic(String event_pic){this.event_pic=event_pic;}
+
+    public String getEvent_pic(){return this.event_pic;}
 
 }

@@ -40,6 +40,9 @@ public class Post {
 	@JsonProperty("fandomId")
 	private Long fandomId;
 
+    @JsonProperty("post_pic")
+    private String post_pic = "default_post_picture";
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
@@ -126,4 +129,6 @@ public class Post {
         }
         return false;
     }
+    public void setPost_pic(String post_pic){this.post_pic=post_pic;}
+    public String getPost_pic(){return this.post_pic;}
 }
