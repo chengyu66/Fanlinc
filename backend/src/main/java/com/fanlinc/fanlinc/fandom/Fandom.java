@@ -29,6 +29,9 @@ public class Fandom {
     @JsonProperty("number")
     private int number;
 
+    @JsonProperty("fandom_pic")
+    private String fandom_pic = "default_fandom_picture";
+
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = {
@@ -91,4 +94,7 @@ public class Fandom {
     public void setUsers(User newUser) {this.users.add(newUser); }
 
     public void removeUser(User user) {this.users.remove(user); }
+
+    public void setFandom_pic(String fandom_pic){this.fandom_pic=fandom_pic;}
+    public String getFandom_pic(){return this.fandom_pic;}
 }
