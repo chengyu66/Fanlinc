@@ -4,16 +4,20 @@ h2{
     font-size: xx-large;
 }
 
-.form {
-    margin-left: -15%;
-    /* margin-top: -15%;
-    height: 50%; */
-    padding: 20px; 
-    width:30%;
-    position: fixed;
+.info-form-div {
+    width: 100%;
+    position: inherit;
+    padding-top: 50px;
+}
+
+.info-form {
+    text-align: center;
+    width: 40%;
     background-color: white;
     border-radius: 25px;
+    position: inherit;
     display: table;
+    margin: 0 auto;
 }
 
 .button-div form {
@@ -36,6 +40,32 @@ Button form {
 
 .load{
     text-align: center;
+    padding-bottom: 10px;
+}
+
+.loading-spinner {
+    justify-content: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.68);
+    border-radius: 4px;
+    margin-top: 20%;
+    margin-left: 45%;
+    margin-right: 45%;
+    padding: 30px 50px;
+}
+
+.fandoms-table-div {
+    padding-top: 10px;
+    width: 100%;
+}
+
+.fandoms-table-div h3 {
+    color: #fff;
+    text-align: center;
+}
+
+.fandoms-table-div table {
+    margin: 0 auto;
 }
 
 .profile{
@@ -51,7 +81,7 @@ header img {
     width: 200px;
     border: 5px solid #fff;
   }
-  
+
   aside {
     border-top: 0px solid #26A69A;
     border-bottom: 0px solid #00695C;
@@ -67,7 +97,7 @@ header img {
     box-shadow: 0 0 100px 10px #fff;
     transition: all ease 0.3s;
   }
-  
+
   aside:hover {
     border-top: 4px solid #26A69A;
     border-bottom: 4px solid #00695C;
@@ -76,16 +106,16 @@ header img {
     width: 600px;
     box-shadow: 0 0 70px 10px #fff;
   }
-  
+
   aside:hover header img {
     animation: profile_image 2000ms linear both;
     animation-delay: 0.5s;
   }
-  
+
   header {
     text-align: center;
   }
-  
+
   header h1 {
     position: relative;
     text-align: center;
@@ -99,14 +129,14 @@ header img {
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff;
   }
-  
+
   aside:hover header h1 {
     margin-top: 0px;
     outline: 0 solid #fff;
     border-top: 0px solid #fff;
     border-bottom: 1px solid #fff;
   }
-  
+
   header h2 {
     text-align: center;
     color: #fff;

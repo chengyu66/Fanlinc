@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom';
 import ApiService from '../../services/apiservice';
 import {Button, Input } from "@material-ui/core";
 import "./signup.css"
@@ -16,6 +15,7 @@ class signup extends Component{
             status:false
         };
         this.addUser = this.addUser.bind(this);
+        this.goToLogin = this.goToLogin.bind(this);
     }
 
     onChange = (e) =>
@@ -36,9 +36,9 @@ class signup extends Component{
                 console.log("Success");
                 let data = res.data;
                 console.log(data.id);
-                this.state.status = true;
+                this.setState({status: true});
+                alert("Sign Success!");
                 this.goToLogin()
-
             })
             .catch(error => {
                 console.log("Fail");
@@ -51,6 +51,7 @@ class signup extends Component{
 
     render() {
         return (
+            <div>
                 <form className="form">
                     <h2>Sign Up</h2>
                     <div className="form-group">
@@ -74,7 +75,7 @@ class signup extends Component{
                         <Button className="Login" onClick={this.goToLogin}>Log in</Button>
                     </div>
                 </form>
-
+            </div>
         );
     };
 }
