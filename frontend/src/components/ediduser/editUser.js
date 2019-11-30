@@ -63,6 +63,7 @@ class edidUser extends Component{
                     });
                     console.log("Good end");
                     console.log(this.state);
+                    this.getFandomsUserIn(user.id);
                 }
                 else{
                     this.props.history.push('/');
@@ -135,7 +136,6 @@ class edidUser extends Component{
                 console.log("Good Image Start");
                 console.log(this.state);
                 console.log("Good Image end");
-                this.getFandomsUserIn();
             }
             else{
                 this.props.history.push('/');
@@ -169,8 +169,8 @@ class edidUser extends Component{
     };
 
 
-    getFandomsUserIn() {
-        let query = {userId: this.state.userId};
+    getFandomsUserIn(userId) {
+        let query = {userId: userId};
         console.log(query);
         ApiService.getFandomsUserIn(query)
             .then((res) => {
