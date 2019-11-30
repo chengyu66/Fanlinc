@@ -63,7 +63,7 @@ public class User {
                     //CascadeType.PERSIST,
                     // CascadeType.MERGE //was casuing the multiple entities error
             },
-            mappedBy = "usersWhoLiked")
+            mappedBy = "liked")
     //@OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Post> like = new HashSet<>();
 

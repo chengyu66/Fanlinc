@@ -96,13 +96,42 @@ public class PostController {
         return post.getLikeNum();
     }
 
-//    @CrossOrigin(origins ="*")
-//    @GetMapping(path="/isUserLiked") // Map ONLY GET Requests
-//    @ResponseBody
-//    public boolean isUserLike (@RequestParam Long postID, @RequestParam Long userID) {
-//        // @ResponseBody means the returned String is the response, not a view name
-//        // @RequestParam means it is a parameter from the GET or POST request
-//        Post post = pservice.findByPostId(postID);
-//        return post.isUserLike(userID);
-//    }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "/userUnlike") // Map ONLY POST Requests
+    @ResponseBody
+    public int userUnlike (@RequestBody Map<String, String> values) {
+        //System.out.println(postID);
+        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        //System.out.println(post);
+        User user = service.findByEmail(values.get("email"));
+        //System.out.println(user);
+        Long pid = post.getPostId();
+        Long uid = user.getId();
+        for (User users: post.getLike()){
+            if (users.getId().equals(uid)){
+                post.removeLike(users);
+                break;
+            }
+        }
+        for (Post posts: user.getLike()) {
+            if (posts.getFandomId().equals(pid)) {
+                user.removeLiked(posts);
+                break;
+            }
+        }
+        pservice.save(post);
+        return post.getLikeNum();
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/isUserLiked") // Map ONLY POST Requests
+    @ResponseBody
+    public boolean isUserLiked (@RequestBody Map<String, String> values) {
+        //System.out.println(postID);
+        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        //System.out.println(post);
+        User user = service.findByEmail(values.get("email"));
+        return post.isUserLike(user.getId());
+    }
+
 }
