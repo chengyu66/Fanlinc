@@ -239,6 +239,15 @@ class ApiService {
 
     }
 
+
+    getLevel(query){
+        return axios.get(URL + '/fandomUsers/getLevel',
+        {
+            params: query,
+            headers: POSTHEADERS
+        });
+
+    }
     // deletePost(query){
     //     return axios.delete(URL + '/posts/delete',
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Table, Spinner} from 'react-bootstrap';
+import {Form, Button, Table, Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import PostCards from './../post/postCards';
 import EventCard from "../event/eventCard";
@@ -29,6 +29,8 @@ class FandomHome extends Component {
         this.displayPosts = this.displayPosts.bind(this);
         this.getEvents = this.getEvents.bind(this);
         this.goToCreateEvent = this.goToCreateEvent.bind(this);
+        this.onChange = this.onChange.bind(this)
+        this.getUserLevel = this.getUserLevel.bind(this);
     }
 
     componentWillMount() {
@@ -73,6 +75,7 @@ class FandomHome extends Component {
                 if (res.data){
                     this.setState({isJoin: true});
                     console.log("Has Joined the fandom");
+                    this.getUserLevel()
                 }
             })
             .catch(error => {
@@ -196,7 +199,25 @@ class FandomHome extends Component {
     }
 
     onChange = (e) =>
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ level: e.target.value });
+
+    getUserLevel(){
+        let query = {
+            uid: Cookies.get('id'),
+            fid: this.state.fandomId};
+        ApiService.getLevel(query)
+            .then(res => {
+                let data = res.data;
+                if(data){
+                    this.setState({ level: data.level});
+                    console.log("Searching for Events");
+                    console.log(this.state);
+                }
+            })
+            .catch(error => {
+                console.log("Fail to get Events");
+            });
+    }
 
     render() {
 
@@ -212,6 +233,8 @@ class FandomHome extends Component {
                         <div className={styles.bgTransparent}>
                             <h1>Welcome to {this.state.data.fandomName}</h1>
                             <p>Fandom ID: {this.state.data.fandomId}</p>
+                            
+                            <p>{"You are an " + this.state.level + " user"}</p>
                             <div className="buttons">
                                 <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
                                 <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
@@ -238,12 +261,15 @@ class FandomHome extends Component {
                         <div className={styles.bgTransparent + styles.dFlex + styles.alignItemsCenter + styles.justifyContentCenter}>
                             <h1>Welcome to {this.state.data.fandomName}</h1>
                             <p>Fandom ID: {this.state.data.fandomId}</p>
-                            <select value={this.state.level} onchange={this.onchange}>
-                                <option value="Limited">Limited</option>
-                                <option value="Casual">Casual</option>
-                                <option value="Very Involved">Very Involved</option>
-                                <option value="Expert">Expert</option>
-                            </select>
+                            <h2>Choose your Fandom level</h2>
+                            <div style={{width:"15%", margin:"auto"}}>
+                                <Form.Control as='select' onChange={this.onChange}>
+                                    <option name="level" value="Limited">Limited</option>
+                                    <option name="level" value="Casual">Casual</option>
+                                    <option name="level" value="Very Involved">Very Involved</option>
+                                    <option name="level" value="Expert">Expert</option>
+                                </Form.Control>
+                            </div>
                             <p><Button  variant="primary" onClick={this.joinFandom}>Join Now</Button></p>
                         </div>
                     </div>
