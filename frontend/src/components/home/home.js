@@ -10,6 +10,16 @@ class home extends Component{
             <Carousel>
                 <Carousel.Item>
                 <img
+                    src="./vc2akf1e6gb31.jpg"
+                    alt="very First slide"
+                />
+                <Carousel.Caption>
+                    <h3>Naruto Shares New 20th Anniversary Poster</h3>
+                    <p>Come and join to share posts and participate in awesome events.</p>
+                </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                <img
                     src="./home1.webp"
                     alt="First slide"
                 />
