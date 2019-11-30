@@ -5,6 +5,9 @@ import Cookies from 'js-cookie';
 import "./editUser.css";
 import { encode } from 'punycode';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Comment, Icon, Tooltip, Avatar } from 'antd';
+import moment from 'moment';
+
 
 
 class edidUser extends Component{
@@ -167,7 +170,6 @@ class edidUser extends Component{
                                 }}
                                 roundedCircle
                             />
-                            {/*<Image src={this.state.path} roundedCircle />*/}
                         </div>
                         <div>
                             <input ref = {fileInput => this.fileiInput = fileInput} style={{display: 'none'}} type="file" onChange={this.filechange} accept="image/*"/>

@@ -160,11 +160,11 @@ public class PostController {
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/isUserLiked") // Map ONLY POST Requests
     @ResponseBody
-    public boolean isUserLiked (@RequestBody Map<String, String> values) {
+    public boolean isUserLiked (@RequestParam Long postId, @RequestParam String email) {
         //System.out.println(postID);
-        Post post = pservice.findByPostId(Long.parseLong(values.get("postId")));
+        Post post = pservice.findByPostId(postId);
         //System.out.println(post);
-        User user = service.findByEmail(values.get("email"));
+        User user = service.findByEmail(email);
         return post.isUserLike(user.getId());
     }
 

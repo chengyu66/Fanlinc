@@ -57,10 +57,10 @@ public class Fandom {
         this.number = fandomuser.size();
     }
 
-    public Fandom(String fandomName, String ownerEmail, String fandom_pic) {
+    public Fandom(String fandomName, String ownerEmail) {
         this.fandomName = fandomName;
         this.ownerEmail = ownerEmail;
-        this.fandom_pic = fandom_pic;
+        this.fandom_pic = null;
         this.number = 0;
     }
     public Fandom(){

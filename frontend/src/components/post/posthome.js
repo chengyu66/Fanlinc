@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import ApiService from '../../services/apiservice';
-import {Jumbotron, Button, Alert, Spinner} from 'react-bootstrap';
+import {Jumbotron, Button, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import Cookies from 'js-cookie';
 import './posthome.css';
 import  {Redirect} from 'react-router-dom';
 import { FiThumbsUp } from 'react-icons/fi'
 import { IconContext } from "react-icons";
+import { Comment, Tooltip, List } from 'antd';
+import moment from 'moment';
+import CommentCards from './commentCard';
+import {Icon} from 'antd';
 
 
 class PostHome extends Component {
@@ -22,12 +26,17 @@ class PostHome extends Component {
             email: "",
             likeNum: 0,
             owner:"",
+            islike: false,
             date: ""
         };
         this.getPost = this.getPost.bind(this);
         // this.getComments= this.getComments.bind(this);
         this.addComment = this.addComment.bind(this);
         this.like = this.like.bind(this);
+        this.haslike = this.haslike.bind(this);
+        this.likeIcon = this.likeIcon.bind(this);
+        this.dislike = this.dislike.bind(this);
+        this.look =this.look.bind(this);
         // this.componentWillMount = this.componentWillMount.bind(this);
     }
 
@@ -36,10 +45,12 @@ class PostHome extends Component {
         this.state.postId = params.postId;
         this.state.email = Cookies.get('email');
         this.getPost();
+        this.haslike();
         // this.getComments();
         console.log("States");
         console.log(this.state);
     }
+
 
     getPost() {
         let postId = {id: this.state.postId};
@@ -90,6 +101,22 @@ class PostHome extends Component {
     //        });
     // }
 
+    haslike() {
+        let query = {
+            email: this.state.email,
+            postId: this.state.postId
+        };
+        ApiService.isliked(query).then(res => {
+            console.log("Success");
+            console.log(res)
+            let data = res.data;
+            console.log(data)
+        })
+        .catch(error => {
+            console.log("Fail");
+        });
+    }
+
     addComment = (e) => {
         e.preventDefault();
         let user = {
@@ -118,9 +145,29 @@ class PostHome extends Component {
         
     };
 
+    likeIcon = () => {
+        console.log("Funciton ")
+        if (this.state.islike){
+            return "filled";
+        }
+        else{
+            return "outlined";
+        }
+    }
+
     onChange = (e) =>
         this.setState({ [e.target.name]: e.target.value });
 
+    
+    look() {
+        if (this.state.islike){
+            this.dislike()
+        }
+        else{
+            this.like()
+        }
+    }
+    
     like = () => {
         let query = {
             email: this.state.email,
@@ -133,7 +180,8 @@ class PostHome extends Component {
                 console.log(res)
                 let data = res.data;
                 console.log(data)
-                // window.location.reload();
+                this.setState({likeNum: data})
+                window.location.reload();
             })
             .catch(error => {
                 console.log("Fail");
@@ -143,13 +191,42 @@ class PostHome extends Component {
             alert("Please Log in First");
             this.props.history.push('/login');
         }
+    
+        
+    }
+
+    dislike = () => {
+        let query = {
+            email: this.state.email,
+            postId: this.state.postId
+        };
+        console.log(query)
+        if (this.state.email){
+            ApiService.dislike(query).then(res => {
+                console.log("Success");
+                console.log(res)
+                let data = res.data;
+                console.log(data)
+                this.setState({likeNum: data})
+                window.location.reload();
+            })
+            .catch(error => {
+                console.log("Fail");
+            });
+        }
+        else{
+            alert("Please Log in First");
+            this.props.history.push('/login');
+        }
+    
+        
     }
 
     render() {
 
         if(this.state.loading) {
-            return (<div className='loading'><Spinner animation='grow' variant="info"/></div>);
-        }
+            return 'Loading...'
+        } 
 
         return(
             <div className="body">
@@ -162,11 +239,9 @@ class PostHome extends Component {
                 <div className="txt">
                     {this.state.content}
                 </div>
-                <div className="like" style={{cursor: 'pointer', marginLeft:"20%", width:"10%"}} onClick={this.like}>
-                        <IconContext.Provider value={{ color: "blue"}}>
-                            <FiThumbsUp size={50}/>
-                            {this.state.likeNum}
-                        </IconContext.Provider>
+                <div className="like" style={{cursor: 'pointer', marginLeft:"20%", width:"10%"}} onClick={this.look}>
+                <Icon type="like" theme={this.likeIcon()}/>
+                        {this.state.likeNum}
                 </div>
                 <div className="commentBody">
                     <div id="comment" className="form-group">
@@ -177,11 +252,10 @@ class PostHome extends Component {
                             </div>      
                     </div>
                             <table>
+                            
                                 {this.state.comments.map(item => (
                                     <tr>
-                                        <td>{item.email}</td>
-                                        <td>: </td>
-                                        <td>{item.content}</td>
+                                        <td>{<CommentCards comment={item} />}</td>
                                     </tr>
                                 ))}
                             </table>

@@ -199,6 +199,24 @@ class ApiService {
 
     }
 
+    dislike(query){
+        return axios.post(URL + '/posts/userUnlike',
+            query,
+            {
+                headers: POSTHEADERS
+            });
+
+    }
+
+    isliked(query){
+        return axios.get(URL + '/posts/isUserLiked',
+            {
+                params: query,
+                headers: GETHEADERS
+            });
+
+    }
+
 }
 
 export default new ApiService();
