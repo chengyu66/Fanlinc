@@ -12,3 +12,21 @@
     margin-right: 45%;
     padding: 30px 50px;
 }
+
+#not {
+    text-align: center;
+}
+
+#in {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons p {
+    margin-left: 10px;
+    margin-right: 10px;
+}

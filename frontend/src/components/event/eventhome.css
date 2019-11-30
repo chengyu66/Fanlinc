@@ -46,9 +46,9 @@
 
 .buttons{
     display: flex;
-    justify-content: space-between;
-    margin-left: 40%;
-    margin-right: 40%;
+    justify-content: center;
+    /* margin-left: 40%;
+    margin-right: 40%; */
     padding: 50px;
 }
 

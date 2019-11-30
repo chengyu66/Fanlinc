@@ -202,13 +202,15 @@ class FandomHome extends Component {
         if(this.state.isJoin) {
             return (
                 <div>
-                    <div className={styles.jumbotronFluid}>
+                    <div id='in' className={styles.jumbotronFluid}>
                         <div className={styles.bgTransparent}>
                             <h1>Welcome to {this.state.data.fandomName}</h1>
                             <p>Fandom ID: {this.state.data.fandomId}</p>
-                            <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
-                            <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
-                            <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                            <div className="buttons">
+                                <p><Button  variant="primary" onClick={this.goToPostWriting}>Write A Post!</Button></p>
+                                <p><Button  variant="primary" onClick={this.goToCreateEvent}>Create an Event</Button></p>
+                                <p><Button  variant="primary" onClick={this.quitFandom}>Leave</Button></p>
+                            </div>
                         </div>
                     </div>
 
@@ -226,7 +228,7 @@ class FandomHome extends Component {
         } else {
             return (
                 <div>
-                    <div className={styles.jumbotron}>
+                    <div id='not' className={styles.jumbotron}>
                         <div className={styles.bgTransparent + styles.dFlex + styles.alignItemsCenter + styles.justifyContentCenter}>
                             <h1>Welcome to {this.state.data.fandomName}</h1>
                             <p>Fandom ID: {this.state.data.fandomId}</p>
