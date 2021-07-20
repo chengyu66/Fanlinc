@@ -16,7 +16,7 @@
     "react-geocode": "^0.2.1",
     "react-icons": "^3.8.0",
     "react-mdl": "^1.11.0",
-    "react-native": "^0.61.5",
+    "react-native": "^0.62.3",
     "react-native-paper": "^3.1.1",
     "react-places-autocomplete": "^7.2.1",
     "react-router-dom": "^5.1.2",
